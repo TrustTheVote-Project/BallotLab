@@ -1,7 +1,6 @@
 # BallotLab
 
-A Pythonic repo of PDF-related code to lay out EAC-compliant ballots, part of the OSET BallotStudio project. I'm testing out some ideas here, so this isn't considered production code.
-
+Encapsulated Python software for generating EAC-compliant ballots from NIST 1500-100 election definition datasets, part of the OSET BallotStudio project. 
 ## Getting Started
 
 First, clone this repo into your a folder on your development computer. Then, follow these steps to set up your development environment: [How to set up a perfect Python project](https://sourcery.ai/blog/python-best-practices/)
@@ -47,4 +46,4 @@ This Python project follows the current best practices for Python project organi
 
 ## Election Specifications
 
-This software will conform to the following US Election specifications: [usnistgov/ElectionResultsReporting at version2](https://github.com/usnistgov/ElectionResultsReporting/tree/version2). We're also using the EAC Effective Elections Design document as our standard for ballot layout. These documents are available in the `docs` folder in this repo, too.
+This software conforms to the following US Election specifications: [usnistgov/ElectionResultsReporting at version2](https://github.com/usnistgov/ElectionResultsReporting/tree/version2). We're also using the EAC Effective Elections Design document as our standard for ballot layout. These documents are available in the `docs` folder in this repo, too.
