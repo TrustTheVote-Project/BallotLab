@@ -1,0 +1,983 @@
+{
+    "Election": [
+        {
+            "@type": "ElectionResults.Election",
+            "BallotStyle": [
+                {
+                    "@type": "ElectionResults.BallotStyle",
+                    "GpUnitIds": [
+                        "gpunit1"
+                    ],
+                    "OrderedContent": [
+                        {
+                            "@type": "ElectionResults.OrderedContest",
+                            "ContestId": "ccont1"
+                        },
+                        {
+                            "@type": "ElectionResults.OrderedContest",
+                            "ContestId": "ccont2"
+                        },
+                        {
+                            "@type": "ElectionResults.OrderedContest",
+                            "ContestId": "ccont3"
+                        },
+                        {
+                            "@type": "ElectionResults.OrderedContest",
+                            "ContestId": "ccont4"
+                        },
+                        {
+                            "@type": "ElectionResults.OrderedContest",
+                            "ContestId": "ccont5"
+                        },
+                        {
+                            "@type": "ElectionResults.OrderedContest",
+                            "ContestId": "ccont6"
+                        }
+                    ]
+                }
+            ],
+            "Candidate": [
+                {
+                    "@id": "candidate1",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "JOSEPH R. BIDEN",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person1",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate2",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "KAMALA D. HARRIS",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person2",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate3",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "DONALD J. TRUMP",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "IsIncumbent": true,
+                    "PersonId": "person3",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate4",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "MICHAEL R. PENCE",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "IsIncumbent": true,
+                    "PersonId": "person4",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate5",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "JO JORGENSEN",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person5",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate6",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "JEREMY SPIKE COHEN",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person6",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate7",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "JOSH SHAPIRO",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person7",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate8",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "HEATHER HEIDELBAUGH",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person8",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate9",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "DANIEL WASSMER",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person9",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate10",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "RICHARD L. WEISS",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person10",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate11",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "NINA AHMAD",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person11",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate12",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "TIMOTHY DEFOOR",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person12",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate13",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "JENNIFER MOORE",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person13",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate14",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "OLIVIA FAISON",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person14",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate15",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "JOE TORSELLA",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person15",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate16",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "STACY L. GARRITY",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person16",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate17",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "JOE SOLOSKI",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person17",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate18",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "TIMOTHY RUNKLE",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person18",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate19",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "CONOR LAMB",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person19",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate20",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "SEAN PARNELL",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person20",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate21",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "ROBERT F. MATZIE",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person21",
+                    "PreElectionStatus": "qualified"
+                },
+                {
+                    "@id": "candidate22",
+                    "@type": "ElectionResults.Candidate",
+                    "BallotName": "RICO ELMORE",
+                    "ContactInformation": {
+                        "@type": "ElectionResults.ContactInformation"
+                    },
+                    "PersonId": "person22",
+                    "PreElectionStatus": "qualified"
+                }
+            ],
+            "Contest": [
+                {
+                    "@id": "ccont1",
+                    "@type": "ElectionResults.CandidateContest",
+                    "BallotSubTitle": "Vote for the candidates of one party for President and Vice-President, or insert the names of candidates",
+                    "BallotTitle": "PRESIDENTIAL ELECTORS",
+                    "ContestSelection": [
+                        {
+                            "@id": "csel1",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand1"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party1"
+                            ]
+                        },
+                        {
+                            "@id": "csel2",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand2"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party1"
+                            ]
+                        },
+                        {
+                            "@id": "csel3",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand3"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party2"
+                            ]
+                        },
+                        {
+                            "@id": "csel4",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand4"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party2"
+                            ]
+                        },
+                        {
+                            "@id": "csel5",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand5"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party3"
+                            ]
+                        },
+                        {
+                            "@id": "csel6",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand6"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party3"
+                            ]
+                        },
+                        {
+                            "@id": "csel7",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "IsWriteIn": true
+                        }
+                    ],
+                    "ElectionDistrictId": "gpunit1",
+                    "Name": "PRESIDENTIAL ELECTORS",
+                    "NumberElected": 1,
+                    "OfficeIds": [
+                        "office1"
+                    ],
+                    "VoteVariation": "plurality",
+                    "VotesAllowed": 1
+                },
+                {
+                    "@id": "ccont2",
+                    "@type": "ElectionResults.CandidateContest",
+                    "BallotSubTitle": "Vote for One",
+                    "BallotTitle": "ATTORNEY GENERAL",
+                    "ContestSelection": [
+                        {
+                            "@id": "csel8",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand7"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party1"
+                            ]
+                        },
+                        {
+                            "@id": "csel9",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand8"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party2"
+                            ]
+                        },
+                        {
+                            "@id": "csel10",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand9"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party3"
+                            ]
+                        },
+                        {
+                            "@id": "csel11",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand10"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party4"
+                            ]
+                        },
+                        {
+                            "@id": "csel12",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "IsWriteIn": true
+                        }
+                    ],
+                    "ElectionDistrictId": "gpunit1",
+                    "Name": "ATTORNEY GENERAL",
+                    "NumberElected": 1,
+                    "OfficeIds": [
+                        "office2"
+                    ],
+                    "VoteVariation": "plurality",
+                    "VotesAllowed": 1
+                },
+                {
+                    "@id": "ccont3",
+                    "@type": "ElectionResults.CandidateContest",
+                    "BallotSubTitle": "Vote for One",
+                    "BallotTitle": "AUDITOR GENERAL",
+                    "ContestSelection": [
+                        {
+                            "@id": "csel13",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand11"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party1"
+                            ]
+                        },
+                        {
+                            "@id": "csel14",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand12"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party2"
+                            ]
+                        },
+                        {
+                            "@id": "csel15",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand13"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party3"
+                            ]
+                        },
+                        {
+                            "@id": "csel16",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand14"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party4"
+                            ]
+                        },
+                        {
+                            "@id": "csel17",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "IsWriteIn": true
+                        }
+                    ],
+                    "ElectionDistrictId": "gpunit1",
+                    "Name": "AUDITOR GENERAL",
+                    "NumberElected": 1,
+                    "OfficeIds": [
+                        "office3"
+                    ],
+                    "VoteVariation": "plurality"
+                },
+                {
+                    "@id": "ccont4",
+                    "@type": "ElectionResults.CandidateContest",
+                    "BallotSubTitle": "Vote for One",
+                    "BallotTitle": "STATE TREASURER",
+                    "ContestSelection": [
+                        {
+                            "@id": "csel18",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand15"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party1"
+                            ]
+                        },
+                        {
+                            "@id": "csel19",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand16"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party2"
+                            ]
+                        },
+                        {
+                            "@id": "csel20",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand17"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party3"
+                            ]
+                        },
+                        {
+                            "@id": "csel21",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand18"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party4"
+                            ]
+                        },
+                        {
+                            "@id": "csel22",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "IsWriteIn": true
+                        }
+                    ],
+                    "ElectionDistrictId": "gpunit1",
+                    "Name": "STATE TREASURER",
+                    "NumberElected": 1,
+                    "OfficeIds": [
+                        "office4"
+                    ],
+                    "VoteVariation": "plurality",
+                    "VotesAllowed": 1
+                },
+                {
+                    "@id": "ccont5",
+                    "@type": "ElectionResults.CandidateContest",
+                    "BallotSubTitle": "Vote for One",
+                    "BallotTitle": "REPRESENTATIVE IN CONGRESS 17TH DISTRICT",
+                    "ContestSelection": [
+                        {
+                            "@id": "csel23",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand19"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party1"
+                            ]
+                        },
+                        {
+                            "@id": "csel24",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand20"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party2"
+                            ]
+                        },
+                        {
+                            "@id": "csel25",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "IsWriteIn": true
+                        }
+                    ],
+                    "ElectionDistrictId": "gpunit2",
+                    "Name": "CONGRESS 17TH DISTRICT",
+                    "NumberElected": 1,
+                    "OfficeIds": [
+                        "office5"
+                    ],
+                    "VoteVariation": "plurality",
+                    "VotesAllowed": 1
+                },
+                {
+                    "@id": "ccont6",
+                    "@type": "ElectionResults.CandidateContest",
+                    "BallotSubTitle": "Vote for One",
+                    "BallotTitle": "REPRESENTATVE IN THE GENERAL ASSEMBLY 16TH DISTRICT",
+                    "ContestSelection": [
+                        {
+                            "@id": "csel26",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand21"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party1"
+                            ]
+                        },
+                        {
+                            "@id": "csel27",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "CandidateIds": [
+                                "ecand22"
+                            ],
+                            "EndorsementPartyIds": [
+                                "party2"
+                            ]
+                        },
+                        {
+                            "@id": "csel28",
+                            "@type": "ElectionResults.CandidateSelection",
+                            "IsWriteIn": true
+                        }
+                    ],
+                    "ElectionDistrictId": "gpunit3",
+                    "Name": "GENERAL ASSEMBLY 16TH DISTRICT",
+                    "NumberElected": 1,
+                    "OfficeIds": [
+                        "office6"
+                    ],
+                    "VoteVariation": "plurality",
+                    "VotesAllowed": 1
+                }
+            ],
+            "ElectionScopeId": "gpunit1",
+            "EndDate": "2020-11-03",
+            "Name": "General Election ",
+            "StartDate": "2020-11-03",
+            "Type": "general"
+        }
+    ],
+    "GpUnit": [
+        {
+            "@id": "gpunit1",
+            "@type": "ElectionResults.ReportingUnit",
+            "ComposingGpUnitIds": [
+                "gpunit3",
+                "gpunit2"
+            ],
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "Name": "Beaver County",
+            "Type": "County"
+        },
+        {
+            "@id": "gpunit2",
+            "@type": "ElectionResults.ReportingUnit",
+            "ComposingGpUnitIds": [
+                "gpunit4"
+            ],
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "Name": "17th District",
+            "Type": "congressional"
+        },
+        {
+            "@id": "gpunit3",
+            "@type": "ElectionResults.ReportingUnit",
+            "ComposingGpUnitIds": [
+                "gpunit4"
+            ],
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "Name": "16th District",
+            "Type": "congressional"
+        },
+        {
+            "@id": "gpunit4",
+            "@type": "ElectionResults.ReportingUnit",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "Name": "Aliquippa",
+            "Type": "city"
+        }
+    ],
+    "Office": [
+        {
+            "@id": "office1",
+            "@type": "ElectionResults.Office",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "ElectionDistrictId": "gpunit1",
+            "Name": "PRESIDENTIAL ELECTORS",
+            "Term": {
+                "@type": "ElectionResults.Term",
+                "Type": "full-term"
+            }
+        },
+        {
+            "@id": "office2",
+            "@type": "ElectionResults.Office",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "ElectionDistrictId": "gpunit1",
+            "Name": "ATTORNEY GENERAL",
+            "Term": {
+                "@type": "ElectionResults.Term",
+                "Type": "full-term"
+            }
+        },
+        {
+            "@id": "office3",
+            "@type": "ElectionResults.Office",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "ElectionDistrictId": "gpunit1",
+            "Name": "AUDITOR GENERAL",
+            "Term": {
+                "@type": "ElectionResults.Term",
+                "Type": "full-term"
+            }
+        },
+        {
+            "@id": "office4",
+            "@type": "ElectionResults.Office",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "ElectionDistrictId": "gpunit1",
+            "Name": "STATE TREASURER",
+            "Term": {
+                "@type": "ElectionResults.Term",
+                "Type": "full-term"
+            }
+        },
+        {
+            "@id": "office5",
+            "@type": "ElectionResults.Office",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "ElectionDistrictId": "gpunit2",
+            "Name": "REPRESENTATIVE IN CONGRESS 17TH DISTRICT",
+            "Term": {
+                "@type": "ElectionResults.Term",
+                "Type": "full-term"
+            }
+        },
+        {
+            "@id": "office6",
+            "@type": "ElectionResults.Office",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "ElectionDistrictId": "gpunit3",
+            "Name": "REPRESENTATVE IN THE GENERAL ASSEMBLY 16TH DISTRICT",
+            "Term": {
+                "@type": "ElectionResults.Term",
+                "Type": "full-term"
+            }
+        }
+    ],
+    "Party": [
+        {
+            "@id": "party1",
+            "@type": "ElectionResults.Party",
+            "Abbreviation": "D",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "Name": "DEMOCRATIC"
+        },
+        {
+            "@id": "party2",
+            "@type": "ElectionResults.Party",
+            "Abbreviation": "R",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "Name": "REPUBLICAN"
+        },
+        {
+            "@id": "party3",
+            "@type": "ElectionResults.Party",
+            "Abbreviation": "L",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "Name": "LIBERTARIAN"
+        },
+        {
+            "@id": "party4",
+            "@type": "ElectionResults.Party",
+            "Abbreviation": "GP",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "Name": "GREEN PARTY"
+        }
+    ],
+    "Person": [
+        {
+            "@id": "person1",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "JOSEPH R. BIDEN",
+            "PartyId": "party1"
+        },
+        {
+            "@id": "person2",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "KAMALA D. HARRIS",
+            "PartyId": "party1"
+        },
+        {
+            "@id": "person3",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "DONALD J. TRUMP",
+            "PartyId": "party2"
+        },
+        {
+            "@id": "person4",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "MICHAEL R. PENCE",
+            "PartyId": "party2"
+        },
+        {
+            "@id": "person5",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "JO JORGENSEN",
+            "PartyId": "party3"
+        },
+        {
+            "@id": "person6",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "JEREMY SPIKE COHEN",
+            "PartyId": "party3"
+        },
+        {
+            "@id": "person7",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "JOSH SHAPIRO",
+            "PartyId": "party1"
+        },
+        {
+            "@id": "person8",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "HEATHER HEIDELBAUGH",
+            "PartyId": "party2"
+        },
+        {
+            "@id": "person9",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "DANIEL WASSMER",
+            "PartyId": "party3"
+        },
+        {
+            "@id": "person10",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "RICHARD L. WEISS",
+            "PartyId": "party4"
+        },
+        {
+            "@id": "person11",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "NINA AHMAD",
+            "PartyId": "party1"
+        },
+        {
+            "@id": "person12",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "TIMOTHY DEFOOR",
+            "PartyId": "party2"
+        },
+        {
+            "@id": "person13",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "JENNIFER MOORE",
+            "PartyId": "party3"
+        },
+        {
+            "@id": "person14",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "OLIVIA FAISON",
+            "PartyId": "party4"
+        },
+        {
+            "@id": "person15",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "JOE TORSELLA",
+            "PartyId": "party1"
+        },
+        {
+            "@id": "person16",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "STACY L. GARRITY",
+            "PartyId": "party2"
+        },
+        {
+            "@id": "person17",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "JOE SOLOSKI",
+            "PartyId": "party3"
+        },
+        {
+            "@id": "person18",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "TIMOTHY RUNKLE",
+            "PartyId": "party4"
+        },
+        {
+            "@id": "person19",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "CONOR LAMB",
+            "PartyId": "party1"
+        },
+        {
+            "@id": "person20",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "SEAN PARNELL",
+            "PartyId": "party2"
+        },
+        {
+            "@id": "person21",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "ROBERT F. MATZIE",
+            "PartyId": "party1"
+        },
+        {
+            "@id": "person22",
+            "@type": "ElectionResults.Person",
+            "ContactInformation": {
+                "@type": "ElectionResults.ContactInformation"
+            },
+            "FullName": "RICO ELMORE",
+            "PartyId": "party2"
+        }
+    ]
+}

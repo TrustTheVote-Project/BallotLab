@@ -1,0 +1,373 @@
+{
+  {
+    "Party": [
+      {
+        "Name": "Lepton",
+        "@id": "party1",
+        "@type": "ElectionResults.Party",
+        "Abbreviation": "L",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+        "Slogan": "We are Lepton!"
+      },
+      {
+        "Name": "Hadron",
+        "@id": "party2",
+        "@type": "ElectionResults.Party",
+        "Abbreviation": "H",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+        "Slogan": "We are Hadron"
+      }
+    ],
+    "Person": [
+      {
+        "FullName": "Cosmo Spacely",
+        "@id": "person1",
+        "@type": "ElectionResults.Person",
+        "FirstName": "Cosmo",
+        "LastName": "Spacely",
+        "Profession": "Former Spaceport Concil",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+        "PartyId": "party1"
+      },
+      {
+        "FullName": "Spencer Cogswell",
+        "@id": "person2",
+        "@type": "ElectionResults.Person",
+        "FirstName": "Spencer",
+        "LastName": "Cogwell",
+        "Profession": "Former Spaceport Concil",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+        "PartyId": "party2"
+      },
+      {
+        "FullName": "Jane Jetson",
+        "@id": "person3",
+        "@type": "ElectionResults.Person",
+        "FirstName": "Jane",
+        "LastName": "Jetson",
+        "Profession": "Independent Consultant",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "FullName": "Harlan Ellis",
+        "@id": "person4",
+        "@type": "ElectionResults.Person",
+        "FirstName": "Harlan",
+        "LastName": "Ellis",
+        "Profession": "Author",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "FullName": "Rudi Indexer",
+        "@id": "person5",
+        "@type": "ElectionResults.Person",
+        "FirstName": "Rudi",
+        "LastName": "Indexer",
+        "Profession": "Sentient Search Engine",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "FullName": "Montague Jetson",
+        "@id": "person6",
+        "@type": "ElectionResults.Person",
+        "FirstName": "Montague",
+        "LastName": "Jetson",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      }
+    ],
+    "Office": [
+      {
+        "Name": "Orbit City Mayor",
+        "@id": "office1",
+        "@type": "ElectionResults.Office",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+        "ElectionDistrictId": "gpunit7",
+        "OfficeHolderPersonIds": [ "person6" ],
+        "Term": {
+          "@type": "ElectionResults.Term",
+          "Type": "unexpired-term"
+        }
+      },
+      {
+        "Name": "Spaceport Control Board",
+        "@id": "office2",
+        "@type": "ElectionResults.Office",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+        "ElectionDistrictId": "gpunit6",
+        "OfficeHolderPersonIds": [ "person1", "person2" ],
+        "Term": {
+          "@type": "ElectionResults.Term",
+          "Type": "unexpired-term"
+        }
+      }
+    ],
+    "GpUnit": [
+      {
+        "@type": "ElectionResults.ReportingUnit",
+        "@id": "gpunit1",
+        "Type": "county",
+        "Name": "Gadget",
+        "ComposingGpUnitIds": [ "gpunit5", "gpunit4", "gpunit3", "gpunit2" ],
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "@type": "ElectionResults.ReportingUnit",
+        "@id": "gpunit2",
+        "Type": "precinct",
+        "Name": "Downtown",
+        "ComposingGpUnitIds": [ "gpunit7" ],
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "@type": "ElectionResults.ReportingUnit",
+        "@id": "gpunit3",
+        "Type": "precinct",
+        "Name": "Spacetown",
+        "ComposingGpUnitIds": [ "gpunit7", "gpunit6" ],
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "@type": "ElectionResults.ReportingUnit",
+        "@id": "gpunit4",
+        "Type": "precinct",
+        "Name": "Port",
+        "ComposingGpUnitIds": [ "gpunit6" ],
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "@type": "ElectionResults.ReportingUnit",
+        "@id": "gpunit5",
+        "Type": "precinct",
+        "Name": "Bedrock",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "@type": "ElectionResults.ReportingUnit",
+        "@id": "gpunit6",
+        "Type": "precinct",
+        "Name": "Spaceport Control Board",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      },
+      {
+        "@type": "ElectionResults.ReportingUnit",
+        "@id": "gpunit7",
+        "Type": "city",
+        "Name": "Orbit City",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+      }
+    ],
+    "Header": [
+      {
+        "Name": "This is the header",
+        "@id": "office3",
+        "@type": "ElectionResults.Office",
+        "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+        "Term": { "@type": "ElectionResults.Term" }
+      }
+    ],
+    "Election": [
+      {
+        "@type": "ElectionResults.Election",
+        "Name": "Gadget County Special Election",
+        "Type": "special",
+        "StartDate": "2022-11-08",
+        "EndDate": "2022-11-08",
+        "ElectionScopeId": "gpunit1",
+        "Candidate": [
+          {
+            "@type": "ElectionResults.Candidate",
+            "@id": "candidate1",
+            "BallotName": "Cosmo Spacely",
+            "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+            "PersonId": "person1",
+            "PreElectionStatus": "qualified"
+          },
+          {
+            "@type": "ElectionResults.Candidate",
+            "@id": "candidate2",
+            "BallotName": "Spencer Cogwell",
+            "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+            "PersonId": "person2",
+            "PreElectionStatus": "qualified"
+          },
+          {
+            "@type": "ElectionResults.Candidate",
+            "@id": "candidate3",
+            "BallotName": "Jane Jetson",
+            "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+            "PersonId": "person3",
+            "PreElectionStatus": "qualified"
+          },
+          {
+            "@type": "ElectionResults.Candidate",
+            "@id": "candidate4",
+            "BallotName": "Harlan Ellis",
+            "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+            "PersonId": "person4",
+            "PreElectionStatus": "qualified"
+          },
+          {
+            "@type": "ElectionResults.Candidate",
+            "@id": "candidate5",
+            "BallotName": "Rudi Indexer",
+            "ContactInformation": { "@type": "ElectionResults.ContactInformation" },
+            "PersonId": "person5",
+            "PreElectionStatus": "qualified"
+          },
+          {
+            "@type": "ElectionResults.Candidate",
+            "@id": "candidate6",
+            "ContactInformation": { "@type": "ElectionResults.ContactInformation" }
+          }
+        ],
+        "Contest": [
+          {
+            "@type": "ElectionResults.CandidateContest",
+            "Name": "Mayor",
+            "ElectionDistrictId": "gpunit7",
+            "VotesAllowed": 1,
+            "@id": "ccont1",
+            "BallotTitle": "Orbit City Mayor",
+            "BallotSubTitle": "Vote for One",
+            "ContestSelection": [
+              {
+                "@type": "ElectionResults.CandidateSelection",
+                "@id": "csel1",
+                "CandidateIds": [ "candidate1" ]
+              },
+              {
+                "@type": "ElectionResults.CandidateSelection",
+                "@id": "csel2",
+                "CandidateIds": [ "candidate2" ]
+              },
+              {
+                "@type": "ElectionResults.CandidateSelection",
+                "@id": "csel6",
+                "IsWriteIn": true
+              }
+            ],
+            "NumberElected": 1,
+            "OfficeIds": [ "office1" ],
+            "VoteVariation": "plurality"
+          },
+          {
+            "@type": "ElectionResults.CandidateContest",
+            "Name": "Spaceport Control Board",
+            "ElectionDistrictId": "gpunit6",
+            "VotesAllowed": 2,
+            "@id": "ccont2",
+            "BallotTitle": "Spaceport Control Board",
+            "BallotSubTitle": "Vote for Two",
+            "ContestSelection": [
+              {
+                "@type": "ElectionResults.CandidateSelection",
+                "@id": "csel3",
+                "CandidateIds": [ "candidate3" ]
+              },
+              {
+                "@type": "ElectionResults.CandidateSelection",
+                "@id": "csel4",
+                "CandidateIds": [ "candidate4" ]
+              },
+              {
+                "@type": "ElectionResults.CandidateSelection",
+                "@id": "csel5",
+                "CandidateIds": [ "candidate5" ]
+              },
+              {
+                "@type": "ElectionResults.CandidateSelection",
+                "@id": "csel7",
+                "IsWriteIn": true
+              }
+            ],
+            "NumberElected": 2,
+            "VoteVariation": "approval"
+          },
+          {
+            "@type": "ElectionResults.BallotMeasureContest",
+            "Name": "Gadget County Ballot Question 1",
+            "ElectionDistrictId": "gpunit1",
+            "@id": "bmcont1",
+            "BallotTitle": "Sales Tax Increase",
+            "BallotSubTitle": "Vote \"Yes\" to approve or \"No\" to reject",
+            "ProStatement": "This is the pro statement",
+            "ConStatement": "This is the con statement",
+            "ContestSelection": [
+              {
+                "@type": "ElectionResults.BallotMeasureSelection",
+                "@id": "bmsel1",
+                "Selection": "Yes"
+              },
+              {
+                "@type": "ElectionResults.BallotMeasureSelection",
+                "@id": "bmsel2",
+                "Selection": "No"
+              }
+            ],
+            "SummaryText": "Shall Gadget County increase its sales tax from 1% to 1.1% for the purpose of raising additional revenue to fund expanded air traffic control operations?",
+            "FullText": "Shall Gadget County increase its sales tax from 1% to 1.1% for the purpose of raising additional revenue to fund expanded air traffic control operations?",
+            "VoteVariation": "majority"
+          }
+        ],
+        "BallotStyle": [
+          {
+            "@type": "ElectionResults.BallotStyle",
+            "GpUnitIds": [ "gpunit3" ],
+            "OrderedContent": [
+              {
+                "@type": "ElectionResults.OrderedContest",
+                "ContestId": "ccont1"
+              },
+              {
+                "@type": "ElectionResults.OrderedContest",
+                "ContestId": "ccont2"
+              },
+              {
+                "@type": "ElectionResults.OrderedContest",
+                "ContestId": "bmcont1"
+              }
+            ]
+          },
+          {
+            "@type": "ElectionResults.BallotStyle",
+            "GpUnitIds": [ "gpunit2" ],
+            "OrderedContent": [
+              {
+                "@type": "ElectionResults.OrderedContest",
+                "ContestId": "ccont1"
+              },
+              {
+                "@type": "ElectionResults.OrderedContest",
+                "ContestId": "bmcont1"
+              }
+            ]
+          },
+          {
+            "@type": "ElectionResults.BallotStyle",
+            "GpUnitIds": [ "gpunit4" ],
+            "OrderedContent": [
+              {
+                "@type": "ElectionResults.OrderedContest",
+                "ContestId": "ccont2"
+              },
+              {
+                "@type": "ElectionResults.OrderedContest",
+                "ContestId": "bmcont1"
+              }
+            ]
+          },
+          {
+            "@type": "ElectionResults.BallotStyle",
+            "GpUnitIds": [ "gpunit5" ],
+            "OrderedContent": [
+              {
+                "@type": "ElectionResults.OrderedContest",
+                "ContestId": "bmcont1"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
