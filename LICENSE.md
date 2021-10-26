@@ -30,27 +30,27 @@ The text of the license begins here:
       (a) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or
       (b) ownership of more than fifty percent (50%) of the outstanding shares or beneficial ownership of such entity.
 2. **License Grants and Conditions**
-   1. Grants. 
+   1. Grants.
    Each Contributor hereby grants You a world-wide, royalty-free, non-exclusive license:
       1. under intellectual property rights (*other than patent or trademark*) Licensable by such Contributor to use, reproduce, make available, modify, display, perform, distribute, and otherwise exploit its Contributions, either on an unmodified basis, with Modifications, or as part of a Larger Work; and
       2. under Patent Claims of such Contributor to make, use, sell, offer for sale, have made, import, and otherwise transfer either its Contributions or its Contributor Version.
-   2. Effective Date
+   2. Effective Date.
    The licenses granted in Section 2.1 with respect to any Contribution become effective for each Contribution on the date the Contributor first distributes such Contribution.
-   3. Limitations on Grant Scope
+   3. Limitations on Grant Scope.
    The licenses granted in this Section 2 are the only rights granted under this License. No additional rights or licenses will be implied from the distribution or licensing of Covered Software under this License. Notwithstanding Section 2.1(b) above, no patent license is granted by a Contributor:
       1. for any code that a Contributor has removed from Covered Software; or
       2. for infringements caused by: (i) Your and any other third party’s modifications of Covered Software, or (ii) the combination of its Contributions with other software (*except as part of its Contributor Version*);
       or
       3. under Patent Claims infringed by Covered Software in the absence of its Contributions.
    This License does not grant any rights in the trademarks, service marks, or logos of any Contributor (*except as may be necessary to comply with the notice requirements in* Section 3.4).
-   4. Subsequent Licenses
+   4. Subsequent Licenses.
    No Contributor makes additional grants as a result of Your choice to distribute the Covered Software under a subsequent version of this License (*see* Section 10.2) or under the terms of a Secondary License (*if permitted under the terms of* Section 3.3).
-   5. Representation
+   5. Representation.
    Each Contributor represents that the Contributor believes its Contributions are its original creation(s) or it has sufficient rights to grant the rights to its Contributions conveyed by this License.
-   6. Fair Use
+   6. Fair Use.
    This License is not intended to limit any rights You have under applicable copyright doctrines of fair use, fair dealing, or other equivalents.
-   7. Conditions
-  Sections 3.1, 3.2, 3.3, and 3.4 are conditions of the licenses granted in Section 2.1.
+   7. Conditions.
+   Sections 3.1, 3.2, 3.3, and 3.4 are conditions of the licenses granted in Section 2.1.
 3. **Responsibilities**
     1. Distribution of Source Form.
     All distribution of Covered Software in Source Code Form, including any Modifications that You create or to which You contribute, must be under the terms of this License. You must inform recipients that the Source Code Form of the Covered Software is governed by the terms of this License, and how they can obtain a copy of this License. You must cause any of Your Modifications to carry prominent notices stating that You changed the files. You may not attempt to alter or restrict the recipients’ rights in the Source Code Form.
@@ -70,7 +70,7 @@ The text of the license begins here:
 5. **Termination**
    1. Failure to Comply.
    The rights granted under this License will terminate automatically if You fail to comply with any of its terms. However, if You become compliant, then the rights granted under this License from a particular Contributor are reinstated
-      (a) provisionally, unless and until such Contributor explicitly and finally terminates Your grants, and 
+      (a) provisionally, unless and until such Contributor explicitly and finally terminates Your grants, and
       (b) on an ongoing basis, if such Contributor fails to notify You of the non-compliance by some reasonable means prior to 60-days after You have come back into compliance. Moreover, Your grants from a particular Contributor are reinstated on an ongoing basis if such Contributor notifies You of the non-compliance by some reasonable means, this is the first time You have received notice of non-compliance with this License from such Contributor, and You become compliant prior to 30-days after Your receipt of the notice.
    2. Patent Infringement Claims.
    If You initiate litigation against any entity by asserting a patent infringement claim (*excluding declaratory judgment actions, counter-claims, and cross- claims*) alleging that a Contributor Version directly or indirectly infringes any patent, then the rights granted to You by any and all Contributors for the Covered Software under Section 2.1 of this License shall terminate.
