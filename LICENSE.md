@@ -86,60 +86,35 @@ Covered Software is provided under this License on an “as is” basis, without
  Under no circumstances and under no legal theory, whether tort (*including negligence*), contract, or otherwise, shall any Contributor, or anyone who distributes Covered Software as permitted above, be liable to You for any direct, indirect, special, incidental, or consequential damages of any character including, without limitation, damages for lost profits, loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses, even if such party shall have been informed of the possibility of such damages. This limitation of liability shall not apply to liability for death or personal injury resulting from such party’s negligence to the extent applicable law prohibits such limitation. Some jurisdictions do not allow the exclusion or limitation of incidental or consequential damages, so this exclusion and limitation may not apply to You.
 8. **Litigation**
 Any litigation relating to this License may be brought only in the courts of a jurisdiction where the defendant maintains its principal place of business and such litigation shall be governed by laws of that jurisdiction, without reference to its conflict-of-law provisions. Nothing in this Section shall prevent a party’s ability to bring cross-claims or counter-claims.
-9. ## Government Terms
+9. **Government Terms**
+   1. Commercial Item
+   The Covered Software is a “commercial item,” as that term is defined in 48 C.F.R. 2.101 (*Oct. 1995*), consisting of “commercial computer software” and “commercial computer software documentation,” as such terms are used in 48 C.F.R. 12.212 (*Sept. 1995).* Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4 (*June 1995*), all U.S. Government End Users acquire Covered Software with only those rights set forth herein.
+   2. No Sovereign Immunity
+   The U.S. federal government and states that use or distribute Covered Software hereby waive their sovereign immunity with respect to enforcement of the provisions of this License.
+   3. Choice of Law and Venue
+       1. If You are a government of a state of the United States, or Your use of the Covered Software is pursuant to a procurement contract with such a state government, this License shall be governed by the law of such state, excluding its conflict-of-law provisions, and the adjudication of disputes relating to this License will be subject to the exclusive jurisdiction of the state and federal courts located in such state.
+       2. If You are an agency of the United States federal government, or Your use of the Covered Software is pursuant to a procurement contract with such an agency, this License shall be governed by federal law for all purposes, and the adjudication of disputes relating to this License will be subject to the exclusive jurisdiction of the federal courts located in Washington, D.C.
+       3. You may alter the terms of this Section 9.3 for this License as described in Section 3.5.2.
+   4. Supremacy
+   This Section 9 is in lieu of, and supersedes, any other Federal Acquisition Regulation, Defense Federal Acquisition Regulation, or other clause or provision that addresses government rights in computer software under this License.
+10. **Miscellaneous**
+This License represents the complete agreement concerning the subject matter hereof. If any provision of this License is held to be unenforceable, such provision shall be reformed only to the extent necessary to make it enforceable. Any law or regulation, which provides that the language of a contract shall be construed against the drafter, shall not be used to construe this License against a Contributor.
+11. **Versions of the License**
+    1. New Versions
+    The Open Source Election Technology Foundation (“OSET”) (*formerly known as the Open Source Digital Voting Foundation*) is the steward of this License. Except as provided in Section 11.3, no one other than the license steward has the right to modify or publish new versions of this License. Each version will be given a distinguishing version number.
+    2. Effects of New Versions
+    You may distribute the Covered Software under the terms of the version of the License under which You originally received the Covered Software, or under the terms of any subsequent version published by the license steward.
+    3. Modified Versions
+    If You create software not governed by this License, and You want to create a new license for such software, You may create and use a modified version of this License if You rename the license and remove any references to the name of the license steward (*except to note that such modified license differs from this License*).
+    4. Distributing Source Code Form That is Incompatible With Secondary Licenses
+    If You choose to distribute Source Code Form that is Incompatible With Secondary Licenses under the terms of this version of the License, the notice described in Exhibit B of this License must be attached.
 
- 1. Commercial Item
+## EXHIBIT A – Source Code Form License Notice
 
-  The Covered Software is a “commercial item,” as that term is defined in 48
-
-  C.F.R. 2.101 (*Oct. 1995*), consisting of “commercial computer software” and “commercial computer software documentation,” as such terms are used in 48 C.F.R. 12.212 (*Sept. 1995).* Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4 (*June 1995*), all U.S. Government End Users acquire Covered Software with only those rights set forth herein.
-
- 2. No Sovereign Immunity
-
-  The U.S. federal government and states that use or distribute Covered Software hereby waive their sovereign immunity with respect to enforcement of the provisions of this License.
-
- 3. Choice of Law and Venue
-
-  1. If You are a government of a state of the United States, or Your use of the Covered Software is pursuant to a procurement contract with such a state government, this License shall be governed by the law of such state, excluding its conflict-of-law provisions, and the adjudication of disputes relating to this License will be subject to the exclusive jurisdiction of the state and federal courts located in such state.
-
-  2. If You are an agency of the United States federal government, or Your use of the Covered Software is pursuant to a procurement contract with such an agency, this License shall be governed by federal law for all purposes, and the adjudication of disputes relating to this License will be subject to the exclusive jurisdiction of the federal courts located in Washington,
-
-   D.C.
-
-  3. You may alter the terms of this Section 9.3 for this License as described in Section 3.5.2.
-
- 4. Supremacy
-
-  This Section 9 is in lieu of, and supersedes, any other Federal Acquisition Regulation, Defense Federal Acquisition Regulation, or other clause or provision that addresses government rights in computer software under this License.
-
-10. ## Miscellaneous
-
- This License represents the complete agreement concerning the subject matter hereof. If any provision of this License is held to be unenforceable, such provision shall be reformed only to the extent necessary to make it enforceable. Any law or regulation, which provides that the language of a contract shall be construed against the drafter, shall not be used to construe this License against a Contributor.
-
-11. ## Versions of the License
-
- 1. New Versions
-
-  The Open Source Election Technology Foundation (“OSET”) (*formerly known as the Open Source Digital Voting Foundation*) is the steward of this License. Except as provided in Section 11.3, no one other than the license steward has the right to modify or publish new versions of this License. Each version will be given a distinguishing version number.
-
- 2. Effects of New Versions
-
-  You may distribute the Covered Software under the terms of the version of the License under which You originally received the Covered Software, or under the terms of any subsequent version published by the license steward.
-
- 3. Modified Versions
-
-  If You create software not governed by this License, and You want to create a new license for such software, You may create and use a modified version of this License if You rename the license and remove any references to the name of the license steward (*except to note that such modified license differs from this License*).
-
- 4. Distributing Source Code Form That is Incompatible With Secondary Licenses
-
-If You choose to distribute Source Code Form that is Incompatible With Secondary Licenses under the terms of this version of the License, the notice described in Exhibit B of this License must be attached.
-
-EXHIBIT A – Source Code Form License Notice
-
-This Source Code Form is subject to the terms of the OSET Public License, v.2.1 (“OPL”). If a copy of the OPL was not distributed with this file, You can obtain one at: [www.OSETFoundation.org/public-license](http://www.OSETFoundation.org/public-license)[.](http://www.OSETFoundation.org/public-license)
+This Source Code Form is subject to the terms of the OSET Public License, v.2.1 (“OPL”). If a copy of the OPL was not distributed with this file, You can obtain one at: [www.OSETFoundation.org/public-license](http://www.OSETFoundation.org/public-license).
 
 If it is not possible or desirable to put the Notice in a particular file, then You may include the Notice in a location (*e.g., such as a LICENSE file in a relevant directory*) where a recipient would be likely to look for such a notice. You may add additional accurate notices of copyright ownership.
 
-EXHIBIT B - “Incompatible With Secondary License” Notice
+## EXHIBIT B - “Incompatible With Secondary License” Notice
 
 This Source Code Form is “Incompatible With Secondary Licenses”, as defined by the OSET Public License, v.2.1.
