@@ -4,7 +4,7 @@
 
 THIS LICENSE DEFINES THE RIGHTS OF USE, REPRODUCTION, DISTRIBUTION, MODIFICATION, AND REDISTRIBUTION OF CERTAIN COVERED SOFTWARE (AS DEFINED BELOW) ORIGINALLY RELEASED BY THE OPEN SOURCE ELECTION TECHNOLOGY INSTITUTE (FORMERLY “THE OSDV FOUNDATION”). ANYONE WHO USES, REPRODUCES, DISTRIBUTES, MODIFIES, OR REDISTRIBUTES THE COVERED SOFTWARE, OR ANY PART THEREOF, IS BY THAT ACTION, ACCEPTING IN FULL THE TERMS CONTAINED IN THIS AGREEMENT. IF YOU DO NOT AGREE TO SUCH TERMS, YOU ARE NOT PERMITTED TO USE THE COVERED SOFTWARE.
 
-This license was prepared based on the Mozilla Public License (“MPL”), version 2.0. For annotation of the differences between this license and MPL 2.0, please see the [OSET Foundation web site at www.OSETFoundation.org/public-license](http://www.OSETFoundation.org/public-license).
+This license was prepared based on the Mozilla Public License (“MPL”), version 2.0. For annotation of the differences between this license and MPL 2.0, please see the [OSET Institute web site at www.OSETFoundation.org/public-license](http://www.OSETFoundation.org/public-license).
 
 The text of the license begins here:
 
