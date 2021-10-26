@@ -1,8 +1,8 @@
 # OSET Public License
 
-© 2015 ALL RIGHTS RESERVED VERSION 2.1
+© 2015 ALL RIGHTS RESERVED VERSION 2.11
 
-THIS LICENSE DEFINES THE RIGHTS OF USE, REPRODUCTION, DISTRIBUTION, MODIFICATION, AND REDISTRIBUTION OF CERTAIN COVERED SOFTWARE (AS DEFINED BELOW) ORIGINALLY RELEASED BY THE OPEN SOURCE ELECTION TECHNOLOGY FOUNDATION (FORMERLY “THE OSDV FOUNDATION”). ANYONE WHO USES, REPRODUCES, DISTRIBUTES, MODIFIES, OR REDISTRIBUTES THE COVERED SOFTWARE, OR ANY PART THEREOF, IS BY THAT ACTION, ACCEPTING IN FULL THE TERMS CONTAINED IN THIS AGREEMENT. IF YOU DO NOT AGREE TO SUCH TERMS, YOU ARE NOT PERMITTED TO USE THE COVERED SOFTWARE.
+THIS LICENSE DEFINES THE RIGHTS OF USE, REPRODUCTION, DISTRIBUTION, MODIFICATION, AND REDISTRIBUTION OF CERTAIN COVERED SOFTWARE (AS DEFINED BELOW) ORIGINALLY RELEASED BY THE OPEN SOURCE ELECTION TECHNOLOGY INSTITUTE (FORMERLY “THE OSDV FOUNDATION”). ANYONE WHO USES, REPRODUCES, DISTRIBUTES, MODIFIES, OR REDISTRIBUTES THE COVERED SOFTWARE, OR ANY PART THEREOF, IS BY THAT ACTION, ACCEPTING IN FULL THE TERMS CONTAINED IN THIS AGREEMENT. IF YOU DO NOT AGREE TO SUCH TERMS, YOU ARE NOT PERMITTED TO USE THE COVERED SOFTWARE.
 
 This license was prepared based on the Mozilla Public License (“MPL”), version 2.0. For annotation of the differences between this license and MPL 2.0, please see the [OSET Foundation web site at www.OSETFoundation.org/public-license](http://www.OSETFoundation.org/public-license).
 
@@ -101,7 +101,7 @@ Any litigation relating to this License may be brought only in the courts of a j
 This License represents the complete agreement concerning the subject matter hereof. If any provision of this License is held to be unenforceable, such provision shall be reformed only to the extent necessary to make it enforceable. Any law or regulation, which provides that the language of a contract shall be construed against the drafter, shall not be used to construe this License against a Contributor.
 11. **Versions of the License**
     1. New Versions.
-    The Open Source Election Technology Foundation (“OSET”) (*formerly known as the Open Source Digital Voting Foundation*) is the steward of this License. Except as provided in Section 11.3, no one other than the license steward has the right to modify or publish new versions of this License. Each version will be given a distinguishing version number.
+    The Open Source Election Technology Institute (“OSET”) (*formerly known as the Open Source Digital Voting Foundation*) is the steward of this License. Except as provided in Section 11.3, no one other than the license steward has the right to modify or publish new versions of this License. Each version will be given a distinguishing version number.
     2. Effects of New Versions.
     You may distribute the Covered Software under the terms of the version of the License under which You originally received the Covered Software, or under the terms of any subsequent version published by the license steward.
     3. Modified Versions.
