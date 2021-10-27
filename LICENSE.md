@@ -26,7 +26,7 @@ The text of the license begins here:
    11. “Patent Claims” of a Contributor means any patent claim(s), including without limitation, method, process, and apparatus claims, in any patent Licensable by such Contributor that would be infringed, but for the grant of the License, by the making, using, selling, offering for sale, having made, import, or transfer of either its Contributions or its Contributor Version.
    12. “Secondary License” means one of: the GNU General Public License, Version 2.0, the GNU Lesser General Public License, Version 2.1, the GNU Affero General Public License, Version 3.0, or any later versions of those licenses.
    13. “Source Code Form” means the form of the work preferred for making modifications.
-   14. “You” (or “Your”) means an individual or a legal entity exercising rights under this License. For legal entities, “You” includes any entity that controls, is controlled by, or is under common control with You. For purposes of this definition, “control” means: 
+   14. “You” (or “Your”) means an individual or a legal entity exercising rights under this License. For legal entities, “You” includes any entity that controls, is controlled by, or is under common control with You. For purposes of this definition, “control” means:
       (a) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or
       (b) ownership of more than fifty percent (50%) of the outstanding shares or beneficial ownership of such entity.
 2. **License Grants and Conditions**
