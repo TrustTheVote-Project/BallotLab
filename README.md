@@ -3,38 +3,11 @@
 Encapsulated Python software for generating EAC-compliant ballots from NIST 1500-100 election definition datasets, part of the OSET BallotStudio project. 
 ## Getting Started
 
-First, clone this repo into your a folder on your development computer. Then, follow these steps to set up your development environment: [How to set up a perfect Python project](https://sourcery.ai/blog/python-best-practices/)
+For detailed instructions on how to work with the code in this repo, check out [Getting Started with BallotLab · TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki/Getting-Started-with-BallotLab).
 
-TL;DR: here's a summary listing of the bash commands:
+## The Wiki
 
-```bash
-cd [vour/repo/directory]
-# install pipenv (system-wide)
-pip install pipenv
-# set up pipenv with python 3.9
-pipenv install --python 3.9
-# install development tools
-pipenv install isort --dev
-# currently, black is pre-release so use the --pre flag
-pipenv install black --pre --dev  
-pipenv install flake8 --dev
-pipenv install mypy --dev
-pipenv install pytest pytest-cov --dev
-```
-
-### Install Required Python Packages
-
-Once you've set up your development environment, install the required Python packages:
-
-```bash
-# Create PDF ballot files
-pipenv install reportlab
-# Add images to PDF files (replaces deprecated PIL)
-pipenv install pillow
-# (optional) extract text from PDFs
-pipenv install pdfminer.six
-```
-
+In addition to detailed instructions on how to get started with BalloLab, the [TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki) includes the latest requirements, best practices for ballot design, and other useful information.
 ## Project Structure
 
 This Python project follows the current best practices for Python project organization, as specified in [Packaging Python Projects — Python Packaging User Guide](https://packaging.python.org/tutorials/packaging-projects/) but also includes a few unusual folders:
