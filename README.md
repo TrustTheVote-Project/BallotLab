@@ -7,7 +7,7 @@ For detailed instructions on how to work with the code in this repo, check out [
 
 ## The Wiki
 
-In addition to detailed instructions on how to get started with BalloLab, the [TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki) includes the latest requirements, best practices for ballot design, and other useful information.
+In addition to detailed instructions on how to get started with BallotLab, the [TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki) includes the latest requirements, best practices for ballot design, and other useful information.
 ## Project Structure
 
 This Python project follows the current best practices for Python project organization, as specified in [Packaging Python Projects — Python Packaging User Guide](https://packaging.python.org/tutorials/packaging-projects/) but also includes a few unusual folders:
