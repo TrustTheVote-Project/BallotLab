@@ -1,5 +1,5 @@
 # truetype_font_finder.py
-from files import FileTools
+from versadm.utils.project_files import ProjectFiles
 import os
 
 
@@ -7,8 +7,8 @@ def ttf_font_finder(font_family, rel_font_path):
 
     # determine the path to the font files
     # "getsourcefile" method works across platforms & all execution environments
-    ftools = FileTools()
-    package_root = ftools.package_root
+    font_files = ProjectFiles(project_name="BallotLab")
+    package_root = font_files.root_path
     fonts_folder = os.path.join(package_root, rel_font_path, font_family)
 
     # does the font directory even exist?
@@ -16,6 +16,7 @@ def ttf_font_finder(font_family, rel_font_path):
         file_list = os.listdir(fonts_folder)
     except FileNotFoundError:
         print("Font directory doesn't exist.")
+        print(fonts_folder)
         return
 
     # get a list of TrueType fonts in font directory

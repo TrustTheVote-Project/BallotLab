@@ -1,9 +1,9 @@
 # ballot_demo.py
 # create a demo object with BallotLab classes
 
-from contest import Contest
-from instructions import Instructions
-from page_layout import PageLayout
+from versadm.ballots.contest import Contest
+from versadm.ballots.instructions import Instructions
+from versadm.ballots.page_layout import PageLayout
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch

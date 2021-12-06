@@ -1,11 +1,12 @@
 # images.py
 # work with images, including embedding images into
 # Paragraph flowables
-
-from files import FileTools
+from versadm.utils.project_files import ProjectFiles
 
 # from reportlab.platypus import Image
 from reportlab.lib import utils
+
+PROJECT_NAME = "BallotLab"
 
 
 class EmbeddedImage:
@@ -20,10 +21,10 @@ class EmbeddedImage:
         self.rel_img_path = "assets/img"
         self.embed_text = ""
         # find the image
-        ftools = FileTools(self.image_name, self.rel_img_path)
-        self.file_check(ftools)
+        image_file = ProjectFiles(self.image_name, self.rel_img_path, PROJECT_NAME)
+        self.file_check(image_file)
         # retrieve the image and measure it
-        self.image_full_path = ftools.abs_path_to_file
+        self.image_full_path = image_file.abs_path_to_file
         img = utils.ImageReader(self.image_full_path)
         img_width, img_height = img.getSize()
         aspect = img_height / float(img_width)
@@ -41,8 +42,8 @@ class EmbeddedImage:
             )
         )
 
-    def file_check(self, ftools):
-        if ftools.file_found is False:
+    def file_check(self, image_file):
+        if image_file.file_found is False:
             file_error = "File {} not found in {}".format(
                 self.image_name, self.rel_img_path
             )

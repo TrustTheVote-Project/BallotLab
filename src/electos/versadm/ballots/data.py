@@ -2,12 +2,14 @@
 # read and write structured data
 
 # from posixpath import relpath
-from files import FileTools
-import xmltodict
+from versadm.utils.project_files import ProjectFiles
+
+# import xmltodict
 import json
 import jsonschema
 
 # import pprint
+PROJECT_NAME = "BallotLab"
 
 # error codes
 ## JSON errors
@@ -33,7 +35,7 @@ class ElectionData:
 
     def __init__(self, data_file, data_dir, print_rpt=False):
 
-        election_file = FileTools(data_file, data_dir)
+        election_file = ProjectFiles(data_file, data_dir, PROJECT_NAME)
         if not election_file.file_found:
             msg = "Election data file {} not found in directory {}"
             raise RuntimeError(msg.format(str(data_file, data_dir)))
@@ -90,13 +92,13 @@ class ElectionData:
             print(self.text_rpt)
         # pprint.pprint(self.election_rpt)
 
-    def parse_xml(self, xml_file):
-        """
-        parse xml file into JSON-style dict
-        """
-        with open(xml_file) as xmlf:
-            xml = xmlf.read()
-        return xmltodict.parse(xml, dict_constructor=dict)
+    # def parse_xml(self, xml_file):
+    #     """
+    #     parse xml file into JSON-style dict
+    #     """
+    #     with open(xml_file) as xmlf:
+    #         xml = xmlf.read()
+    #     return xmltodict.parse(xml, dict_constructor=dict)
 
     def parse_json(self, json_file):
         """
@@ -112,8 +114,8 @@ class ElectionData:
             return ERR_JSON_FORMAT
 
     def validate_json(self, json_data):
-        json_schema_file = FileTools(
-            "NIST_V2_election_results_reporting.json", "assets/schema"
+        json_schema_file = ProjectFiles(
+            "NIST_V2_election_results_reporting.json", "assets/schema", PROJECT_NAME
         )
         json_schema = self.parse_json(json_schema_file.abs_path_to_file)
         jsonschema.validate(instance=json_data, schema=json_schema)
