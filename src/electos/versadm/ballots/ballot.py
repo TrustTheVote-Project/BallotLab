@@ -15,9 +15,9 @@ from reportlab.platypus import (
 from reportlab.lib.units import inch
 
 # from reportlab.lib.styles import getSampleStyleSheet
-from contest import Contest
-from instructions import Instructions
-from page_layout import PageLayout
+from versadm.ballots.contest import Contest
+from versadm.ballots.instructions import Instructions
+from versadm.ballots.page_layout import PageLayout
 
 
 def build_ballot():
@@ -70,6 +70,7 @@ def build_ballot():
     # create datestamp string for PDF
     now = datetime.now()
     date_time = now.strftime("%Y_%m_%dT%H%M%S")
+    # TODO: Fix path with project_files.py
     ballot_name = "pdfs/ballot_{0}.pdf".format(date_time)
 
     ballot_doc = BaseDocTemplate(ballot_name)
