@@ -6,7 +6,7 @@ from versadm.utils.project_files import ProjectFiles
 # from reportlab.platypus import Image
 from reportlab.lib import utils
 
-PROJECT_NAME = "BallotLab"
+PROJECT_NAME = "ballotlab"
 
 
 class EmbeddedImage:

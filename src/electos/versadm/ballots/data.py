@@ -9,7 +9,7 @@ import json
 import jsonschema
 
 # import pprint
-PROJECT_NAME = "BallotLab"
+PROJECT_NAME = "ballotlab"
 
 # error codes
 ## JSON errors

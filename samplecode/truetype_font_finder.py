@@ -7,7 +7,7 @@ def ttf_font_finder(font_family, rel_font_path):
 
     # determine the path to the font files
     # "getsourcefile" method works across platforms & all execution environments
-    font_files = ProjectFiles(project_name="BallotLab")
+    font_files = ProjectFiles(project_name="ballotlab")
     package_root = font_files.root_path
     fonts_folder = os.path.join(package_root, rel_font_path, font_family)
 
