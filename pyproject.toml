@@ -10,6 +10,7 @@ python = "^3.9"
 reportlab = "^3.6.9"
 "pdfminer.six" = "^20220506"
 Pillow = "^9.1.1"
+typer = "^0.4.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
