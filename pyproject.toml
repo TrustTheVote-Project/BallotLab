@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "ballotlab"
+version = "0.1.0"
+description = "Testing and prototyping code for BallotMaker, part of ElectOS Versa."
+authors = ["Neil Johnson <neil@cadent.com>"]
+license = "OSET Public License"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+reportlab = "^3.6.9"
+"pdfminer.six" = "^20220506"
+Pillow = "^9.1.1"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+flake8 = "^4.0.1"
+mypy = "^0.950"
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
