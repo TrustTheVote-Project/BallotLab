@@ -1,13 +1,23 @@
 # BallotLab
 
-Encapsulated Python software for generating EAC-compliant ballots from NIST 1500-100 election definition datasets, part of the OSET BallotStudio project. 
+Encapsulated Python software for generating EAC-compliant ballots from NIST 1500-100 election definition datasets, part of the OSET BallotStudio project.
+
 ## Getting Started
+
+This Python project uses Poetry for dependency management. To get started:
+
+1. Clone this repo, or create a fork, on your development workstation.
+2. Install Poetry on your development workstation (if needed).
+3. At the command line, use `cd` to go to the project's root directory in your repo.
+4. Run `poetry install` to configure your virtual environment and add all the required python packages.
+5. Run `poetry shell` to invoke the virtual environment.
 
 For detailed instructions on how to work with the code in this repo, check out [Getting Started with BallotLab · TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki/Getting-Started-with-BallotLab).
 
 ## The Wiki
 
 In addition to detailed instructions on how to get started with BallotLab, the [TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki) includes the latest requirements, best practices for ballot design, and other useful information.
+
 ## Project Structure
 
 This Python project follows the current best practices for Python project organization, as specified in [Packaging Python Projects — Python Packaging User Guide](https://packaging.python.org/tutorials/packaging-projects/) but also includes a few unusual folders:
