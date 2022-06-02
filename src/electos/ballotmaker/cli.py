@@ -13,7 +13,7 @@ app = typer.Typer(no_args_is_help=True)
 
 
 @app.command()
-def main(
+def cli(
     version: Optional[bool] = typer.Option(
         None, "--version", help="Print the version number."
     ),
@@ -22,6 +22,10 @@ def main(
     if version:
         typer.echo(f"{PROGRAM_NAME} version: {__version__.__version__}")
         raise typer.Exit()
+
+
+def main():
+    app()
 
 
 if __name__ == "__main__":
