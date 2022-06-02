@@ -23,6 +23,9 @@ mypy = "^0.950"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 
+[tool.poetry.scripts]
+ballotmaker = 'electos.ballotmaker.cli:main'
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
