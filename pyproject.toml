@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Testing and prototyping code for BallotMaker, part of ElectOS Versa."
 authors = ["Neil Johnson <neil@cadent.com>"]
 license = "OSET Public License"
+packages = [
+    { include = "electos/ballotmaker", from = "src" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -19,6 +22,9 @@ flake8 = "^4.0.1"
 mypy = "^0.950"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
+
+[tool.poetry.scripts]
+ballotmaker = 'electos.ballotmaker.cli:main'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
