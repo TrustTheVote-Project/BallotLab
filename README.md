@@ -14,6 +14,25 @@ This Python project uses Poetry for dependency management. To get started:
 
 For detailed instructions on how to work with the code in this repo, check out [Getting Started with BallotLab · TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki/Getting-Started-with-BallotLab).
 
+Once you've set up the virtual environment with `poetry shell` you can run the Python app from the root of this repo:
+
+```python
+python -m src.electos.ballotmaker --help        # display the CLI help text
+python -m src.electos.ballotmaker --version     # display the current version number
+```
+
+**Important**: use the `-m` argument (`python -m`) to ensure Python can find all the local modules from the root directory.
+
+## Running Tests
+
+After you've followed the steps above in **Getting Started**, you can also run the `pytest` suite with this command:
+
+```python
+python -m pytest
+```
+
+Again, run that command from the root directory of this repo, using the `python -m` option.
+
 ## The Wiki
 
 In addition to detailed instructions on how to get started with BallotLab, the [TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki) includes the latest requirements, best practices for ballot design, and other useful information.
