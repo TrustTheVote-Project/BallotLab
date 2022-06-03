@@ -13,7 +13,7 @@ app = typer.Typer(no_args_is_help=True)
 
 
 @app.command()
-def main(
+def cli(
     version: Optional[bool] = typer.Option(
         None, "--version", help="Print the version number."
     ),
