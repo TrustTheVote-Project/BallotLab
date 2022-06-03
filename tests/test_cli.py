@@ -1,5 +1,5 @@
 from typer.testing import CliRunner
-from src.electos.ballotmaker import __version__, cli
+from electos.ballotmaker import __version__, cli
 
 runner = CliRunner()
 

@@ -4,8 +4,7 @@ from typing import Optional
 
 import typer
 
-## execute with 'python -m' to find this module
-from src.electos.ballotmaker import __version__
+from electos.ballotmaker import __version__
 
 PROGRAM_NAME = "BallotMaker"
 
