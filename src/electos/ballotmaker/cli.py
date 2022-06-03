@@ -24,9 +24,5 @@ def cli(
         raise typer.Exit()
 
 
-def main():
-    app()
-
-
 if __name__ == "__main__":
     app()
