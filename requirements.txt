@@ -29,6 +29,7 @@ cryptography==36.0.2; python_version >= "3.6" \
     --hash=sha256:1f64a62b3b75e4005df19d3b5235abd43fa6358d5516cfc43d87aeba8d08dd51 \
     --hash=sha256:e167b6b710c7f7bc54e67ef593f8731e1f45aa35f8a8a7b72d6e42ec76afd4b3 \
     --hash=sha256:70f8f4f7bb2ac9f340655cbac89d68c527af5bb4387522a8413e841e3e6628c9
+electos.nist-datamodels @ git+https://github.com/ion-oset/nist-data-models.git@python/main ; python_version >= "3.7" and python_version < "4.0"
 pdfminer.six==20220506; python_version >= "3.6" \
     --hash=sha256:0960be95fe8724a4847f83d53d0331b890871f6035ba706841568caa2b541bf5 \
     --hash=sha256:3d65c1a0f4a0465c709e191550ec77a684ebe0bcb562337ccbfb7aa228c52076
