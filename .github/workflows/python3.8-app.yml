@@ -5,27 +5,25 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions:
   contents: read
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-steps:
+  steps:
   - uses: actions/checkout@v3
   - name: Install poetry
     run: pipx install poetry
   - uses: actions/setup-python@v4
     with:
-      python-version: '3.9'
-      cache: 'poetry'
-  - run: poetry install 
+      python-version: "3.9"
+      cache: "poetry"
+  - run: poetry install
   # install flake8 for testing
   - run: poetry install flake8
   - run: poetry run pytest
