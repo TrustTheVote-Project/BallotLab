@@ -1,42 +1,12 @@
 cffi==1.15.1; python_version >= "3.6"
-charset-normalizer==2.0.12; python_full_version >= "3.5.0" and python_version >= "3.6" \
-    --hash=sha256:2857e29ff0d34db842cd7ca3230549d1a697f96ee6d3fb071cfa6c7393832597 \
-    --hash=sha256:6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df
-click==8.1.3; python_version >= "3.7" \
-    --hash=sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48 \
-    --hash=sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e
-colorama==0.4.5; python_version >= "3.7" and python_full_version < "3.0.0" and platform_system == "Windows" or platform_system == "Windows" and python_version >= "3.7" and python_full_version >= "3.5.0" \
-    --hash=sha256:854bf444933e37f5824ae7bfc1e98d5bce2ebe4160d46b5edf346a89358e99da \
-    --hash=sha256:e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4
-cryptography==36.0.2; python_version >= "3.6" \
-    --hash=sha256:4e2dddd38a5ba733be6a025a1475a9f45e4e41139d1321f412c6b360b19070b6 \
-    --hash=sha256:4881d09298cd0b669bb15b9cfe6166f16fc1277b4ed0d04a22f3d6430cb30f1d \
-    --hash=sha256:ea634401ca02367c1567f012317502ef3437522e2fc44a3ea1844de028fa4b84 \
-    --hash=sha256:7be666cc4599b415f320839e36367b273db8501127b38316f3b9f22f17a0b815 \
-    --hash=sha256:8241cac0aae90b82d6b5c443b853723bcc66963970c67e56e71a2609dc4b5eaf \
-    --hash=sha256:7b2d54e787a884ffc6e187262823b6feb06c338084bbe80d45166a1cb1c6c5bf \
-    --hash=sha256:c2c5250ff0d36fd58550252f54915776940e4e866f38f3a7866d92b32a654b86 \
-    --hash=sha256:ec6597aa85ce03f3e507566b8bcdf9da2227ec86c4266bd5e6ab4d9e0cc8dab2 \
-    --hash=sha256:ca9f686517ec2c4a4ce930207f75c00bf03d94e5063cbc00a1dc42531511b7eb \
-    --hash=sha256:f64b232348ee82f13aac22856515ce0195837f6968aeaa94a3d0353ea2ec06a6 \
-    --hash=sha256:53e0285b49fd0ab6e604f4c5d9c5ddd98de77018542e88366923f152dbeb3c29 \
-    --hash=sha256:32db5cc49c73f39aac27574522cecd0a4bb7384e71198bc65a0d23f901e89bb7 \
-    --hash=sha256:d2b3d199647468d410994dbeb8cec5816fb74feb9368aedf300af709ef507e3e \
-    --hash=sha256:da73d095f8590ad437cd5e9faf6628a218aa7c387e1fdf67b888b47ba56a17f0 \
-    --hash=sha256:0a3bf09bb0b7a2c93ce7b98cb107e9170a90c51a0162a20af1c61c765b90e60b \
-    --hash=sha256:8897b7b7ec077c819187a123174b645eb680c13df68354ed99f9b40a50898f77 \
-    --hash=sha256:82740818f2f240a5da8dfb8943b360e4f24022b093207160c77cadade47d7c85 \
-    --hash=sha256:1f64a62b3b75e4005df19d3b5235abd43fa6358d5516cfc43d87aeba8d08dd51 \
-    --hash=sha256:e167b6b710c7f7bc54e67ef593f8731e1f45aa35f8a8a7b72d6e42ec76afd4b3 \
-    --hash=sha256:70f8f4f7bb2ac9f340655cbac89d68c527af5bb4387522a8413e841e3e6628c9
+charset-normalizer==2.0.12; python_full_version >= "3.5.0" and python_version >= "3.6"
+click==8.1.3; python_version >= "3.7"
+colorama==0.4.5; python_version >= "3.7" and python_full_version < "3.0.0" and platform_system == "Windows" or platform_system == "Windows" and python_version >= "3.7" and python_full_version >= "3.5.0"
+cryptography==36.0.2; python_version >= "3.6"
 electos.nist-datamodels @ git+https://github.com/ion-oset/nist-data-models.git@python/main ; python_version >= "3.7" and python_version < "4.0"
-pdfminer.six==20220506; python_version >= "3.6" \
-    --hash=sha256:0960be95fe8724a4847f83d53d0331b890871f6035ba706841568caa2b541bf5 \
-    --hash=sha256:3d65c1a0f4a0465c709e191550ec77a684ebe0bcb562337ccbfb7aa228c52076
+pdfminer.six==20220506; python_version >= "3.6"
 pillow==9.2.0; python_version >= "3.7"
-pycparser==2.21; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6" \
-    --hash=sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9 \
-    --hash=sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206
+pycparser==2.21; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
 pydantic==1.8.2; python_version >= "3.7" and python_version < "4.0" and python_full_version >= "3.6.1"
 reportlab==3.6.11; python_version >= "3.7" and python_version < "4"
 typer==0.4.2; python_version >= "3.6"
