@@ -1,5 +1,9 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+# This workflow will install Python dependencies, run tests and lint
+# Uses poetry and tests multiple oses and python versions
+# For more information see:
+#   https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+#   https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+#   https://github.com/actions/setup-python#caching-packages-dependencies
 
 name: Python application
 
@@ -22,6 +26,7 @@ jobs:
         # specify python versions to test
         python-version: ["3.8", "3.9", "3.10"]
         # total tests = oses X python versions
+        # example exclusion: don't test python3.8 on Mac
         # exclude:
         #  - os: macos-latest
         #    python-version: '3.8'
