@@ -14,14 +14,21 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ['3.8', '3.9', '3.10']
+        exclude:
+          - os: macos-latest
+            python-version: '3.8'
     steps:
     - uses: actions/checkout@v3
     - name: Install poetry
       run: pipx install poetry
     - uses: actions/setup-python@v4
       with:
-        python-version: "3.9"
+        python-version: ${{ matrix.python-version }}
         cache: "poetry"
     # install flake8 for testing
     - run: poetry add flake8
