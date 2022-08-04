@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "ballotlab"
-version = "0.1.0"
-description = "Testing and prototyping code for BallotMaker, part of ElectOS Versa."
+name = "BallotMaker"
+version = "0.1.1"
+description = "Generate PDF ballots from EDF file; part of ElectOS Versa."
 authors = ["Neil Johnson <neil@cadent.com>"]
 license = "OSET Public License"
 packages = [{ include = "electos/ballotmaker", from = "src" }]

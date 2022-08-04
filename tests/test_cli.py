@@ -1,7 +1,6 @@
-from electos.ballotmaker.make_ballots import NO_ERRORS
 from typer.testing import CliRunner
-from electos.ballotmaker import __version__, cli
-from electos.ballotmaker.constants import NO_ERRORS
+from electos.ballotmaker import cli
+from electos.ballotmaker.constants import NO_ERRORS, VERSION
 
 runner = CliRunner()
 
@@ -11,16 +10,14 @@ runner = CliRunner()
 
 
 def test_main():
-    main_result = cli.main()
-    assert main_result == NO_ERRORS
+    assert cli.main() == NO_ERRORS
 
 
 def test_version():
     result = runner.invoke(cli.app, ["--version"])
-    assert result.exit_code == 0
-    assert f"version: {__version__.__version__}" in result.stdout
+    assert result.exit_code == NO_ERRORS
+    assert f"version: {VERSION}" in result.stdout
 
 
 def test_make():
-    make_result = cli.make()
-    assert make_result == NO_ERRORS
+    assert cli.make() == NO_ERRORS

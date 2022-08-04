@@ -1,8 +1,6 @@
 """ The BallotMaker Command Line Interface (CLI)"""
 from pathlib import Path
 from typing import Optional
-from electos.ballotmaker.make_ballots import NO_ERRORS
-
 import typer
 
 from electos.ballotmaker import make_ballots
