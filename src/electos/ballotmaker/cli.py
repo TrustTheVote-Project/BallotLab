@@ -1,15 +1,16 @@
 """ The BallotMaker Command Line Interface (CLI)"""
+from os import strerror
 from pathlib import Path
 from typing import Optional
+
 import typer
-
 from electos.ballotmaker import make_ballots
-from electos.ballotmaker.constants import NO_ERRORS, VERSION, PROGRAM_NAME
+from electos.ballotmaker.constants import NO_ERRORS, PROGRAM_NAME, VERSION
 
-VERSION_HELP = "Print the version number."
 EDF_HELP = "EDF file with ballot data (JSON format)"
 PDF_OUTPUT_HELP = "EDF file with ballot data (JSON format)"
 STYLE_HELP = "Stylesheet file for ballot generation"
+VERSION_HELP = "Print the version number."
 
 
 def version_callback(value: bool):
@@ -43,8 +44,10 @@ def make(
 ):
     """Make ballots from EDF file"""
     make_ballots_result = make_ballots.make_ballots(edf, output_dir, style)
-    # if make_ballots_result != NO_ERRORS:
-    #     typer.echo(f"Error: {make_ballots_result}")
+    if make_ballots_result != NO_ERRORS:
+        typer.echo(
+            f"Error {make_ballots_result}: {strerror(make_ballots_result)}"
+        )
     return make_ballots_result
 
 

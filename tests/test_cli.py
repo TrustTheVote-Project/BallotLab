@@ -1,12 +1,16 @@
-from typer.testing import CliRunner
+from pathlib import Path
+
 from electos.ballotmaker import cli
-from electos.ballotmaker.constants import NO_ERRORS, PROGRAM_NAME, VERSION
+from electos.ballotmaker.constants import (
+    NO_ERRORS,
+    NO_FILE,
+    PROGRAM_NAME,
+    VERSION,
+)
+from typer.testing import CliRunner
 
 runner = CliRunner()
-
-
-# def test_version_string():
-#     assert __version__.__version__ == "0.1.0"
+imaginary_file = Path("not_a_file.txt")
 
 
 def test_main():
@@ -27,4 +31,7 @@ def test_version():
 
 
 def test_make():
-    assert cli.make() == NO_ERRORS
+    # bypass mandatory CLI option to force error
+    assert cli.make(edf=None) == NO_FILE
+    # any old path will satisfy current tests
+    assert cli.make(imaginary_file) == NO_ERRORS
