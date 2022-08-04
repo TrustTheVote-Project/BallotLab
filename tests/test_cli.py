@@ -1,6 +1,6 @@
 from typer.testing import CliRunner
 from electos.ballotmaker import cli
-from electos.ballotmaker.constants import NO_ERRORS, VERSION
+from electos.ballotmaker.constants import NO_ERRORS, PROGRAM_NAME, VERSION
 
 runner = CliRunner()
 
@@ -13,10 +13,17 @@ def test_main():
     assert cli.main() == NO_ERRORS
 
 
+# does Usage help appear with no options?
+def test_usage():
+    result = runner.invoke(cli.app)
+    assert result.exit_code == NO_ERRORS
+    assert "Usage:" in result.stdout
+
+
 def test_version():
     result = runner.invoke(cli.app, ["--version"])
     assert result.exit_code == NO_ERRORS
-    assert f"version: {VERSION}" in result.stdout
+    assert f"{PROGRAM_NAME} version: {VERSION}" in result.stdout
 
 
 def test_make():
