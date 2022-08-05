@@ -1,14 +1,37 @@
+from pathlib import Path
+
+from electos.ballotmaker import cli
+from electos.ballotmaker.constants import (
+    NO_ERRORS,
+    NO_FILE,
+    PROGRAM_NAME,
+    VERSION,
+)
 from typer.testing import CliRunner
-from electos.ballotmaker import __version__, cli
 
 runner = CliRunner()
+imaginary_file = Path("not_a_file.txt")
 
 
-def test_version_string():
-    assert __version__.__version__ == "0.1.0"
+def test_main():
+    assert cli.main() == NO_ERRORS
+
+
+# does Usage help appear with no options?
+def test_usage():
+    result = runner.invoke(cli.app)
+    assert result.exit_code == NO_ERRORS
+    assert "Usage:" in result.stdout
 
 
 def test_version():
     result = runner.invoke(cli.app, ["--version"])
-    assert result.exit_code == 0
-    assert f"version: {__version__.__version__}" in result.stdout
+    assert result.exit_code == NO_ERRORS
+    assert f"{PROGRAM_NAME} version: {VERSION}" in result.stdout
+
+
+def test_make():
+    # bypass mandatory CLI option to force error
+    assert cli.make(edf=None) == NO_FILE
+    # any old path will satisfy current tests
+    assert cli.make(imaginary_file) == NO_ERRORS
