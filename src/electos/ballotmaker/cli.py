@@ -51,5 +51,16 @@ def make(
     return make_ballots_result
 
 
+@app.command()
+def validate(
+    edf: Path = typer.Option(
+        ...,
+        help=EDF_HELP,
+    ),
+):
+    """Validate data in EDF file"""
+    return NO_ERRORS
+
+
 if __name__ == "__main__":
     app()  # pragma: no cover

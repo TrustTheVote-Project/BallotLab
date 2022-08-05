@@ -1,4 +1,5 @@
 from pathlib import Path
+from unittest import result
 
 from electos.ballotmaker import cli
 from electos.ballotmaker.constants import (
@@ -35,3 +36,26 @@ def test_make():
     assert cli.make(edf=None) == NO_FILE
     # any old path will satisfy current tests
     assert cli.make(imaginary_file) == NO_ERRORS
+    # check CLI errors: no options for make
+    result = runner.invoke(cli.app, ["make"])
+    assert result.exit_code == NO_FILE
+    assert "Error: Missing option" in result.stdout
+    # check CLI errors: no edf filename provided
+    result = runner.invoke(cli.app, ["make", "--edf"])
+    assert result.exit_code == NO_FILE
+    assert "Error: Option" in result.stdout
+
+
+def test_validate():
+    # bypass mandatory CLI option to force error
+    # assert cli.validate(edf=None) == NO_FILE
+    # any old path will satisfy current tests
+    assert cli.validate(imaginary_file) == NO_ERRORS
+    # check CLI errors: no options for validate
+    result = runner.invoke(cli.app, ["validate"])
+    assert result.exit_code == NO_FILE
+    assert "Error: Missing option" in result.stdout
+    # check CLI errors: no edf filename provided
+    result = runner.invoke(cli.app, ["validate", "--edf"])
+    assert result.exit_code == NO_FILE
+    assert "Error: Option" in result.stdout
