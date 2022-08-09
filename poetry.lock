@@ -85,7 +85,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "coverage"
-version = "6.4.2"
+version = "6.4.3"
 description = "Code coverage measurement for Python"
 category = "dev"
 optional = false
@@ -131,8 +131,8 @@ pydantic = "1.8.2"
 [package.source]
 type = "git"
 url = "https://github.com/ion-oset/nist-data-models.git"
-reference = "python/main"
-resolved_reference = "cfa2711d08c2b8da1c0634ec52bcad9b5d177af7"
+reference = "python/model-index"
+resolved_reference = "9f05b2b33ff28db95e660b5ec8bc387c45df3ce1"
 
 [[package]]
 name = "flake8"
@@ -419,7 +419,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a209a1457b6d325a21387555734c6ef34a646942c6267c817431d330d9bac757"
+content-hash = "a3b2dffe3dd411ad0709b4f1fe64e0c11dcc7a3b2f1ef292ef91744c03df5046"
 
 [metadata.files]
 atomicwrites = []
