@@ -50,7 +50,7 @@ def test_validate():
     # bypass mandatory CLI option to force error
     # assert cli.validate(edf=None) == NO_FILE
     # any old path will satisfy current tests
-    assert cli.validate(imaginary_file) == NO_ERRORS
+    assert cli.validate(imaginary_file) == NO_FILE
     # check CLI errors: no options for validate
     result = runner.invoke(cli.app, ["validate"])
     assert result.exit_code == NO_FILE
