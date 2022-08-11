@@ -2,7 +2,6 @@ from pathlib import Path
 
 from electos.ballotmaker import validate_edf
 from electos.ballotmaker.constants import NO_DATA, NO_ERRORS, NO_FILE
-from genericpath import isfile
 
 not_a_file = Path("not_a_file.json")
 test_dir = Path(__file__).parent.resolve()
@@ -18,11 +17,11 @@ def test_validate_edf():
     # assert make_ballots.make_ballots(_edf=None) == NO_FILE
     assert validate_edf.validate_edf(_edf=None) == NO_FILE
     # ensure not_a_file is actually not a file
-    assert isfile(not_a_file) == False
+    assert Path.is_file(not_a_file) == False
     assert validate_edf.validate_edf(not_a_file) == NO_FILE
     # test empty json file
-    # assert isfile(empty_file_path)
+    # assert Path.is_file(empty_file_path)
     # assert validate_edf.validate_edf(empty_file_path) == NO_DATA
 
-    assert isfile(full_test_path)
+    assert Path.is_file(full_test_path)
     assert validate_edf.validate_edf(full_test_path) == NO_ERRORS

@@ -6,7 +6,7 @@ Or, if no project name is provided, search the user's home directory.
 # PEP 428 -- The pathlib module -- object-oriented filesystem paths | Python.org
 # (https://www.python.org/dev/peps/pep-0428/)
 
-from genericpath import isfile
+from genericpath import Path.is_file
 from inspect import getsourcefile
 import os
 
@@ -43,7 +43,7 @@ class ProjectFiles:
         if self.file_name:
             self.abs_path_to_file = os.path.join(self.root_path, self.file_name)
             # if the file exists, get the extension and set the file found flag to True
-            if isfile(self.abs_path_to_file):
+            if Path.is_file(self.abs_path_to_file):
                 self.ext = os.path.splitext(self.file_name)[1]
                 self.file_found = True
 
