@@ -35,7 +35,7 @@ def test_make():
     # bypass mandatory CLI option to force error
     assert cli.make(edf=None) == NO_FILE
     # any old path will satisfy current tests
-    assert cli.make(imaginary_file) == NO_ERRORS
+    assert cli.make(imaginary_file) == NO_FILE
     # check CLI errors: no options for make
     result = runner.invoke(cli.app, ["make"])
     assert result.exit_code == NO_FILE
