@@ -1,5 +1,4 @@
 from pathlib import Path
-from unittest import result
 
 from electos.ballotmaker import cli
 from electos.ballotmaker.constants import (

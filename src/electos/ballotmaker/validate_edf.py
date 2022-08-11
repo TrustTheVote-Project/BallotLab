@@ -14,7 +14,7 @@ def validate_edf(
     # is the EDF a file?
     if _edf is None:
         return NO_FILE
-    if Path.is_file(_edf) is False:
+    if not _edf.is_file():
         return NO_FILE
 
     ballot_style_count = read_edf(_edf)
