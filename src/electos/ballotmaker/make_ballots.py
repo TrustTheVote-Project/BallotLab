@@ -1,6 +1,9 @@
+import logging
 from pathlib import Path
 
 from electos.ballotmaker.constants import NO_ERRORS, NO_FILE
+
+log = logging.getLogger(__name__)
 
 
 def make_ballots(
@@ -15,6 +18,10 @@ def make_ballots(
     """
     # is the EDF a JSON file?
     if _edf is None:
+        log.debug("No EDF file provided.")
+        return NO_FILE
+    if Path.is_file(_edf) is False:
+        log.debug(f"{_edf} is not a file")
         return NO_FILE
     # was a valid output directory provided?
     # was a styles file provided?
