@@ -16,12 +16,12 @@ def make_ballots(
         Output directory for generated PDF files
         Styles file for ballot formatting
     """
-    # is the EDF a JSON file?
+    # is the EDF a file?
     if _edf is None:
-        log.debug("No EDF file provided.")
+        log.debug("No EDF file provided to make ballots.")
         return NO_FILE
-    if Path.is_file(_edf) is False:
-        log.debug(f"{_edf} is not a file")
+    if not _edf.is_file():
+        log.debug(f"Can't make ballots, EDF {_edf} is not a file")
         return NO_FILE
     # was a valid output directory provided?
     # was a styles file provided?

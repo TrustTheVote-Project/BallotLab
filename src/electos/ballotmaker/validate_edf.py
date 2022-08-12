@@ -16,10 +16,10 @@ def validate_edf(
     """
     # is the EDF a file?
     if _edf is None:
-        log.debug("No EDF file provided.")
+        log.debug("No EDF file provided for validation.")
         return NO_FILE
     if not _edf.is_file():
-        log.debug(f"{_edf} is not a file")
+        log.debug(f"Can't validate, EDF {_edf} is not a file")
         return NO_FILE
 
     ballot_style_count = read_edf(_edf)
