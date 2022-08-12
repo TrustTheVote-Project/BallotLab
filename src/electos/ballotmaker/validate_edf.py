@@ -18,7 +18,7 @@ def validate_edf(
     if _edf is None:
         log.debug("No EDF file provided.")
         return NO_FILE
-    if Path.is_file(_edf) is False:
+    if not _edf.is_file():
         log.debug(f"{_edf} is not a file")
         return NO_FILE
 
