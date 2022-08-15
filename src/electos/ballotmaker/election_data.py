@@ -25,6 +25,7 @@ class ElectionData:
         # haven't found any ballots yet
         self.ballot_count = 0
 
+        # ensure the EDF is a valid file
         if self.edf is None:
             log.debug("No EDF file provided.")
             self.edf_error = NO_FILE
@@ -34,7 +35,7 @@ class ElectionData:
             self.edf_error = NO_FILE
             return
 
-        """Opens the specified EDF file, counts the number of BallotStyles"""
+        # Open the specified EDF file
         edf_data = json.loads(self.edf.read_text())
         self.election_report = ElectionReport(**edf_data)
         # get election header data
@@ -50,13 +51,3 @@ class ElectionData:
             log.info(f"Ballot: {ballot_value}")
         self.ballot_count = count
         log.info(f"Found {self.ballot_count} ballot styles in {self.edf}")
-        # self.election_header = index.by_type("ElectionResults.Election")
-        # for element in self.election_header:
-        #     log.info(f"Element: {element}")
-        # log.info(f"Header: {self.election_header}")
-        # loop through all types in index
-        # for model_type in index.types():
-        #     log.info(f"Model type: {model_type}")
-        #     for element in index.by_type(model_type):
-        #         log.info(f"Element: {element}")
-        #         # Do something with 'elements'
