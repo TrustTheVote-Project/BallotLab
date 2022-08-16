@@ -13,11 +13,15 @@ log = logging.getLogger(__name__)
 @dataclass
 class ElectionData:
     edf: Path
+    # properties retrieved from the EDF
     edf_error: int = field(init=False)
     election_report: ElectionReport = field(init=False)
     ballot_styles: ElementIndex = field(init=False)
     ballot_count: int = field(init=False)
     election_name: str = field(init=False)
+    start_date: str = field(init=False)
+    end_date: str = field(init=False)
+    election_type: str = field(init=False)
 
     def __post_init__(self):
         # let's assume there are no errors
@@ -38,14 +42,26 @@ class ElectionData:
         # Open the specified EDF file
         edf_data = json.loads(self.edf.read_text())
         self.election_report = ElectionReport(**edf_data)
+
         # get election header data
         self.election_name = (
             self.election_report.election[0].name.text[0].content
         )
         log.info(f"Election: {self.election_name}")
+
+        self.start_date = self.election_report.election[0].start_date
+        log.info(f"Start date: {self.start_date}")
+        self.end_date = self.election_report.election[0].end_date
+        log.info(f"End date: {self.end_date}")
+        self.election_type = self.election_report.election[0].type
+        log.info(f"{self.election_type}")
+
+        # index the election report to retrieve lists
         index = ElementIndex(self.election_report, "ElectionResults")
+
+        # how many ballots?
         self.ballot_styles = index.by_type("ElectionResults.BallotStyle")
-        # self.ballot_count = sum(1 for _ in self.ballot_styles)
+        # list and count ballots
         for count, ballot in enumerate(self.ballot_styles, start=1):
             ballot_value = ballot.external_identifier[0].value
             log.info(f"Ballot: {ballot_value}")
