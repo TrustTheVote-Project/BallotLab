@@ -1,4 +1,6 @@
 """ The BallotMaker Command Line Interface (CLI)"""
+import logging
+import sys
 from os import strerror
 from pathlib import Path
 from typing import Optional
@@ -11,6 +13,10 @@ EDF_HELP = "EDF file with ballot data (JSON format)"
 PDF_OUTPUT_HELP = "EDF file with ballot data (JSON format)"
 STYLE_HELP = "Stylesheet file for ballot generation"
 VERSION_HELP = "Print the version number."
+
+# configure logging
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+log = logging.getLogger(__name__)
 
 
 def version_callback(value: bool):
@@ -45,8 +51,8 @@ def make(
     """Make ballots from EDF file"""
     make_ballots_result = make_ballots.make_ballots(edf, output_dir, style)
     if make_ballots_result != NO_ERRORS:
-        typer.echo(
-            f"Error {make_ballots_result} making ballots: {strerror(make_ballots_result)}"
+        log.error(
+            f"Code {make_ballots_result} in make - {strerror(make_ballots_result)}"
         )
     return make_ballots_result
 
@@ -61,8 +67,8 @@ def validate(
     """Validate data in EDF file"""
     validate_edf_result = validate_edf.validate_edf(edf)
     if validate_edf_result != NO_ERRORS:
-        typer.echo(
-            f"Error {validate_edf_result} validating EDF: {strerror(validate_edf_result)}"
+        log.error(
+            f"Code {validate_edf_result} in validate - {strerror(validate_edf_result)}"
         )
     return validate_edf_result
 
