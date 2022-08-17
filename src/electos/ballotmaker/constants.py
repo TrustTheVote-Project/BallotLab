@@ -8,3 +8,4 @@ VERSION = "0.1.1"
 
 NO_ERRORS = 0
 NO_FILE = errno.ENOENT
+NO_DATA = errno.ENODATA
