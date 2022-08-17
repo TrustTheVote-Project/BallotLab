@@ -48,7 +48,6 @@ class ElectionData:
             self.election_report.election[0].name.text[0].content
         )
         log.info(f"Election: {self.election_name}")
-
         self.start_date = self.election_report.election[0].start_date
         log.info(f"Start date: {self.start_date}")
         self.end_date = self.election_report.election[0].end_date
