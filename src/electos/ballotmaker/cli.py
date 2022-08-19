@@ -40,6 +40,12 @@ def main(
 
 
 @app.command()
+def demo():
+    """Make ballots from previously extracted EDF data"""
+    return NO_ERRORS
+
+
+@app.command()
 def make(
     edf: Path = typer.Option(
         ...,
