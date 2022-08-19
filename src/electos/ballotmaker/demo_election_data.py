@@ -20,4 +20,4 @@ class DemoElectionData:
 
     def __post_init__(self):
         self.election_header = get_election_header()
-        log.debug(f"Election Name: {self.election_header.get('Name')}")
+        log.debug(f"Election Name: {self.election_header['Name']}")
