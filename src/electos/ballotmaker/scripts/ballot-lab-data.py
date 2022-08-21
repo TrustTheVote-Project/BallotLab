@@ -146,6 +146,24 @@ def extract_candidate_contest(contest: CandidateContest, index):
     return result
 
 
+def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
+    """Extract ballot measure contest information needed for ballots."""
+    choices = []
+    for selection in contest.contest_selection:
+        assert isinstance(selection, BallotMeasureSelection), \
+           f"Unexpected non-ballot measure selection: {type(selection).__name__}"
+        choice = text_content(selection.selection)
+        choices.append(choice)
+    district = contest_election_district(contest, index)
+    result = {
+        "title": contest.name,
+        "type": "ballot measure",
+        "district": district,
+        "choices": choices,
+    }
+    return result
+
+
 def gather_contests(ballot_style: BallotStyle, index):
     """Extract all contest information needed for ballots."""
     contests = {
@@ -155,6 +173,9 @@ def gather_contests(ballot_style: BallotStyle, index):
         if isinstance(contest, CandidateContest):
             entry = extract_candidate_contest(contest, index)
             contests["candidate"].append(entry)
+        elif isinstance(contest, BallotMeasureContest):
+            entry = extract_ballot_measure_contest(contest, index)
+            contests["ballot_measure"].append(entry)
         else:
             # Ignore other contest types
             print(f"Skipping contest of type {contest.model__type}")
