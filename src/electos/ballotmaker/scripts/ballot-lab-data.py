@@ -16,13 +16,23 @@ def text_content(item):
     return text
 
 
-def walk_ordered_content(content: List[OrderedContent]):
+def walk_ordered_contests(content: List[OrderedContent]):
+    """Walk ordered content yielding contests."""
     for item in content:
         if isinstance(item, OrderedContest):
             yield item
         elif isinstance(item, OrderedHeader):
+            yield from walk_ordered_contests(item.ordered_content)
+        else:
+            raise TypeError(f"Unexpected type: {type(item).__name__}")
+
+
+def walk_ordered_headers(content: List[OrderedContent]):
+    """Walk ordered content yielding headers."""
+    for item in content:
+        if isinstance(item, OrderedHeader):
             yield item
-            yield from walk_ordered_content(item.ordered_content)
+            yield from walk_ordered_headers(item.ordered_content)
         else:
             raise TypeError(f"Unexpected type: {type(item).__name__}")
 
@@ -36,9 +46,12 @@ def all_ballot_styles(election_report: ElectionReport, index):
 
 
 def ballot_style_name(ballot_style: BallotStyle):
-    assert len (ballot_style.external_identifier) == 1, \
-        "Not ready to handle multiple BallotStyle external IDs"
-    name = ballot_style.external_identifier[0].value
+    if ballot_style.external_identifier:
+        assert len(ballot_style.external_identifier) == 1, \
+            "Not ready to handle multiple BallotStyle external IDs"
+        name = ballot_style.external_identifier[0].value
+    else:
+        name = ""
     return name
 
 
@@ -49,7 +62,7 @@ def ballot_style_gp_units(ballot_style: BallotStyle, index):
 
 
 def ballot_style_contests(ballot_style: BallotStyle, index):
-    for item in walk_ordered_content(ballot_style.ordered_content):
+    for item in walk_ordered_contests(ballot_style.ordered_content):
         contest = index.by_id(item.contest_id)
         yield contest
 
@@ -78,8 +91,8 @@ def candidate_name(candidate: Candidate):
 
 # --- Main
 
+import argparse
 import json
-import sys
 from pathlib import Path
 
 
@@ -105,7 +118,17 @@ def report(root, index):
 
 
 def main():
-    file = Path(sys.argv[1])
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "file", type = Path,
+        help = "Test case data (JSON)"
+    )
+    parser.add_argument(
+        "nth", nargs = "?", type = int, default = 1,
+        help = "Index of the ballot style, starting from 1 (default: 1)"
+    )
+    opts = parser.parse_args()
+    file = opts.file
     with file.open() as input:
         text = input.read()
         data = json.loads(text)
