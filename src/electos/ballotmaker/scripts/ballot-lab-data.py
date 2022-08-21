@@ -3,6 +3,13 @@ from typing import List, Union
 from electos.datamodels.nist.models.edf import *
 from electos.datamodels.nist.indexes import ElementIndex
 
+
+# --- Base Types
+#
+# Schema expresses these as union types not subclasses
+
+Contest = Union[BallotMeasureContest, CandidateContest]
+
 OrderedContent = Union[OrderedContest, OrderedHeader]
 
 
@@ -46,7 +53,8 @@ def all_ballot_styles(election_report: ElectionReport, index):
         yield ballot_style
 
 
-def ballot_style_name(ballot_style: BallotStyle):
+def ballot_style_id(ballot_style: BallotStyle):
+    """Get the text of a ballot style's external identifier if any."""
     if ballot_style.external_identifier:
         assert len(ballot_style.external_identifier) == 1, \
             "Not ready to handle multiple BallotStyle external IDs"
@@ -69,29 +77,62 @@ def ballot_style_contests(ballot_style: BallotStyle, index):
         yield contest
 
 
-def ballot_style_candidate_contests(ballot_style: BallotStyle, index, **opts):
-    for contest in ballot_style_contests(ballot_style, index):
-        if not isinstance(contest, CandidateContest):
-            continue
-        # Ignore N-of-M by default
-        if contest.vote_variation == VoteVariation.N_OF_M:
-            continue
-        candidates = []
-        for selection in contest.contest_selection:
-            assert isinstance(selection, CandidateSelection), \
-                "Unexpected non-candidate selection: {type(selection).__name__}"
-            # Ignore write-ins by default
-            if selection.is_write_in:
-                continue
+def candidate_name(candidate: Candidate):
+    """Get the name of a candidate as it appears on a ballot."""
+    name = text_content(candidate.ballot_name)
+    return name
+
+
+def contest_election_district(contest: Contest, index):
+    """Get the district name of a contest."""
+    district = index.by_id(contest.election_district_id)
+    district = text_content(district.name)
+    return district
+
+
+# Gather & Extract
+#
+# Results are data needed for ballot generation.
+
+def extract_candidate_contest(contest: CandidateContest, index):
+    """Extract candidate contest information needed for ballots."""
+    district = contest_election_district(contest, index)
+    candidates = []
+    write_ins = 0
+    for selection in contest.contest_selection:
+        assert isinstance(selection, CandidateSelection), \
+            f"Unexpected non-candidate selection: {type(selection).__name__}"
+        # Write-ins have no candidate IDs
+        if selection.candidate_ids:
             for id_ in selection.candidate_ids:
                 candidate = index.by_id(id_)
                 candidates.append(candidate)
-        yield contest, candidates
+        if selection.is_write_in:
+            write_ins += 1
+    result = {
+        "title": contest.name,
+        "type": "candidate",
+        "vote_type": contest.vote_variation.value,
+        "district": district,
+        "candidates": [candidate_name(_) for _ in candidates],
+        "write_ins": write_ins,
+    }
+    return result
 
 
-def candidate_name(candidate: Candidate):
-    name = text_content(candidate.ballot_name)
-    return name
+def gather_contests(ballot_style: BallotStyle, index):
+    """Extract all contest information needed for ballots."""
+    contests = {
+        kind: [] for kind in ("candidate", "ballot_measure")
+    }
+    for contest in ballot_style_contests(ballot_style, index):
+        if isinstance(contest, CandidateContest):
+            entry = extract_candidate_contest(contest, index)
+            contests["candidate"].append(entry)
+        else:
+            # Ignore other contest types
+            print(f"Skipping contest of type {contest.model__type}")
+    return contests
 
 
 # --- Main
@@ -107,23 +148,15 @@ def report(root, index, nth, **opts):
     if not (1 <= nth <= len(ballot_styles)):
         print(f"Ballot styles: {nth} is out of range [1-{len(ballot_styles)}]")
         return
-    nth -= 1
-    ballot_style = ballot_styles[nth]
-    name = ballot_style_name(ballot_style)
-    print("name:", name)
-    gp_units = ballot_style_gp_units(ballot_style, index)
-    print("gp units:")
-    for item in gp_units:
-        print(f"- {text_content(item.name)}")
-    print("contests:")
-    contests = ballot_style_candidate_contests(ballot_style, index, **opts)
-    for contest, candidates in contests:
-        print(f"- name: {contest.name}")
-        print(f"  vote type: {contest.vote_variation.value}")
-        print(f"  votes allowed: {contest.votes_allowed}")
-        print(f"  candidates:")
-        for candidate in candidates:
-            print(f"  - {candidate_name(candidate)}")
+    ballot_style = ballot_styles[nth - 1]
+    data = {}
+    id_ = ballot_style_id(ballot_style)
+    data["ballot_style"] = id_
+    contests = gather_contests(ballot_style, index)
+    if not contests:
+        print(f"No contests found for ballot style: {id_}\n")
+    data["contests"] = contests
+    print(json.dumps(data, indent = 4))
 
 
 def main():
