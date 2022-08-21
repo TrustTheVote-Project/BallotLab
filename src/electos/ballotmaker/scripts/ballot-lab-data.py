@@ -67,16 +67,21 @@ def ballot_style_contests(ballot_style: BallotStyle, index):
         yield contest
 
 
-def ballot_style_candidate_contests(ballot_style: BallotStyle, index):
+def ballot_style_candidate_contests(
+    ballot_style: BallotStyle, index, keep_write_ins, keep_n_of_m, **opts
+):
     for contest in ballot_style_contests(ballot_style, index):
         if not isinstance(contest, CandidateContest):
+            continue
+        # Ignore N-of-M by default
+        if not keep_n_of_m and contest.vote_variation == VoteVariation.N_OF_M:
             continue
         candidates = []
         for selection in contest.contest_selection:
             assert isinstance(selection, CandidateSelection), \
                 "Unexpected non-candidate selection: {type(selection).__name__}"
-            # Ignore write-ins for tier 1
-            if selection.is_write_in:
+            # Ignore write-ins by default
+            if not keep_write_ins and selection.is_write_in:
                 continue
             for id_ in selection.candidate_ids:
                 candidate = index.by_id(id_)
@@ -96,10 +101,14 @@ import json
 from pathlib import Path
 
 
-def report(root, index):
+def report(root, index, nth, **opts):
+    """Generate data needed by BallotLab"""
     ballot_styles = list(all_ballot_styles(root, index))
-    # Only look at the first index
-    ballot_style = ballot_styles[0]
+    if not (1 <= nth <= len(ballot_styles)):
+        print(f"Ballot styles: {nth} is out of range [1-{len(ballot_styles)}]")
+        return
+    nth -= 1
+    ballot_style = ballot_styles[nth]
     name = ballot_style_name(ballot_style)
     print("name:", name)
     gp_units = ballot_style_gp_units(ballot_style, index)
@@ -107,11 +116,11 @@ def report(root, index):
     for item in gp_units:
         print(f"- {text_content(item.name)}")
     print("contests:")
-    contests = ballot_style_candidate_contests(ballot_style, index)
+    contests = ballot_style_candidate_contests(ballot_style, index, **opts)
     for contest, candidates in contests:
         print(f"- name: {contest.name}")
-        print(f"  type: {contest.vote_variation.value}")
-        print(f"  votes: {contest.votes_allowed}")
+        print(f"  vote type: {contest.vote_variation.value}")
+        print(f"  votes allowed: {contest.votes_allowed}")
         print(f"  candidates:")
         for candidate in candidates:
             print(f"  - {candidate_name(candidate)}")
@@ -127,14 +136,24 @@ def main():
         "nth", nargs = "?", type = int, default = 1,
         help = "Index of the ballot style, starting from 1 (default: 1)"
     )
+    parser.add_argument(
+        "--keep-write-ins", action = "store_true",
+        help = "Process write in candidates",
+    )
+    parser.add_argument(
+        "--keep-n-of-m", action = "store_true",
+        help = "Process N-of-M contests",
+    )
     opts = parser.parse_args()
     file = opts.file
+    opts = vars(opts)
+
     with file.open() as input:
         text = input.read()
         data = json.loads(text)
     edf = ElectionReport(**data)
     index = ElementIndex(edf, "ElectionResults")
-    report(edf, index)
+    report(edf, index, **opts)
 
 
 if __name__ == '__main__':
