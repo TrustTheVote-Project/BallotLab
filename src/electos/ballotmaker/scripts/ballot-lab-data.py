@@ -139,8 +139,9 @@ def extract_candidate_contest(contest: CandidateContest, index):
         "vote_type": contest.vote_variation.value,
         "district": district,
         "candidates": [candidate_name(_) for _ in candidates],
-        "offices": offices,
-        "parties": parties,
+        # Leave out offices and parties for now
+        # "offices": offices,
+        # "parties": parties,
         "write_ins": write_ins,
     }
     return result
@@ -155,11 +156,13 @@ def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
         choice = text_content(selection.selection)
         choices.append(choice)
     district = contest_election_district(contest, index)
+    full_text = text_content(contest.full_text)
     result = {
         "title": contest.name,
         "type": "ballot measure",
         "district": district,
         "choices": choices,
+        "text": full_text,
     }
     return result
 
