@@ -83,6 +83,28 @@ def candidate_name(candidate: Candidate):
     return name
 
 
+def candidate_contest_offices(contest: CandidateContest, index):
+    """Get any offices associated with a candidate contest."""
+    offices = []
+    if contest.office_ids:
+        for id_ in contest.office_ids:
+            office = index.by_id(id_)
+            name = text_content(office.name)
+            offices.append(name)
+    return offices
+
+
+def candidate_contest_parties(contest: CandidateContest, index):
+    """Get any parties associated with a candidate contest."""
+    parties = []
+    if contest.primary_party_ids:
+        for id_ in contest.primary_party_ids:
+            party = index.by_id(id_)
+            name = text_content(party.name)
+            parties.append(name)
+    return parties
+
+
 def contest_election_district(contest: Contest, index):
     """Get the district name of a contest."""
     district = index.by_id(contest.election_district_id)
@@ -98,6 +120,8 @@ def extract_candidate_contest(contest: CandidateContest, index):
     """Extract candidate contest information needed for ballots."""
     district = contest_election_district(contest, index)
     candidates = []
+    offices = candidate_contest_offices(contest, index)
+    parties = candidate_contest_parties(contest, index)
     write_ins = 0
     for selection in contest.contest_selection:
         assert isinstance(selection, CandidateSelection), \
@@ -115,6 +139,8 @@ def extract_candidate_contest(contest: CandidateContest, index):
         "vote_type": contest.vote_variation.value,
         "district": district,
         "candidates": [candidate_name(_) for _ in candidates],
+        "offices": offices,
+        "parties": parties,
         "write_ins": write_ins,
     }
     return result
