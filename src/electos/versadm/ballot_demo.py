@@ -1,15 +1,17 @@
 # ballot_demo.py
 # create a demo object with BallotLab classes
 
-from versadm.ballots.contest import Contest
-from versadm.ballots.instructions import Instructions
-from versadm.ballots.page_layout import PageLayout
+from datetime import datetime
+from pathlib import Path
+
+from electos.ballotmaker.ballots.contest import Contest
+from electos.ballotmaker.ballots.instructions import Instructions
+from electos.ballotmaker.ballots.page_layout import PageLayout
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.pdfgen.canvas import Canvas
-from reportlab.platypus import Paragraph, Frame
-from datetime import datetime
+from reportlab.platypus import Frame, Paragraph
 
 
 def ballot_demo():
@@ -26,8 +28,10 @@ def ballot_demo():
     now = datetime.now()
     date_time = now.strftime("%Y_%m_%dT%H%M%S")
     # create the PDF document canvas
+
+    home_dir = Path.home()
     ballot_canvas = Canvas(
-        "pdfs/ballot_demo_{0}.pdf".format(date_time),
+        f"{home_dir}/ballot_demo_{date_time}.pdf",
         pagesize=letter,
         enforceColorSpace="CMYK",
     )

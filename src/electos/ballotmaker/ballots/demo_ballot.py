@@ -4,20 +4,18 @@ The Ballot Class contains the document specifications,
 page templates, and specific pages
 """
 from datetime import datetime
-from reportlab.platypus import (
-    BaseDocTemplate,
-    Frame,
-    # Paragraph,
-    # NextPageTemplate,
-    # PageBreak,
-    PageTemplate,
-)
-from reportlab.lib.units import inch
+from pathlib import Path
 
 # from reportlab.lib.styles import getSampleStyleSheet
-from versadm.ballots.contest import Contest
-from versadm.ballots.instructions import Instructions
-from versadm.ballots.page_layout import PageLayout
+from electos.ballotmaker.ballots.contest import Contest
+from electos.ballotmaker.ballots.instructions import Instructions
+from electos.ballotmaker.ballots.page_layout import PageLayout
+from reportlab.lib.units import inch
+from reportlab.platypus import (  # Paragraph,; NextPageTemplate,; PageBreak,
+    BaseDocTemplate,
+    Frame,
+    PageTemplate,
+)
 
 
 def build_ballot():
@@ -70,8 +68,8 @@ def build_ballot():
     # create datestamp string for PDF
     now = datetime.now()
     date_time = now.strftime("%Y_%m_%dT%H%M%S")
-    # TODO: Fix path with project_files.py
-    ballot_name = "pdfs/ballot_{0}.pdf".format(date_time)
+    home_dir = Path.home()
+    ballot_name = f"{home_dir}/ballot_demo_{date_time}.pdf"
 
     ballot_doc = BaseDocTemplate(ballot_name)
     ballot_doc.addPageTemplates(

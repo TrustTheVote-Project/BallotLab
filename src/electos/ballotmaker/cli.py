@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Optional
 
 import typer
-from electos.ballotmaker import make_ballots, validate_edf
+from electos.ballotmaker import demo, make_ballots, validate_edf
 from electos.ballotmaker.constants import NO_ERRORS, PROGRAM_NAME, VERSION
 
 EDF_HELP = "EDF file with ballot data (JSON format)"
@@ -42,6 +42,7 @@ def main(
 @app.command()
 def demo():
     """Make ballots from previously extracted EDF data"""
+    # demo.make_demo_ballot()
     return NO_ERRORS
 
 

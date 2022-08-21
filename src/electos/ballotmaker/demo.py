@@ -1,12 +1,12 @@
 import logging
 
+# from electos.ballotmaker.ballots.demo_ballot import build_ballot
 from electos.ballotmaker.constants import NO_ERRORS
-from electos.ballotmaker.demo_election_data import DemoElectionData
 
 log = logging.getLogger(__name__)
 
 
-def demo():
+def make_demo_ballot():
     log.debug("Starting ballotlab demo ...")
-    demo_data = DemoElectionData()
+    # build_ballot()
     return NO_ERRORS

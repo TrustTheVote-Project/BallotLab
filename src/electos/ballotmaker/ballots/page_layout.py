@@ -1,41 +1,48 @@
 # page_layout.py
-# Stores page layout settings in a dictionary
+# Stores page layout settings in a class
+# TODO: refactor as a dict or dataclass
 
 # customize only what's different from the samples
 
+from dataclasses import dataclass
 
+
+@dataclass
 class PageLayout:
     # use floats for these values
-    font_family = "Helvetica"
-    margin = 0.5
-    col_width = 2.25
-    col_height = 9
-    col_space = 0.25
+    font_family: str = "Helvetica"
+    margin: float = 0.5
+    col_width: float = 2.25
+    col_height: float = 9
+    col_space: float = 0.25
 
     # font family info
-    font_normal = "Helvetica"
-    font_bold = "Helvetica-Bold"
-    font_size = 12
-    normal_lead = 15
-    head_lead = 20
-    border_pad = 8
-    space_before = 12
-    space_after = 6
+    font_normal: str = "Helvetica"
+    font_bold: str = "Helvetica-Bold"
+    font_size: int = 12
+    normal_lead: int = 15
+    head_lead: int = 20
+    border_pad: int = 8
+    space_before: int = 12
+    space_after: int = 6
 
     # define CMYKColor values
     # Use floats! (0 - 1) Didn't work with values 0 - 100
     # 100% cyan
-    dark = (1, 0, 0, 0)
+    dark: tuple = (1, 0, 0, 0)
     # light cyan
-    light = (0.1, 0, 0, 0)
-    white = (0, 0, 0, 0)
-    black = (0, 0, 0, 1)
-    grey = (0, 0, 0, 0.15)
+    light: tuple = (0.1, 0, 0, 0)
+    white: tuple = (0, 0, 0, 0)
+    black: tuple = (0, 0, 0, 1)
+    grey: tuple = (0, 0, 0, 0.15)
+
+    bg_color: tuple = white
+    border_color: tuple = black
 
     # TODO: Rewrite with *args, **kwargs?
     def define_custom_style(
         style,
-        bg_color,
+        bg_color=bg_color,
         border_pd=border_pad,
         font_sz=font_size,
         txt_color=black,
@@ -45,7 +52,6 @@ class PageLayout:
         sp_after=space_after,
     ):
         style.backColor = bg_color
-        style.borderColor = bg_color
         style.borderPadding = border_pd
         style.fontSize = font_sz
         style.textColor = txt_color

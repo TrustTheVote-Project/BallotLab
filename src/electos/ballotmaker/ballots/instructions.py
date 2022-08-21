@@ -1,13 +1,12 @@
 # instructions.py
 # Build the ballot instructions
 
-
-from page_layout import PageLayout
-from images import EmbeddedImage
-from reportlab.platypus.flowables import CondPageBreak, PageBreak, Spacer
-from reportlab.platypus import Paragraph
+from electos.ballotmaker.ballots.images import EmbeddedImage
+from electos.ballotmaker.ballots.page_layout import PageLayout
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
+from reportlab.platypus import Paragraph
+from reportlab.platypus.flowables import CondPageBreak, PageBreak, Spacer
 
 
 class Instructions:
@@ -139,10 +138,22 @@ class Instructions:
             head_lead,
         )
         PageLayout.define_custom_style(
-            normal, light, border_pad, font_size, black, font_normal, normal_lead
+            normal,
+            light,
+            border_pad,
+            font_size,
+            black,
+            font_normal,
+            normal_lead,
         )
         PageLayout.define_custom_style(
-            warn_text, light, border_pad, font_size, dark, font_bold, normal_lead
+            warn_text,
+            light,
+            border_pad,
+            font_size,
+            dark,
+            font_bold,
+            normal_lead,
         )
         PageLayout.define_custom_style(
             img_graf,

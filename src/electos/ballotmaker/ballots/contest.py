@@ -1,14 +1,11 @@
 # contest.py
 # format a ballot contest.
 
-from page_layout import PageLayout
-from images import EmbeddedImage
-from reportlab.platypus import Table
-from reportlab.platypus import Paragraph
+from electos.ballotmaker.ballots.page_layout import PageLayout
+from reportlab.graphics.shapes import Drawing, Ellipse, _DrawingEditorMixin
+from reportlab.lib.colors import black, white
 from reportlab.lib.styles import LineStyle, getSampleStyleSheet
-from reportlab.graphics.shapes import Drawing, _DrawingEditorMixin
-from reportlab.graphics.shapes import Ellipse
-from reportlab.lib.colors import white, black
+from reportlab.platypus import Paragraph, Table
 
 oval_width = 10
 oval_height = 4
@@ -49,7 +46,9 @@ class Contest:
         self.contest_instruct = ""
 
         def get_contest_data():
-            self.contest_title = "President and Vice-President of the United States"
+            self.contest_title = (
+                "President and Vice-President of the United States"
+            )
             self.contest_instruct = "Vote for 1 pair"
             self.contestants = [
                 ("Joseph Barchi and Joseph Hallaren", "Blue"),

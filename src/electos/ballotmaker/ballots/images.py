@@ -1,7 +1,7 @@
 # images.py
 # work with images, including embedding images into
 # Paragraph flowables
-from versadm.utils.project_files import ProjectFiles
+from electos.ballotmaker.ballots.files import FileTools
 
 # from reportlab.platypus import Image
 from reportlab.lib import utils
@@ -21,7 +21,7 @@ class EmbeddedImage:
         self.rel_img_path = "assets/img"
         self.embed_text = ""
         # find the image
-        image_file = ProjectFiles(self.image_name, self.rel_img_path, PROJECT_NAME)
+        image_file = FileTools(self.image_name, self.rel_img_path)
         self.file_check(image_file)
         # retrieve the image and measure it
         self.image_full_path = image_file.abs_path_to_file

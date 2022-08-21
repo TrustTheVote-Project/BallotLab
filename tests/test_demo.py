@@ -1,6 +1,6 @@
 from electos.ballotmaker.constants import NO_ERRORS
-from electos.ballotmaker.demo import demo
+from electos.ballotmaker.demo import make_demo_ballot
 
 
 def test_demo():
-    assert demo() == NO_ERRORS
+    assert make_demo_ballot() == NO_ERRORS
