@@ -10,7 +10,7 @@ OrderedContent = Union[OrderedContest, OrderedHeader]
 
 
 def text_content(item):
-    """Return joined lines in internationalized text."""
+    """Return joined lines from internationalized text."""
     assert isinstance(item, InternationalizedText)
     text = "\n".join(_.content for _ in item.text)
     return text
@@ -41,6 +41,7 @@ def walk_ordered_headers(content: List[OrderedContent]):
 
 
 def all_ballot_styles(election_report: ElectionReport, index):
+    """Yield all ballot styles."""
     for ballot_style in index.by_type("BallotStyle"):
         yield ballot_style
 
@@ -62,26 +63,25 @@ def ballot_style_gp_units(ballot_style: BallotStyle, index):
 
 
 def ballot_style_contests(ballot_style: BallotStyle, index):
+    """Yield the contests of a ballot style."""
     for item in walk_ordered_contests(ballot_style.ordered_content):
         contest = index.by_id(item.contest_id)
         yield contest
 
 
-def ballot_style_candidate_contests(
-    ballot_style: BallotStyle, index, keep_write_ins, keep_n_of_m, **opts
-):
+def ballot_style_candidate_contests(ballot_style: BallotStyle, index, **opts):
     for contest in ballot_style_contests(ballot_style, index):
         if not isinstance(contest, CandidateContest):
             continue
         # Ignore N-of-M by default
-        if not keep_n_of_m and contest.vote_variation == VoteVariation.N_OF_M:
+        if contest.vote_variation == VoteVariation.N_OF_M:
             continue
         candidates = []
         for selection in contest.contest_selection:
             assert isinstance(selection, CandidateSelection), \
                 "Unexpected non-candidate selection: {type(selection).__name__}"
             # Ignore write-ins by default
-            if not keep_write_ins and selection.is_write_in:
+            if selection.is_write_in:
                 continue
             for id_ in selection.candidate_ids:
                 candidate = index.by_id(id_)
@@ -137,23 +137,24 @@ def main():
         help = "Index of the ballot style, starting from 1 (default: 1)"
     )
     parser.add_argument(
-        "--keep-write-ins", action = "store_true",
-        help = "Process write in candidates",
-    )
-    parser.add_argument(
-        "--keep-n-of-m", action = "store_true",
-        help = "Process N-of-M contests",
+        "--debug", action = "store_true",
+        help = "Enable debugging output and stack traces"
     )
     opts = parser.parse_args()
     file = opts.file
     opts = vars(opts)
 
-    with file.open() as input:
-        text = input.read()
-        data = json.loads(text)
-    edf = ElectionReport(**data)
-    index = ElementIndex(edf, "ElectionResults")
-    report(edf, index, **opts)
+    try:
+        with file.open() as input:
+            text = input.read()
+            data = json.loads(text)
+        edf = ElectionReport(**data)
+        index = ElementIndex(edf, "ElectionResults")
+        report(edf, index, **opts)
+    except Exception as ex:
+        if opts["debug"]:
+            raise ex
+        print("error:", ex)
 
 
 if __name__ == '__main__':
