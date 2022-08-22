@@ -31,45 +31,35 @@ class SelectionOval(_DrawingEditorMixin, Drawing):
         self.oval.strokeWidth = 0.5
 
 
-class Contest:
+class CandidateContest:
     """
     Ballot Contest class encapsulates
     the generation of a ballot contest
     table
     """
 
-    def __init__(self):
+    def __init__(self, contest_data: dict):
         # set up the page layout settings
         self.contest_list = []
-        self.contestants = []
+        self.candidates = []
         self.contest_title = ""
         self.contest_instruct = ""
+        self.contest_data = contest_data
 
         def get_contest_data():
-            self.contest_title = (
-                "President and Vice-President of the United States"
-            )
-            self.contest_instruct = "Vote for 1 pair"
-            self.contestants = [
-                ("Joseph Barchi and Joseph Hallaren", "Blue"),
-                ("Adam Cramer and Greg Vuocolo", "Yellow"),
-                ("Daniel Court and Amy Blumhard", "Purple"),
-                ("Alvin Boone and James Lian", "Orange"),
-                ("Austin Hildebrand and James Garritty", "Pink"),
-                ("Martin Patterson and Clay Lariviere", "Gold"),
-                ("Elizabeth Harp and Antoine Jefferson", "Gray"),
-                ("Marzena Pazgier and Welton Phelps", "Brown"),
-            ]
+            self.contest_title = self.contest_data["title"]
+            self.contest_instruct = "Vote for 1"
+            self.candidates = self.contest_data["candidates"]
 
-        def build_contest_list(contestants, contestant_party_list):
+        def build_contest_list(candidates, contest_list):
             oval = SelectionOval()
-            for contestant, party in contestants:
+            for candidate in candidates:
                 # add newlines around " and "
-                if contestant.find(" and "):
-                    contestant = contestant.replace(" and ", "<br />and<br />")
-                contest_line = "<b>{}</b><br />{}".format(contestant, party)
+                if candidate.find(" and "):
+                    candidate = candidate.replace(" and ", "<br />and<br />")
+                contest_line = f"<b>{candidate}</b>"
                 contest_row = [oval, Paragraph(contest_line, normal)]
-                contestant_party_list.append(contest_row)
+                contest_list.append(contest_row)
 
         def build_contest_table():
             """
@@ -83,7 +73,7 @@ class Contest:
             row_2 = [Paragraph(self.contest_instruct, h2), ""]
             self.contest_list = [row_1]
             self.contest_list.append(row_2)
-            build_contest_list(self.contestants, self.contest_list)
+            build_contest_list(self.candidates, self.contest_list)
 
             # construct and format the contest table
             self.contest_table = Table(
@@ -146,6 +136,7 @@ class Contest:
             normal_lead,
             sp_before=12,
             sp_after=48,
+            keep_w_next=1,
         )
         PageLayout.define_custom_style(
             h2,
@@ -157,6 +148,7 @@ class Contest:
             normal_lead,
             sp_before=12,
             sp_after=48,
+            keep_w_next=1,
         )
         PageLayout.define_custom_style(
             normal,
@@ -172,5 +164,8 @@ class Contest:
 
 
 if __name__ == "__main__":
-    contest_1 = Contest()
+    from electos.ballotmaker.demo_data import spacetown_data
+
+    contest_1 = CandidateContest(spacetown_data.can_con_1)
+    print(contest_1.candidates)
     print(contest_1.contest_list)

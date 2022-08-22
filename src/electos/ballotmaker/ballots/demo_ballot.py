@@ -8,10 +8,11 @@ from functools import partial
 from pathlib import Path
 
 # from reportlab.lib.styles import getSampleStyleSheet
-from electos.ballotmaker.ballots.contest import Contest
+from electos.ballotmaker.ballots.contest import CandidateContest
 from electos.ballotmaker.ballots.header import header
 from electos.ballotmaker.ballots.instructions import Instructions
 from electos.ballotmaker.ballots.page_layout import PageLayout
+from electos.ballotmaker.demo_data import spacetown_data
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.platypus import (
@@ -21,10 +22,11 @@ from reportlab.platypus import (
     PageTemplate,
     Paragraph,
 )
+from reportlab.platypus.flowables import CondPageBreak
 
 # set up frames
 # 1 = True, 0 = FALSE
-SHOW_BOUNDARY = 1
+SHOW_BOUNDARY = 0
 # get page layout settings
 margin = PageLayout.margin
 c_width = PageLayout.col_width
@@ -37,21 +39,37 @@ def get_election_header() -> dict:
         "Name": "General Election",
         "StartDate": "2024-11-05",
         "EndDate": "2024-11-05",
-        "ElectionScope": "Port Precinct, The State of Farallon",
+        "ElectionScope": "Spacetown Precinct, Orbit City",
     }
+
+
+def add_header_line(font_size, line_text, new_line=False):
+    line_end = "<br />" if new_line else ""
+    header_line = f"<font size={font_size}><b>{line_text}</b></font>{line_end}"
+    return header_line
 
 
 def build_header_text():
     elect_dict = get_election_header()
-    font_size = 14
+    font_size = 12
+    formatted_header = add_header_line(
+        font_size + 2, f"Sample Ballot for {elect_dict['Name']}", new_line=True
+    )
+    formatted_header += "<br />"
+    formatted_header += add_header_line(
+        font_size, elect_dict["ElectionScope"], new_line=True
+    )
+    end_date = datetime.fromisoformat(elect_dict["EndDate"])
+    formatted_date = end_date.strftime("%B %m, %Y")
+    formatted_header += add_header_line(font_size, formatted_date)
 
-    return f"<font size={font_size}><b>Sample Ballot for {elect_dict['Name']}</b></font>"
+    return formatted_header
 
 
 def header(canvas, doc, content):
     canvas.saveState()
     width, height = content.wrap(doc.width, doc.topMargin)
-    content.drawOn(canvas, 0.5 * inch, 11 * inch)
+    content.drawOn(canvas, 0.5 * inch, 10.6 * inch)
     canvas.restoreState()
 
 
@@ -109,11 +127,16 @@ def build_ballot():
     elements = inst.instruction_list
     elements.append(NextPageTemplate("3col"))
     # add a ballot contest to the second frame (colomn)
-    contest_1 = Contest()
+    contest_1 = CandidateContest(spacetown_data.can_con_1)
     elements.append(contest_1.contest_table)
-
+    contest_2 = CandidateContest(spacetown_data.can_con_2)
+    elements.append(contest_2.contest_table)
+    contest_3 = CandidateContest(spacetown_data.can_con_3)
+    elements.append(contest_3.contest_table)
+    elements.append(CondPageBreak(c_height * inch))
+    contest_4 = CandidateContest(spacetown_data.can_con_4)
+    elements.append(contest_4.contest_table)
     doc.build(elements)
-    # doc.build(elements)
 
 
 if __name__ == "__main__":

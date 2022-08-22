@@ -38,27 +38,30 @@ class PageLayout:
 
     bg_color: tuple = white
     border_color: tuple = black
+    keep_w_next = False
 
     # TODO: Rewrite with *args, **kwargs?
     def define_custom_style(
         style,
         bg_color=bg_color,
-        border_pd=border_pad,
+        border_pad=border_pad,
         font_sz=font_size,
         txt_color=black,
         font_n=font_normal,
         line_space=font_size + 1,
         sp_before=space_before,
         sp_after=space_after,
+        keep_w_next=keep_w_next,
     ):
         style.backColor = bg_color
-        style.borderPadding = border_pd
+        style.borderPadding = border_pad
         style.fontSize = font_sz
         style.textColor = txt_color
         style.fontName = font_n
         style.leading = line_space
         style.spaceBefore = sp_before
         style.spaceAfter = sp_after
+        style.keepWithNext = keep_w_next
 
 
 if __name__ == "__main__":
