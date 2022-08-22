@@ -13,7 +13,7 @@ class PageLayout:
     font_family: str = "Helvetica"
     margin: float = 0.5
     col_width: float = 2.25
-    col_height: float = 9
+    col_height: float = 9.5
     col_space: float = 0.25
 
     # font family info
