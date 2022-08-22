@@ -83,6 +83,13 @@ def candidate_name(candidate: Candidate):
     return name
 
 
+def candidate_party(candidate: Candidate, index):
+    """Get the name of the party of a candidate as it appears on a ballot."""
+    party = index.by_id(candidate.party_id)
+    name = text_content(party.name) if party else ""
+    return name
+
+
 def candidate_contest_offices(contest: CandidateContest, index):
     """Get any offices associated with a candidate contest."""
     offices = []
@@ -138,7 +145,10 @@ def extract_candidate_contest(contest: CandidateContest, index):
         "type": "candidate",
         "vote_type": contest.vote_variation.value,
         "district": district,
-        "candidates": [candidate_name(_) for _ in candidates],
+        "candidates": [
+            { "name": candidate_name(_), "party": candidate_party(_, index) }
+            for _ in candidates
+        ],
         # Leave out offices and parties for now
         # "offices": offices,
         # "parties": parties,
