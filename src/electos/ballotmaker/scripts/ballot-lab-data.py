@@ -146,6 +146,7 @@ def extract_candidate_contest(contest: CandidateContest, index):
         if selection.is_write_in:
             write_ins += 1
     result = {
+        "id": contest.model__id,
         "title": contest.name,
         "type": "candidate",
         "vote_type": contest.vote_variation.value,
