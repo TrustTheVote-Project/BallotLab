@@ -84,10 +84,15 @@ def candidate_name(candidate: Candidate):
 
 
 def candidate_party(candidate: Candidate, index):
-    """Get the name of the party of a candidate as it appears on a ballot."""
+    """Get the name and abbreviation of the party of a candidate as it appears on a ballot."""
     party = index.by_id(candidate.party_id)
     name = text_content(party.name) if party else ""
-    return name
+    abbreviation = text_content(party.abbreviation) if party and party.abbreviation else ""
+    result = {
+        "name": name,
+        "abbreviation": abbreviation,
+    }
+    return result
 
 
 def candidate_contest_offices(contest: CandidateContest, index):
