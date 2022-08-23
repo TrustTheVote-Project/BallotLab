@@ -1,6 +1,6 @@
 """
 ballot.py
-The Ballot Class contains the document specifications,
+The Demo Ballot module contains the document specifications,
 page templates, and specific pages
 """
 from datetime import datetime
@@ -39,6 +39,7 @@ def get_election_header() -> dict:
         "Name": "General Election",
         "StartDate": "2024-11-05",
         "EndDate": "2024-11-05",
+        "Type": "general"
         "ElectionScope": "Spacetown Precinct, Orbit City",
     }
 
