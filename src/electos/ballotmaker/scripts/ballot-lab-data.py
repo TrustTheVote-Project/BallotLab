@@ -144,6 +144,8 @@ def extract_candidate_contest(contest: CandidateContest, index):
         "title": contest.name,
         "type": "candidate",
         "vote_type": contest.vote_variation.value,
+        # Include even when default is 1: don't require caller to track that.
+        "votes_allowed": contest.votes_allowed,
         "district": district,
         "candidates": [
             { "name": candidate_name(_), "party": candidate_party(_, index) }
