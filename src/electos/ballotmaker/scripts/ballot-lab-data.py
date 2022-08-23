@@ -134,7 +134,7 @@ def extract_candidate_contest(contest: CandidateContest, index):
     candidates = []
     offices = candidate_contest_offices(contest, index)
     parties = candidate_contest_parties(contest, index)
-    write_ins = 0
+    write_ins = []
     for selection in contest.contest_selection:
         assert isinstance(selection, CandidateSelection), \
             f"Unexpected non-candidate selection: {type(selection).__name__}"
@@ -144,7 +144,7 @@ def extract_candidate_contest(contest: CandidateContest, index):
                 candidate = index.by_id(id_)
                 candidates.append(candidate)
         if selection.is_write_in:
-            write_ins += 1
+            write_ins.append(selection.model__id)
     result = {
         "id": contest.model__id,
         "title": contest.name,
