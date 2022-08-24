@@ -1,3 +1,4 @@
+from itertools import groupby
 from typing import List, Union
 
 from electos.datamodels.nist.models.edf import *
@@ -96,23 +97,49 @@ def candidate_party(candidate: Candidate, index):
 
 
 def candidate_contest_candidates(contest: CandidateContest, index):
-    candidates = []
-    write_ins = []
+    """Get candidates for contest, grouped by slate/ticket.
+
+    A slate will collect candidate names together, but have a single ID for
+    the contest selection, and a single party.
+
+    Todo:
+      Handle the case where candidates on a slate don't share a party.
+      There's no clear guarantee of a 1:1 relationship between slates and parties.
+    """
+    candidates_solo = []
+    # Collect individual candidates
     for selection in contest.contest_selection:
         assert isinstance(selection, CandidateSelection), \
             f"Unexpected non-candidate selection: {type(selection).__name__}"
         # Write-ins have no candidate IDs
-        if selection.candidate_ids:
-            for id_ in selection.candidate_ids:
-                candidate = index.by_id(id_)
-                item = {
-                    "id": selection.model__id,
-                    "name": candidate_name(candidate),
-                    "party": candidate_party(candidate, index),
-                }
-                candidates.append(item)
-        if selection.is_write_in:
-            write_ins.append(selection.model__id)
+        if not selection.candidate_ids:
+            continue
+        for id_ in selection.candidate_ids:
+            candidate = index.by_id(id_)
+            candidate = {
+                "id": selection.model__id,
+                "name": candidate_name(candidate),
+                "party": candidate_party(candidate, index),
+            }
+            candidates_solo.append(candidate)
+    # Group candidates by slate.
+    #
+    # Candidates on the same slate will share the 'ContestSelection' ID
+    # Don't try to collect by party.
+    candidates_by_slate = []
+    for _, slate in groupby(candidates_solo, lambda _: _["id"]):
+        slate = list(slate)
+        # Bail out if candidates on a slate don't share a party
+        assert len({_["party"]["name"] for _ in slate}) == 1, \
+            f"Candidates in '{slate[0]['party']['name']}' slate don't all share the same party"
+        candidate = {
+            "id": slate[0]["id"],
+            "name": [candidate["name"] for candidate in slate],
+            "party": slate[0]["party"],
+        }
+        candidates_by_slate.append(candidate)
+    candidates = candidates_by_slate
+    write_ins = [_.model__id for _ in contest.contest_selection if _.is_write_in]
     return candidates, write_ins
 
 
