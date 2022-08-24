@@ -95,6 +95,27 @@ def candidate_party(candidate: Candidate, index):
     return result
 
 
+def candidate_contest_candidates(contest: CandidateContest, index):
+    candidates = []
+    write_ins = []
+    for selection in contest.contest_selection:
+        assert isinstance(selection, CandidateSelection), \
+            f"Unexpected non-candidate selection: {type(selection).__name__}"
+        # Write-ins have no candidate IDs
+        if selection.candidate_ids:
+            for id_ in selection.candidate_ids:
+                candidate = index.by_id(id_)
+                item = {
+                    "id": selection.model__id,
+                    "name": candidate_name(candidate),
+                    "party": candidate_party(candidate, index),
+                }
+                candidates.append(item)
+        if selection.is_write_in:
+            write_ins.append(selection.model__id)
+    return candidates, write_ins
+
+
 def candidate_contest_offices(contest: CandidateContest, index):
     """Get any offices associated with a candidate contest."""
     offices = []
@@ -131,20 +152,9 @@ def contest_election_district(contest: Contest, index):
 def extract_candidate_contest(contest: CandidateContest, index):
     """Extract candidate contest information needed for ballots."""
     district = contest_election_district(contest, index)
-    candidates = []
     offices = candidate_contest_offices(contest, index)
     parties = candidate_contest_parties(contest, index)
-    write_ins = []
-    for selection in contest.contest_selection:
-        assert isinstance(selection, CandidateSelection), \
-            f"Unexpected non-candidate selection: {type(selection).__name__}"
-        # Write-ins have no candidate IDs
-        if selection.candidate_ids:
-            for id_ in selection.candidate_ids:
-                candidate = index.by_id(id_)
-                candidates.append(candidate)
-        if selection.is_write_in:
-            write_ins.append(selection.model__id)
+    candidates, write_ins = candidate_contest_candidates(contest, index)
     result = {
         "id": contest.model__id,
         "title": contest.name,
@@ -153,11 +163,7 @@ def extract_candidate_contest(contest: CandidateContest, index):
         # Include even when default is 1: don't require caller to track that.
         "votes_allowed": contest.votes_allowed,
         "district": district,
-        "candidates": [
-            { "name": candidate_name(_), "party": candidate_party(_, index) }
-            for _ in candidates
-        ],
-        # Leave out offices and parties for now
+        "candidates": candidates,
         # "offices": offices,
         # "parties": parties,
         "write_ins": write_ins,
