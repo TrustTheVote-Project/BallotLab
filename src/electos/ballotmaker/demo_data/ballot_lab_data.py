@@ -43,7 +43,7 @@ def walk_ordered_headers(content: List[OrderedContent]):
             raise TypeError(f"Unexpected type: {type(item).__name__}")
 
 
-# --- Properties
+# --- Ballot Properties
 
 
 def all_ballot_styles(election_report: ElectionReport, index):
@@ -81,6 +81,22 @@ def candidate_name(candidate: Candidate):
     """Get the name of a candidate as it appears on a ballot."""
     name = text_content(candidate.ballot_name)
     return name
+
+
+def candidate_party(candidate: Candidate, index):
+    """Get the name and abbreviation of the party of a candidate as it appears on a ballot."""
+    party = index.by_id(candidate.party_id)
+    name = text_content(party.name) if party else ""
+    abbreviation = (
+        text_content(party.abbreviation)
+        if party and party.abbreviation
+        else ""
+    )
+    result = {
+        "name": name,
+        "abbreviation": abbreviation,
+    }
+    return result
 
 
 def candidate_contest_offices(contest: CandidateContest, index):
@@ -123,7 +139,7 @@ def extract_candidate_contest(contest: CandidateContest, index):
     candidates = []
     offices = candidate_contest_offices(contest, index)
     parties = candidate_contest_parties(contest, index)
-    write_ins = 0
+    write_ins = []
     for selection in contest.contest_selection:
         assert isinstance(
             selection, CandidateSelection
@@ -134,13 +150,19 @@ def extract_candidate_contest(contest: CandidateContest, index):
                 candidate = index.by_id(id_)
                 candidates.append(candidate)
         if selection.is_write_in:
-            write_ins += 1
+            write_ins.append(selection.model__id)
     result = {
+        "id": contest.model__id,
         "title": contest.name,
         "type": "candidate",
         "vote_type": contest.vote_variation.value,
+        # Include even when default is 1: don't require caller to track that.
+        "votes_allowed": contest.votes_allowed,
         "district": district,
-        "candidates": [candidate_name(_) for _ in candidates],
+        "candidates": [
+            {"name": candidate_name(_), "party": candidate_party(_, index)}
+            for _ in candidates
+        ],
         # Leave out offices and parties for now
         # "offices": offices,
         # "parties": parties,
@@ -203,8 +225,6 @@ def report(root, index, nth, **opts):
     data = {}
     id_ = ballot_style_id(ballot_style)
     data["ballot_style"] = id_
-    # gp_units = ballot_style_gp_units(ballot_style, index)
-    # data["locations"] = [text_content(_.name) for _ in gp_units]
     contests = gather_contests(ballot_style, index)
     if not contests:
         print(f"No contests found for ballot style: {id_}\n")
@@ -214,19 +234,13 @@ def report(root, index, nth, **opts):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "file",
-        nargs="?",
-        type=Path,
-        default="june-test-case.json",
-        help="Test case data (JSON)",
-    )
+    parser.add_argument("file", type=Path, help="Test case data (JSON)")
     parser.add_argument(
         "nth",
         nargs="?",
         type=int,
         default=1,
-        help="Index of the ballot style to extract (default: 1 (1st))",
+        help="Index of the ballot style, starting from 1 (default: 1)",
     )
     parser.add_argument(
         "--debug",
@@ -236,6 +250,7 @@ def main():
     opts = parser.parse_args()
     file = opts.file
     opts = vars(opts)
+
     try:
         with file.open() as input:
             text = input.read()
