@@ -106,22 +106,20 @@ def candidate_contest_candidates(contest: CandidateContest, index):
       Handle the case where candidates on a slate don't share a party.
       There's no clear guarantee of a 1:1 relationship between slates and parties.
     """
-    candidates_solo = []
     # Collect individual candidates
+    candidates_solo = []
     for selection in contest.contest_selection:
         assert isinstance(selection, CandidateSelection), \
             f"Unexpected non-candidate selection: {type(selection).__name__}"
-        # Write-ins have no candidate IDs
-        if not selection.candidate_ids:
-            continue
-        for id_ in selection.candidate_ids:
-            candidate = index.by_id(id_)
-            candidate = {
-                "id": selection.model__id,
-                "name": candidate_name(candidate),
-                "party": candidate_party(candidate, index),
-            }
-            candidates_solo.append(candidate)
+        result = {}
+        result["id"] = selection.model__id
+        if selection.candidate_ids:
+            for id_ in selection.candidate_ids:
+                candidate = index.by_id(id_)
+                result["name"] = candidate_name(candidate)
+                result["party"] = candidate_party(candidate, index)
+        result["is_write_in"] = bool(selection.is_write_in)
+        candidates_solo.append(result)
     # Group candidates by slate.
     #
     # Candidates on the same slate will share the 'ContestSelection' ID
@@ -129,18 +127,19 @@ def candidate_contest_candidates(contest: CandidateContest, index):
     candidates_by_slate = []
     for _, slate in groupby(candidates_solo, lambda _: _["id"]):
         slate = list(slate)
-        # Bail out if candidates on a slate don't share a party
-        assert len({_["party"]["name"] for _ in slate}) == 1, \
-            f"Candidates in '{slate[0]['party']['name']}' slate don't all share the same party"
         candidate = {
             "id": slate[0]["id"],
-            "name": [candidate["name"] for candidate in slate],
-            "party": slate[0]["party"],
         }
+        if "party" in slate[0]:
+            assert len({_["party"]["name"] for _ in slate}) == 1, \
+                f"Candidates in '{slate[0]['party']['name']}' slate don't all share the same party"
+            candidate["name"] = [_["name"] for _ in slate]
+            candidate["party"] = slate[0]["party"]
+        candidate["write_in"] = slate[0]["is_write_in"]
         candidates_by_slate.append(candidate)
     candidates = candidates_by_slate
     write_ins = [_.model__id for _ in contest.contest_selection if _.is_write_in]
-    return candidates, write_ins
+    return candidates
 
 
 def candidate_contest_offices(contest: CandidateContest, index):
@@ -181,7 +180,7 @@ def extract_candidate_contest(contest: CandidateContest, index):
     district = contest_election_district(contest, index)
     offices = candidate_contest_offices(contest, index)
     parties = candidate_contest_parties(contest, index)
-    candidates, write_ins = candidate_contest_candidates(contest, index)
+    candidates = candidate_contest_candidates(contest, index)
     result = {
         "id": contest.model__id,
         "title": contest.name,
@@ -193,7 +192,6 @@ def extract_candidate_contest(contest: CandidateContest, index):
         "candidates": candidates,
         # "offices": offices,
         # "parties": parties,
-        "write_ins": write_ins,
     }
     return result
 
