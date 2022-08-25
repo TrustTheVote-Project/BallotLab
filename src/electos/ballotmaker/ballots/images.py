@@ -18,7 +18,7 @@ class EmbeddedImage:
     def __init__(self, image_name, new_width=240) -> None:
         self.image_name = image_name
         self.new_width = new_width
-        self.rel_img_path = "electos/ballotmaker/img"
+        self.rel_img_path = "assets/img"
         self.embed_text = ""
 
         image_file = FileTools(self.image_name, self.rel_img_path)
