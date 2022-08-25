@@ -1,5 +1,4 @@
 """
-ballot.py
 The Demo Ballot module contains the document specifications,
 page templates, and specific pages
 """

@@ -55,8 +55,8 @@ class CandidateContest:
             oval = SelectionOval()
             for candidate in candidates:
                 # add newlines around " and "
-                if candidate.find(" and "):
-                    candidate = candidate.replace(" and ", "<br />and<br />")
+                # if candidate.find(" and "):
+                #     candidate = candidate.replace(" and ", "<br />and<br />")
                 contest_line = f"<b>{candidate}</b>"
                 contest_row = [oval, Paragraph(contest_line, normal)]
                 contest_list.append(contest_row)
