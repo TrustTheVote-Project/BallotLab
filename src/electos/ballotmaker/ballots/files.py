@@ -19,7 +19,9 @@ class FileTools:
         self.code_dir = os.path.dirname(getsourcefile(lambda: 0))
         base_len = int(self.code_dir.find(self.package_name))
         if base_len == -1:
-            raise Exception("Not executing in the expected package.")
+            raise Exception(
+                "Not executing in the expected package.", ValueError
+            )
         # if this module is part of the specified package, build the absolute path
         self.package_root = os.path.join(
             self.code_dir[:base_len], self.package_name
@@ -43,12 +45,11 @@ if __name__ == "__main__":
     file_defaults = FileTools()
     print(file_defaults.code_dir)
     print(file_defaults.package_root)
-    print(file_defaults.package_root)
     print(file_defaults.full_path)
     print(file_defaults.file_found)
 
     target_file = "writein.png"
-    target_dir = "assets/img"
+    target_dir = "src/electos/ballotmaker/img"
     print(f"Check for file {target_file} in directory {target_dir}")
     file_check = FileTools(target_file, target_dir)
     print(file_check.code_dir)

@@ -18,9 +18,9 @@ class EmbeddedImage:
     def __init__(self, image_name, new_width=240) -> None:
         self.image_name = image_name
         self.new_width = new_width
-        self.rel_img_path = "assets/img"
+        self.rel_img_path = "src/electos/ballotmaker/img"
         self.embed_text = ""
-        # find the image
+
         image_file = FileTools(self.image_name, self.rel_img_path)
         self.file_check(image_file)
         # retrieve the image and measure it
@@ -30,22 +30,12 @@ class EmbeddedImage:
         aspect = img_height / float(img_width)
         # resize based on the new width
         self.new_height = round(new_width * aspect)
-        self.embed_text = (
-            '<para leading="{}" spaceBefore="0" '
-            'spaceAfter="16"><br />'
-            '<img src="{}" width="{}" height="{}" '
-            'valign="middle"/></para>'.format(
-                round(self.new_height / 2),
-                self.image_full_path,
-                new_width,
-                self.new_height,
-            )
-        )
+        self.embed_text = f'<para leading="{round(self.new_height / 2)}" spaceBefore="0" spaceAfter="16"><br /><img src="{self.image_full_path}" width="{new_width}" height="{self.new_height}" valign="middle"/></para>'
 
     def file_check(self, image_file):
         if image_file.file_found is False:
-            file_error = "File {} not found in {}".format(
-                self.image_name, self.rel_img_path
+            file_error = (
+                f"File {self.image_name} not found in {self.rel_img_path}"
             )
             raise FileNotFoundError(file_error)
 
