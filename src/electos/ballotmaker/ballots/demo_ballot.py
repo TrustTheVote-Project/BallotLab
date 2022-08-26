@@ -22,6 +22,7 @@ from reportlab.platypus import (
     BaseDocTemplate,
     Frame,
     NextPageTemplate,
+    PageBreak,
     PageTemplate,
     Paragraph,
 )
@@ -56,6 +57,15 @@ right_frame = Frame(
     (margin + (2 * (c_width + c_space))) * inch,
     margin * inch,
     width=c_width * inch,
+    height=c_height * inch,
+    topPadding=0,
+    showBoundary=SHOW_BOUNDARY,
+)
+
+one_frame = Frame(
+    margin * inch,
+    margin * inch,
+    width=7 * inch,
     height=c_height * inch,
     topPadding=0,
     showBoundary=SHOW_BOUNDARY,
@@ -115,18 +125,21 @@ def build_ballot() -> str:
     normal = styles["Normal"]
     head_text = build_header_text()
     header_content = Paragraph(head_text, normal)
-    pg_template = PageTemplate(
+    three_column_template = PageTemplate(
         id="3col",
         frames=[left_frame, mid_frame, right_frame],
         onPage=partial(header, content=header_content),
     )
-    doc.addPageTemplates(pg_template)
-
-    elements = []
-    # add voting instructions
-    inst = Instructions()
-    elements = inst.instruction_list
-    elements.append(NextPageTemplate("3col"))
+    one_column_template = PageTemplate(
+        id="1col",
+        frames=[one_frame],
+        onPage=partial(
+            header,
+            content=header_content,
+        ),
+    )
+    doc.addPageTemplates(three_column_template)
+    doc.addPageTemplates(one_column_template)
     # add a ballot contest to the second frame (colomn)
     layout_1 = CandidateContestLayout(
         CandidateContestData(spacetown_data.can_con_1)
@@ -140,20 +153,27 @@ def build_ballot() -> str:
     layout_4 = CandidateContestLayout(
         CandidateContestData(spacetown_data.can_con_4)
     )
-    # layout_5 = BallotMeasureLayout(
-    #     BallotMeasureData(spacetown_data.ballot_measure_1)
-    # )
-    # layout_6 = BallotMeasureLayout(
-    #     BallotMeasureData(spacetown_data.ballot_measure_2)
-    # )
+    layout_5 = BallotMeasureLayout(
+        BallotMeasureData(spacetown_data.ballot_measure_1)
+    )
+    layout_6 = BallotMeasureLayout(
+        BallotMeasureData(spacetown_data.ballot_measure_2)
+    )
+    elements = []
+    # add voting instructions
+    inst = Instructions()
+    elements = inst.instruction_list
+    elements.append(NextPageTemplate("3col"))
     elements.append(layout_1.contest_table)
     elements.append(layout_2.contest_table)
     elements.append(CondPageBreak(c_height * inch))
     elements.append(layout_3.contest_table)
     elements.append(layout_4.contest_table)
+    elements.append(NextPageTemplate("1col"))
+    elements.append(PageBreak())
+    elements.append(layout_5.contest_table)
     elements.append(CondPageBreak(c_height * inch))
-    # elements.append(layout_5.contest_table)
-    # elements.append(layout_6.contest_table)
+    elements.append(layout_6.contest_table)
     doc.build(elements)
     return str(ballot_name)
 

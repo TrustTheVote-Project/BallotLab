@@ -78,12 +78,12 @@ def build_contest_list(
     row_2 = [Paragraph(instruction, h2), ""]
     contest_list = [row_1, row_2]
     if text != "":
-        contest_list.append(Paragraph(text, normal))
+        contest_list.append([Paragraph(text, normal), ""])
     contest_list.extend(iter(selections))
     return contest_list
 
 
-def build_contest_table(contest_list):
+def build_candidate_table(contest_list):
     return Table(
         data=contest_list,
         colWidths=(oval_width * 3, None),
@@ -100,6 +100,36 @@ def build_contest_table(contest_list):
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
             ("SPAN", (0, 0), (1, 0)),
             ("SPAN", (0, 1), (1, 1)),
+            # ("FONTSIZE", (1, 2), (-1, -1), 48),
+            ("TOPPADDING", (0, 2), (-1, -1), 4),
+            # pad the first cell
+            ("BOTTOMPADDING", (0, 0), (0, 1), 8),
+            # pad below each contestant
+            ("BOTTOMPADDING", (0, 2), (-1, -1), 16),
+        ],
+    )
+
+
+def build_ballot_measure_table(contest_list):
+    return Table(
+        data=contest_list,
+        colWidths=(oval_width * 3, None),
+        style=[
+            # draw lines below each selection
+            ("LINEBELOW", (1, 2), (1, -1), 1, grey),
+            # format the header
+            ("BACKGROUND", (0, 0), (1, 0), grey),
+            ("BACKGROUND", (0, 1), (1, 1), light),
+            # draw the outer border on top
+            ("LINEABOVE", (0, 0), (1, 0), 3, black),
+            ("LINEBEFORE", (0, 0), (0, -1), 1, black),
+            ("LINEBELOW", (0, -1), (-1, -1), 1, black),
+            ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ("SPAN", (0, 0), (-1, 0)),
+            ("SPAN", (0, 1), (-1, 1)),
+            ("SPAN", (0, 2), (-1, 2)),
+            # ("SPAN", (0, 3), (-1, 3)),
+            # ("SPAN", (0, 4), (1, 1)),
             # ("FONTSIZE", (1, 2), (-1, -1), 48),
             ("TOPPADDING", (0, 2), (-1, -1), 4),
             # pad the first cell
@@ -163,7 +193,7 @@ class CandidateContestLayout:
         self.contest_list = build_contest_list(
             self.title, self.instruct, _selections
         )
-        self.contest_table = build_contest_table(self.contest_list)
+        self.contest_table = build_candidate_table(self.contest_list)
 
 
 class BallotMeasureLayout:
@@ -188,7 +218,7 @@ class BallotMeasureLayout:
         self.contest_list = build_contest_list(
             self.title, self.instruct, _selections, self.text
         )
-        self.contest_table = build_contest_table(self.contest_list)
+        self.contest_table = build_ballot_measure_table(self.contest_list)
 
 
 if __name__ == "__main__":  # pragma: no cover
