@@ -8,15 +8,15 @@ class CandidateContestData:
 
     _can_con: dict = field(repr=False)
     # fields retrieved from the dict
-    contest_id: str = field(init=False)
-    contest_title: str = field(init=False)
+    id: str = field(init=False)
+    title: str = field(init=False)
     votes_allowed: int = field(init=False)
     district: str = field(init=False)
     candidates: list = field(default_factory=list, init=False, repr=True)
 
     def __post_init__(self):
-        self.contest_id = self._can_con["id"]
-        self.contest_title = self._can_con["title"]
+        self.id = self._can_con["id"]
+        self.title = self._can_con["title"]
         self.votes_allowed = self._can_con["votes_allowed"]
         self.district = self._can_con["district"]
         _candidates = self._can_con["candidates"]
@@ -27,16 +27,16 @@ class CandidateContestData:
 @dataclass
 class CandidateData:
     _can_data: dict = field(repr=False)
-    candidate_id: str = "no_id_provided"
-    candidate_name: str = field(init=False)
-    candidate_party: str = field(init=False)
-    candidate_party_abbr: str = field(init=False)
+    id: str = "no_id_provided"
+    name: str = field(init=False)
+    party: str = field(init=False)
+    party_abbr: str = field(init=False)
 
     def __post_init__(self):
-        self.candidate_name = self._can_data["name"]
+        self.name = self._can_data["name"]
         party_dict = self._can_data["party"]
-        self.candidate_party = party_dict["name"]
-        self.candidate_party_abbr = party_dict["abbreviation"]
+        self.party = party_dict["name"]
+        self.party_abbr = party_dict["abbreviation"]
 
 
 if __name__ == "__main__":

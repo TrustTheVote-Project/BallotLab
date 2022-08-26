@@ -1,5 +1,9 @@
 # format a ballot contest.
 
+from electos.ballotmaker.ballots.contest_data import (
+    CandidateContestData,
+    CandidateData,
+)
 from electos.ballotmaker.ballots.page_layout import PageLayout
 from reportlab.graphics.shapes import Drawing, Ellipse, _DrawingEditorMixin
 from reportlab.lib.colors import black, white
@@ -37,18 +41,16 @@ class CandidateContestLayout:
     table flowable
     """
 
-    def __init__(self, contest_data: dict):
-        # set up the page layout settings
+    def __init__(self, contest_data: CandidateContestData):
         self.contest_list = []
-        self.candidates = []
-        self.contest_title = ""
-        self.contest_instruct = ""
-        self.contest_data = contest_data
-
-        def get_contest_data():
-            self.contest_title = self.contest_data["title"]
-            self.contest_instruct = "Vote for 1"
-            self.candidates = self.contest_data["candidates"]
+        self.contest_id = contest_data.id
+        self.contest_title = contest_data.title
+        self.votes_allowed = contest_data.votes_allowed
+        if self.votes_allowed > 1:
+            self.contest_instruct = f"Vote for up to {self.votes_allowed}"
+        else:
+            self.contest_instruct = f"Vote for {self.votes_allowed}"
+        self.candidates = contest_data.candidates
 
         def build_contest_list(candidates, contest_list):
             oval = SelectionOval()
@@ -65,8 +67,6 @@ class CandidateContestLayout:
             Builds a table with contest header, instructions
             and choices
             """
-            # get the contest data from the data source
-            get_contest_data()
             # build the contest header
             row_1 = [Paragraph(self.contest_title, h1), ""]
             row_2 = [Paragraph(self.contest_instruct, h2), ""]
@@ -165,6 +165,7 @@ class CandidateContestLayout:
 if __name__ == "__main__":
     from electos.ballotmaker.demo_data import spacetown_data
 
-    contest_1 = CandidateContest(spacetown_data.can_con_1)
+    contest_1 = CandidateContestData(spacetown_data.can_con_1)
     print(contest_1.candidates)
-    print(contest_1.contest_list)
+    layout_1 = CandidateContestLayout(contest_1)
+    print(layout_1.contest_list)
