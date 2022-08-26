@@ -45,8 +45,7 @@ def get_election_header() -> dict:
 
 def add_header_line(font_size, line_text, new_line=False):
     line_end = "<br />" if new_line else ""
-    header_line = f"<font size={font_size}><b>{line_text}</b></font>{line_end}"
-    return header_line
+    return f"<font size={font_size}><b>{line_text}</b></font>{line_end}"
 
 
 def build_header_text():
