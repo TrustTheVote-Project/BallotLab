@@ -16,7 +16,7 @@ STYLE_HELP = "Stylesheet file for ballot generation"
 VERSION_HELP = "Print the version number."
 
 # configure logging
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 log = logging.getLogger(__name__)
 
 
