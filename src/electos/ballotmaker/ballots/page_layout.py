@@ -11,10 +11,10 @@ from dataclasses import dataclass
 class PageLayout:
     # use floats for these values
     font_family: str = "Helvetica"
-    margin: float = 0.5
+    margin: float = 0.6
     col_width: float = 2.25
     col_height: float = 9.5
-    col_space: float = 0.25
+    col_space: float = 0.15
 
     # font family info
     font_normal: str = "Helvetica"

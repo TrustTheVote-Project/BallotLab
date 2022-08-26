@@ -7,6 +7,8 @@ from functools import partial
 from pathlib import Path
 
 from electos.ballotmaker.ballots.contest_layout import (
+    BallotMeasureData,
+    BallotMeasureLayout,
     CandidateContestData,
     CandidateContestLayout,
 )
@@ -138,11 +140,20 @@ def build_ballot() -> str:
     layout_4 = CandidateContestLayout(
         CandidateContestData(spacetown_data.can_con_4)
     )
+    # layout_5 = BallotMeasureLayout(
+    #     BallotMeasureData(spacetown_data.ballot_measure_1)
+    # )
+    # layout_6 = BallotMeasureLayout(
+    #     BallotMeasureData(spacetown_data.ballot_measure_2)
+    # )
     elements.append(layout_1.contest_table)
     elements.append(layout_2.contest_table)
     elements.append(CondPageBreak(c_height * inch))
     elements.append(layout_3.contest_table)
     elements.append(layout_4.contest_table)
+    elements.append(CondPageBreak(c_height * inch))
+    # elements.append(layout_5.contest_table)
+    # elements.append(layout_6.contest_table)
     doc.build(elements)
     return str(ballot_name)
 
