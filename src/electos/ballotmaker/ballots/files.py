@@ -6,7 +6,7 @@ from pathlib import Path
 
 class FileTools:
     def __init__(
-        self, file_name="", rel_path="assets/img", package_name="BallotLabFork"
+        self, file_name="", rel_path="assets/img", package_name="ballotmaker"
     ):
         self.file_name: str = file_name
         self.rel_path: Path = Path(rel_path)
@@ -17,7 +17,7 @@ class FileTools:
 
         # get the absolute path to this module
         self.code_dir = Path(__file__).parent.resolve()
-
+        # TODO: restore test!
         # does the package name appear in the code path?
         # if self.code_dir.match(self.package_name):
         # walk the path upward until the source dir
