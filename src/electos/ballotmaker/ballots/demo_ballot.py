@@ -6,8 +6,10 @@ from datetime import datetime
 from functools import partial
 from pathlib import Path
 
-# from reportlab.lib.styles import getSampleStyleSheet
-from electos.ballotmaker.ballots.contest import CandidateContest
+from electos.ballotmaker.ballots.contest_layout import (
+    CandidateContestData,
+    CandidateContestLayout,
+)
 from electos.ballotmaker.ballots.header import header
 from electos.ballotmaker.ballots.instructions import Instructions
 from electos.ballotmaker.ballots.page_layout import PageLayout
@@ -126,15 +128,9 @@ def build_ballot():
     elements = inst.instruction_list
     elements.append(NextPageTemplate("3col"))
     # add a ballot contest to the second frame (colomn)
-    contest_1 = CandidateContest(spacetown_data.can_con_1)
-    elements.append(contest_1.contest_table)
-    contest_2 = CandidateContest(spacetown_data.can_con_2)
-    elements.append(contest_2.contest_table)
-    contest_3 = CandidateContest(spacetown_data.can_con_3)
-    elements.append(contest_3.contest_table)
-    elements.append(CondPageBreak(c_height * inch))
-    contest_4 = CandidateContest(spacetown_data.can_con_4)
-    elements.append(contest_4.contest_table)
+    contest_1 = CandidateContestData(spacetown_data.can_con_1)
+    layout_1 = CandidateContestLayout(contest_1)
+    elements.append(layout_1.contest_table)
     doc.build(elements)
 
 

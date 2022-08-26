@@ -58,7 +58,9 @@ class CandidateContestLayout:
                 # add newlines around " and "
                 # if candidate.find(" and "):
                 #     candidate = candidate.replace(" and ", "<br />and<br />")
-                contest_line = f"<b>{candidate}</b>"
+                contest_line = f"<b>{candidate.name}</b>"
+                if candidate.party_abbr != "":
+                    contest_line += f"<br />{candidate.party_abbr}"
                 contest_row = [oval, Paragraph(contest_line, normal)]
                 contest_list.append(contest_row)
 
