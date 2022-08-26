@@ -40,7 +40,7 @@ class FileTools:
                 self.file_found = True
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print("Default settings:")
     file_defaults = FileTools()
     print(f"Default code dir = {file_defaults.code_dir}")

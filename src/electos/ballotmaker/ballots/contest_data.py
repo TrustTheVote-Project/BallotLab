@@ -39,7 +39,7 @@ class CandidateData:
         self.party_abbr = party_dict["abbreviation"]
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     from electos.ballotmaker.demo_data import spacetown_data
 
     can_con_data_1 = CandidateContestData(spacetown_data.can_con_1)

@@ -43,7 +43,8 @@ def main(
 @app.command()
 def demo():
     """Make ballots from previously extracted EDF data"""
-    build_ballot()
+    new_ballot_name = build_ballot()
+    typer.echo(f"Ballot created: {new_ballot_name}")
     return NO_ERRORS
 
 

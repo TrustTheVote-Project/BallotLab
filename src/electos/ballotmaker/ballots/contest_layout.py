@@ -164,7 +164,7 @@ class CandidateContestLayout:
         build_contest_table()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     from electos.ballotmaker.demo_data import spacetown_data
 
     contest_1 = CandidateContestData(spacetown_data.can_con_1)

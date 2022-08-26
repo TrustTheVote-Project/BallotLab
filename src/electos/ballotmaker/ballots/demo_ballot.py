@@ -33,6 +33,31 @@ margin = PageLayout.margin
 c_width = PageLayout.col_width
 c_height = PageLayout.col_height
 c_space = PageLayout.col_space
+# define 3-column layout with header
+left_frame = Frame(
+    margin * inch,
+    margin * inch,
+    width=c_width * inch,
+    height=c_height * inch,
+    topPadding=0,
+    showBoundary=SHOW_BOUNDARY,
+)
+mid_frame = Frame(
+    (margin + c_width + c_space) * inch,
+    margin * inch,
+    width=c_width * inch,
+    height=c_height * inch,
+    topPadding=0,
+    showBoundary=SHOW_BOUNDARY,
+)
+right_frame = Frame(
+    (margin + (2 * (c_width + c_space))) * inch,
+    margin * inch,
+    width=c_width * inch,
+    height=c_height * inch,
+    topPadding=0,
+    showBoundary=SHOW_BOUNDARY,
+)
 
 
 def get_election_header() -> dict:
@@ -74,36 +99,9 @@ def header(canvas, doc, content):
     canvas.restoreState()
 
 
-def build_ballot():
-
-    # define 3-column layout with header
-    left_frame = Frame(
-        margin * inch,
-        margin * inch,
-        width=c_width * inch,
-        height=c_height * inch,
-        topPadding=0,
-        showBoundary=SHOW_BOUNDARY,
-    )
-    mid_frame = Frame(
-        (margin + c_width + c_space) * inch,
-        margin * inch,
-        width=c_width * inch,
-        height=c_height * inch,
-        topPadding=0,
-        showBoundary=SHOW_BOUNDARY,
-    )
-    right_frame = Frame(
-        (margin + (2 * (c_width + c_space))) * inch,
-        margin * inch,
-        width=c_width * inch,
-        height=c_height * inch,
-        topPadding=0,
-        showBoundary=SHOW_BOUNDARY,
-    )
-
-    # create PDF filename
-    # create datestamp string for PDF
+def build_ballot() -> str:
+    # create PDF filename; include
+    # datestamp string for PDF
     now = datetime.now()
     date_time = now.strftime("%Y_%m_%dT%H%M%S")
     home_dir = Path.home()
@@ -146,7 +144,8 @@ def build_ballot():
     elements.append(layout_3.contest_table)
     elements.append(layout_4.contest_table)
     doc.build(elements)
+    return str(ballot_name)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     build_ballot()
