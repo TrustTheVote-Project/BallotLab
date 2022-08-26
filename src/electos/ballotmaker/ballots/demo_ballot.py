@@ -128,9 +128,23 @@ def build_ballot():
     elements = inst.instruction_list
     elements.append(NextPageTemplate("3col"))
     # add a ballot contest to the second frame (colomn)
-    contest_1 = CandidateContestData(spacetown_data.can_con_1)
-    layout_1 = CandidateContestLayout(contest_1)
+    layout_1 = CandidateContestLayout(
+        CandidateContestData(spacetown_data.can_con_1)
+    )
+    layout_2 = CandidateContestLayout(
+        CandidateContestData(spacetown_data.can_con_2)
+    )
+    layout_3 = CandidateContestLayout(
+        CandidateContestData(spacetown_data.can_con_3)
+    )
+    layout_4 = CandidateContestLayout(
+        CandidateContestData(spacetown_data.can_con_4)
+    )
     elements.append(layout_1.contest_table)
+    elements.append(layout_2.contest_table)
+    elements.append(CondPageBreak(c_height * inch))
+    elements.append(layout_3.contest_table)
+    elements.append(layout_4.contest_table)
     doc.build(elements)
 
 
