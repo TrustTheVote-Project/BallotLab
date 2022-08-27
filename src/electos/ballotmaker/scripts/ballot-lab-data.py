@@ -213,6 +213,7 @@ def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
     district = contest_election_district(contest, index)
     full_text = text_content(contest.full_text)
     result = {
+        "id": contest.model__id,
         "title": contest.name,
         "type": "ballot measure",
         "district": district,
