@@ -85,16 +85,20 @@ def candidate_name(candidate: Candidate):
 
 
 def candidate_party(candidate: Candidate, index):
-    """Get the name and abbreviation of the party of a candidate as it appears on a ballot."""
+    """Get the name and abbreviation of the party of a candidate as it appears on a ballot.
+
+       Drop either field from result if it isn't present.
+    """
     # Note: party ID is returned to allow de-duplicating parties in callers.
     id_ = candidate.party_id
     party = index.by_id(id_)
-    name = text_content(party.name) if party else ""
-    abbreviation = text_content(party.abbreviation) if party and party.abbreviation else ""
-    result = {
-        "name": name,
-        "abbreviation": abbreviation,
-    }
+    name = text_content(party.name) if party else None
+    abbreviation = text_content(party.abbreviation) if party and party.abbreviation else None
+    result = {}
+    if name:
+        result["name"] = name
+    if abbreviation:
+        result["abbreviation"] = abbreviation
     return result, id_
 
 
