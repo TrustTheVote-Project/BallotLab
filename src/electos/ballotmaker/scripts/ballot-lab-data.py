@@ -86,14 +86,16 @@ def candidate_name(candidate: Candidate):
 
 def candidate_party(candidate: Candidate, index):
     """Get the name and abbreviation of the party of a candidate as it appears on a ballot."""
-    party = index.by_id(candidate.party_id)
+    # Note: party ID is returned to allow de-duplicating parties in callers.
+    id_ = candidate.party_id
+    party = index.by_id(id_)
     name = text_content(party.name) if party else ""
     abbreviation = text_content(party.abbreviation) if party and party.abbreviation else ""
     result = {
         "name": name,
         "abbreviation": abbreviation,
     }
-    return result
+    return result, id_
 
 
 def candidate_contest_candidates(contest: CandidateContest, index):
@@ -104,12 +106,11 @@ def candidate_contest_candidates(contest: CandidateContest, index):
     - A single ID for the contest selection
     - Collects candidate names into an array.
     - Collects candidate parties into an array.
+      - If all candidates in a race share a single party they are combined into
+        one entry in the array.
 
     Notes:
         - There's no clear guarantee of a 1:1 relationship between slates and parties.
-
-    Todo:
-        - Allow combining shared parties into a single entry.
     """
     # Collect individual candidates
     candidates = []
@@ -118,15 +119,17 @@ def candidate_contest_candidates(contest: CandidateContest, index):
             f"Unexpected non-candidate selection: {type(selection).__name__}"
         names = []
         parties = []
+        _party_ids = set()
         if selection.candidate_ids:
             for id_ in selection.candidate_ids:
                 candidate = index.by_id(id_)
                 name = candidate_name(candidate)
                 if name:
                     names.append(name)
-                party = candidate_party(candidate, index)
-                if party:
+                party, _party_id = candidate_party(candidate, index)
+                if party and _party_id not in _party_ids:
                     parties.append(party)
+                    _party_ids.add(_party_id)
         result = {
             "id": selection.model__id,
             "name": names,
