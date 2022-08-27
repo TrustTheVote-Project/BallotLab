@@ -99,46 +99,41 @@ def candidate_party(candidate: Candidate, index):
 def candidate_contest_candidates(contest: CandidateContest, index):
     """Get candidates for contest, grouped by slate/ticket.
 
-    A slate will collect candidate names together, but have a single ID for
-    the contest selection, and a single party.
+    A slate has:
+
+    - A single ID for the contest selection
+    - Collects candidate names into an array.
+    - Collects candidate parties into an array.
+
+    Notes:
+        - There's no clear guarantee of a 1:1 relationship between slates and parties.
 
     Todo:
-      Handle the case where candidates on a slate don't share a party.
-      There's no clear guarantee of a 1:1 relationship between slates and parties.
+        - Allow combining shared parties into a single entry.
     """
     # Collect individual candidates
-    candidates_solo = []
+    candidates = []
     for selection in contest.contest_selection:
         assert isinstance(selection, CandidateSelection), \
             f"Unexpected non-candidate selection: {type(selection).__name__}"
-        result = {}
-        result["id"] = selection.model__id
+        names = []
+        parties = []
         if selection.candidate_ids:
             for id_ in selection.candidate_ids:
                 candidate = index.by_id(id_)
-                result["name"] = candidate_name(candidate)
-                result["party"] = candidate_party(candidate, index)
-        result["is_write_in"] = bool(selection.is_write_in)
-        candidates_solo.append(result)
-    # Group candidates by slate.
-    #
-    # Candidates on the same slate will share the 'ContestSelection' ID
-    # Don't try to collect by party.
-    candidates_by_slate = []
-    for _, slate in groupby(candidates_solo, lambda _: _["id"]):
-        slate = list(slate)
-        candidate = {
-            "id": slate[0]["id"],
+                name = candidate_name(candidate)
+                if name:
+                    names.append(name)
+                party = candidate_party(candidate, index)
+                if party:
+                    parties.append(party)
+        result = {
+            "id": selection.model__id,
+            "name": names,
+            "party": parties,
+            "is_write_in": bool(selection.is_write_in)
         }
-        if "party" in slate[0]:
-            assert len({_["party"]["name"] for _ in slate}) == 1, \
-                f"Candidates in '{slate[0]['party']['name']}' slate don't all share the same party"
-            candidate["name"] = [_["name"] for _ in slate]
-            candidate["party"] = slate[0]["party"]
-        candidate["write_in"] = slate[0]["is_write_in"]
-        candidates_by_slate.append(candidate)
-    candidates = candidates_by_slate
-    write_ins = [_.model__id for _ in contest.contest_selection if _.is_write_in]
+        candidates.append(result)
     return candidates
 
 
