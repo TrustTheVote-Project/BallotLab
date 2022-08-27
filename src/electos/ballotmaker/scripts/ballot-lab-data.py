@@ -108,6 +108,7 @@ def candidate_contest_candidates(contest: CandidateContest, index):
     - Collects candidate parties into an array.
       - If all candidates in a race share a single party they are combined into
         one entry in the array.
+      - If any candidates differ from the others, parties are listed separately.
 
     Notes:
         - There's no clear guarantee of a 1:1 relationship between slates and parties.
@@ -127,9 +128,12 @@ def candidate_contest_candidates(contest: CandidateContest, index):
                 if name:
                     names.append(name)
                 party, _party_id = candidate_party(candidate, index)
-                if party and _party_id not in _party_ids:
-                    parties.append(party)
-                    _party_ids.add(_party_id)
+                parties.append(party)
+                _party_ids.add(_party_id)
+        # If there's only one party ID, all candidates share the same party.
+        # If there's any divergence track them all individually.
+        if len(_party_ids) == 1:
+            parties = parties[:1]
         result = {
             "id": selection.model__id,
             "name": names,
