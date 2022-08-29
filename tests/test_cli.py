@@ -58,3 +58,8 @@ def test_validate():
     result = runner.invoke(cli.app, ["validate", "--edf"])
     assert result.exit_code == NO_FILE
     assert "Error: Option" in result.stdout
+
+
+def test_demo():
+    result = runner.invoke(cli.app, ["demo"])
+    assert result.exit_code == NO_ERRORS
