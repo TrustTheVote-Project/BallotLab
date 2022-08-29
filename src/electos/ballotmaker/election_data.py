@@ -16,12 +16,22 @@ class ElectionData:
     # properties retrieved from the EDF
     edf_error: int = field(init=False)
     election_report: ElectionReport = field(init=False)
+    index: ElementIndex = field(init=False)
     ballot_styles: ElementIndex = field(init=False)
     ballot_count: int = field(init=False)
     election_name: str = field(init=False)
     start_date: str = field(init=False)
     end_date: str = field(init=False)
     election_type: str = field(init=False)
+
+    def get_gp_unit_list(self, gp_unit_ids: list) -> list:
+        gp_unit_list = []
+        for gp_unit_id in gp_unit_ids:
+            gp_unit = self.index.by_id(gp_unit_id)
+            gp_unit_name = gp_unit.name.text[0].content
+            gp_unit_list.append(gp_unit_name)
+        log.debug(f"GP Unit IDs: {gp_unit_ids}; GP Units: {gp_unit_list}")
+        return gp_unit_list
 
     def __post_init__(self):
         # let's assume there are no errors
@@ -56,13 +66,15 @@ class ElectionData:
         log.info(f"{self.election_type}")
 
         # index the election report to retrieve lists
-        index = ElementIndex(self.election_report, "ElectionResults")
+        self.index = ElementIndex(self.election_report, "ElectionResults")
 
         # how many ballots?
-        self.ballot_styles = index.by_type("ElectionResults.BallotStyle")
+        self.ballot_styles = self.index.by_type("ElectionResults.BallotStyle")
         # list and count ballots
         for count, ballot in enumerate(self.ballot_styles, start=1):
             ballot_value = ballot.external_identifier[0].value
-            log.info(f"Ballot: {ballot_value}")
+            ballot_gp_unit_ids = ballot.gp_unit_ids
+            ballot_gp_units = self.get_gp_unit_list(ballot_gp_unit_ids)
+            log.info(f"Ballot: {ballot_value}; GP Units: {ballot_gp_units}")
         self.ballot_count = count
         log.info(f"Found {self.ballot_count} ballot styles in {self.edf}")

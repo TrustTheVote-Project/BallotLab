@@ -7,6 +7,7 @@ from typing import Optional
 
 import typer
 from electos.ballotmaker import make_ballots, validate_edf
+from electos.ballotmaker.ballots.demo_ballot import build_ballot
 from electos.ballotmaker.constants import NO_ERRORS, PROGRAM_NAME, VERSION
 
 EDF_HELP = "EDF file with ballot data (JSON format)"
@@ -15,7 +16,7 @@ STYLE_HELP = "Stylesheet file for ballot generation"
 VERSION_HELP = "Print the version number."
 
 # configure logging
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 log = logging.getLogger(__name__)
 
 
@@ -36,6 +37,14 @@ def main(
         None, "--version", callback=version_callback, help=VERSION_HELP
     ),
 ):
+    return NO_ERRORS
+
+
+@app.command()
+def demo():
+    """Make ballots from previously extracted EDF data"""
+    new_ballot_name = build_ballot()
+    typer.echo(f"Ballot created: {new_ballot_name}")
     return NO_ERRORS
 
 
