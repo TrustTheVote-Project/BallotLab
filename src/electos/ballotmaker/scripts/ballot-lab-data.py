@@ -209,7 +209,10 @@ def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
         assert isinstance(selection, BallotMeasureSelection), \
            f"Unexpected non-ballot measure selection: {type(selection).__name__}"
         choice = text_content(selection.selection)
-        choices.append(choice)
+        choices.append({
+            "id": selection.model__id,
+            "choice": choice,
+        })
     district = contest_election_district(contest, index)
     full_text = text_content(contest.full_text)
     result = {
