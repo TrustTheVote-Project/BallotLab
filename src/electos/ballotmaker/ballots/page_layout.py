@@ -11,19 +11,20 @@ from dataclasses import dataclass
 class PageLayout:
     # use floats for these values
     font_family: str = "Helvetica"
-    margin: float = 0.6
-    col_width: float = 2.25
+    margin: float = 0.5
+    col_width: float = 2.3
     col_height: float = 9.5
-    col_space: float = 0.15
+    col_space: float = 0.05
+    thin_line: float = 0.5
 
     # font family info
     font_normal: str = "Helvetica"
     font_bold: str = "Helvetica-Bold"
-    font_size: int = 12
-    normal_lead: int = 15
-    head_lead: int = 20
+    font_size: int = 10
+    normal_lead: int = 13
+    head_lead: int = 16
     border_pad: int = 8
-    space_before: int = 12
+    space_before: int = 10
     space_after: int = 6
 
     # define CMYKColor values

@@ -88,10 +88,11 @@ class Instructions:
                 (Paragraph(image2_graf, img_graf)),
                 (Paragraph(write_in_text, normal)),
                 (Spacer(0, spacing)),
-                (Paragraph(turn_in_head, h2)),
-                (Paragraph(turn_in_text, normal)),
-                (Paragraph(warn_icon_graf, normal)),
-                (Paragraph(turn_in_warn, warn_text)),
+                # turn-in instructions not required for at-home ballots
+                # (Paragraph(turn_in_head, h2)),
+                # (Paragraph(turn_in_text, normal)),
+                # (Paragraph(warn_icon_graf, normal)),
+                # (Paragraph(turn_in_warn, warn_text)),
                 # Instructions always appear in their own column
                 (CondPageBreak(col_height * inch)),
                 # (PageBreak()),

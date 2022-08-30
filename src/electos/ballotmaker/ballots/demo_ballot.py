@@ -172,7 +172,6 @@ def build_ballot() -> str:
     elements.append(NextPageTemplate("1col"))
     elements.append(PageBreak())
     elements.append(layout_5.contest_table)
-    elements.append(CondPageBreak(c_height * inch))
     elements.append(layout_6.contest_table)
     doc.build(elements)
     return str(ballot_name)
