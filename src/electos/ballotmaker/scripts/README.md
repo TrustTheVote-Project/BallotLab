@@ -1,43 +1,44 @@
-Extract data from NIST EDF models for use by BallotLab.
+Data to use for BallotLab inputs. The data is extracted from EDF test cases
+and constrained to the data model Ballot Lab is using.
 
-## Requirements
-
-- The script requires `nist-datamodels`,  using a version that has element indexes.
-
-## Inputs
-
-Filenames are of the format `{test-case-source}_{ballot-style-id}.json`.
+Output file naming format is `{test-case-source}_{ballot-style-id}.json`.
 Note the use of `-` to separate words, and `_` to separate the name parts.
 
-Inputs are EDF JSON files. Get them from:
+All the current examples are taken from these EDF files:
 
-- https://github.com/TrustTheVote-Project/NIST-1500-100-103-examples/blob/main/test_cases/
-
-The script is `ballot-lab-data.py`. It takes an EDF test case, and the index of
-the ballot style to use (a number from 1 to N, that defaults to 1.).
+- https://github.com/TrustTheVote-Project/NIST-1500-100-103-examples/blob/main/test_cases/june_test_case.json
 
 To run it:
 
-- Install `nist-datamodels`, using a version that has element indexes.
+- Install the BallotLab fork and change to the 'edf-data-to-ballot' branch.
+
+      git clone https://github.com/ion-oset/BallotLab -b edf-data-to-ballot
+
+- Install the project dependencies:
+
+      poetry install
+
 - Run:
 
-      python ballot-lab-data.py <test-case-file> [<index of ballot style>]
+      python scripts/ballot-lab-data.py <test-case-file> <index of ballot style>
 
   e.g.
 
-      python ballot-lab-data.py june_test_case.json 1
+      python scripts/ballot-lab-data.py june_test_case.json 1
 
-## Outputs
+Structure of output:
 
-- Output is JSON files with contests, grouped by contest type.
-- The `VotingVariation` in the EDF is `vote_type` here.
-- Write-ins don't affect the candidate list. They are returned as a count.
-  Presumably they would all be the same and all that's needed is their number.
-  They can be ignored.`
+- Output is a series of contests, grouped by contest type (candidate, ballot
+  measure)
+- Within a contest type order of records is preserved.
+- The `VotingVariation` in the EDF is `vote_type` here. It can be filtered.
+  - `vote_type` of `plurality` is the simplest kind of ballot.
+  - Ignore `n-of-m` and `ranked-choice` until later.
+- Write-ins are integrated into the candidate list.
 - The fields were selected to match what is needed for `plurality` candidate
-  contests and a little extra. We can add other `VoteVariation`s and ballot
-  measure contests as needed.
+  contests and a little extra.
+  - To add fields or modify them we should modify `extract_{contest type}_contest`.
 
-## Complications
+Notes:
 
-- There are no `Header`s or `OrderedHeader`s in the test cases.
+- There are no `Header`s or `OrderedHeader`s in `june_test_case.json`.
