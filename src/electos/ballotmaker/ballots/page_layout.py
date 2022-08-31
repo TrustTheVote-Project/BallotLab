@@ -14,7 +14,7 @@ class PageLayout:
     margin: float = 0.5
     col_width: float = 2.4
     col_height: float = 10
-    col_space: float = 0.05
+    col_space: float = 0
     thin_line: float = 0.5
 
     # font family info

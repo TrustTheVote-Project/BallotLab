@@ -184,7 +184,7 @@ class Instructions:
             black,
             font_normal,
             head_lead,
-            sp_after=0,
+            # sp_after=0,
         )
         # build the list, an attribute of the Instructions object
         build_instruction_list()
