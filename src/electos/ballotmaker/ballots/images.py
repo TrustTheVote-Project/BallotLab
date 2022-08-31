@@ -30,7 +30,7 @@ class EmbeddedImage:
         aspect = img_height / float(img_width)
         # resize based on the new width
         self.new_height = round(new_width * aspect)
-        self.embed_text = f'<para leading="{round(self.new_height / 2)}" spaceBefore="0" spaceAfter="16"><br /><img src="{self.image_full_path}" width="{new_width}" height="{self.new_height}" valign="middle"/></para>'
+        self.embed_text = f'<para leading="{round(self.new_height / 1.9)}" spaceBefore="6" spaceAfter="12"><br /><img src="{self.image_full_path}" width="{round(new_width)}" height="{self.new_height}" valign="middle"/></para>'
 
     def file_check(self, image_file):
         if image_file.file_found is False:

@@ -12,8 +12,8 @@ class PageLayout:
     # use floats for these values
     font_family: str = "Helvetica"
     margin: float = 0.5
-    col_width: float = 2.3
-    col_height: float = 9.5
+    col_width: float = 2.4
+    col_height: float = 10
     col_space: float = 0.05
     thin_line: float = 0.5
 
@@ -23,7 +23,7 @@ class PageLayout:
     font_size: int = 10
     normal_lead: int = 13
     head_lead: int = 16
-    border_pad: int = 8
+    border_pad: int = 6
     space_before: int = 10
     space_after: int = 6
 

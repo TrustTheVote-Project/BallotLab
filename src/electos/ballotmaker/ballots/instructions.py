@@ -70,13 +70,13 @@ class Instructions:
             spacing = border_pad / 3
 
             self.instruction_list = [
+                (Spacer(0, spacing)),
                 (
                     Paragraph(
                         instruct_head,
                         h1,
                     )
                 ),
-                (Spacer(0, spacing)),
                 (Paragraph(fill_head, h2)),
                 (Paragraph(image1_graf, img_graf)),
                 (Paragraph(fill_txt, normal)),
@@ -139,6 +139,7 @@ class Instructions:
             white,
             font_bold,
             head_lead,
+            sp_before=0,
             keep_w_next=True,
         )
         PageLayout.define_custom_style(
@@ -148,7 +149,8 @@ class Instructions:
             font_size,
             black,
             font_bold,
-            head_lead,
+            normal_lead,
+            sp_after=2,
             keep_w_next=True,
         )
         PageLayout.define_custom_style(
@@ -159,6 +161,8 @@ class Instructions:
             black,
             font_normal,
             normal_lead,
+            sp_before=-8,
+            sp_after=-4,
         )
         PageLayout.define_custom_style(
             warn_text,
@@ -168,6 +172,9 @@ class Instructions:
             dark,
             font_bold,
             normal_lead,
+            sp_before=-16,
+            sp_after=-4,
+            # no_space,
         )
         PageLayout.define_custom_style(
             img_graf,
@@ -176,8 +183,8 @@ class Instructions:
             font_size,
             black,
             font_normal,
-            normal_lead,
-            no_space,
+            head_lead,
+            sp_after=0,
         )
         # build the list, an attribute of the Instructions object
         build_instruction_list()

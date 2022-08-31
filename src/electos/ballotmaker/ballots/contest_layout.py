@@ -23,7 +23,7 @@ font_normal = PageLayout.font_normal
 font_bold = PageLayout.font_bold
 font_size = PageLayout.font_size
 normal_lead = PageLayout.normal_lead
-border_pad = PageLayout.border_pad / 2
+border_pad = 2  # PageLayout.border_pad
 sm_line = PageLayout.thin_line
 
 # start with the sample styles
@@ -41,7 +41,7 @@ PageLayout.define_custom_style(
     black,
     font_bold,
     normal_lead,
-    sp_before=12,
+    # sp_before=12,
     sp_after=48,
     keep_w_next=1,
 )
@@ -54,7 +54,7 @@ PageLayout.define_custom_style(
     font_bold,
     normal_lead,
     sp_before=12,
-    sp_after=48,
+    # sp_after=32,
     keep_w_next=1,
 )
 PageLayout.define_custom_style(
@@ -65,6 +65,7 @@ PageLayout.define_custom_style(
     black,
     font_normal,
     normal_lead,
+    # sp_before=12,
 )
 
 
@@ -94,7 +95,7 @@ def build_candidate_table(contest_list):
             # format the header
             ("BACKGROUND", (0, 0), (1, 0), grey),
             ("BACKGROUND", (0, 1), (1, 1), light),
-            # draw the outer border on top
+            # draw the outer border on top, left & bottom
             ("LINEABOVE", (0, 0), (1, 0), 1, black),
             ("LINEBEFORE", (0, 0), (0, -1), sm_line, black),
             ("LINEBELOW", (0, -1), (-1, -1), sm_line, black),
@@ -105,8 +106,8 @@ def build_candidate_table(contest_list):
             ("TOPPADDING", (0, 2), (-1, -1), 4),
             # pad the first cell
             ("BOTTOMPADDING", (0, 0), (0, 1), 8),
-            # pad below each contestant
-            ("BOTTOMPADDING", (0, 2), (-1, -1), 16),
+            # pad below each candidate
+            ("BOTTOMPADDING", (0, 2), (-1, -1), 12),
         ],
     )
 
@@ -135,8 +136,8 @@ def build_ballot_measure_table(contest_list):
             ("TOPPADDING", (0, 2), (-1, -1), 4),
             # pad the first cell
             ("BOTTOMPADDING", (0, 0), (0, 1), 8),
-            # pad below each contestant
-            ("BOTTOMPADDING", (0, 2), (-1, -1), 16),
+            # pad below each choice
+            ("BOTTOMPADDING", (0, 2), (-1, -1), 12),
         ],
     )
 
