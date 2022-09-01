@@ -11,22 +11,31 @@
                 "district": "Orbit City",
                 "candidates": [
                     {
-                        "name": "Cosmo Spacely",
+                        "id": "recTKcXLCzRvKB9U0",
+                        "name": [
+                            "Cosmo Spacely"
+                        ],
                         "party": {
                             "name": "The Lepton Party",
                             "abbreviation": "LEP"
-                        }
+                        },
+                        "write_in": false
                     },
                     {
-                        "name": "Spencer Cogswell",
+                        "id": "recKD6dBvkNhEU4bg",
+                        "name": [
+                            "Spencer Cogswell"
+                        ],
                         "party": {
                             "name": "The Hadron Party of Farallon",
                             "abbreviation": "HAD"
-                        }
+                        },
+                        "write_in": false
+                    },
+                    {
+                        "id": "recqq21kO6HWgpJZV",
+                        "write_in": true
                     }
-                ],
-                "write_ins": [
-                    "recqq21kO6HWgpJZV"
                 ]
             },
             {
@@ -38,30 +47,46 @@
                 "district": "Aldrin Space Transport District",
                 "candidates": [
                     {
-                        "name": "Jane Jetson",
+                        "id": "recvYvTb9hWH7tptb",
+                        "name": [
+                            "Jane Jetson"
+                        ],
                         "party": {
                             "name": "",
                             "abbreviation": ""
-                        }
+                        },
+                        "write_in": false
                     },
                     {
-                        "name": "Harlan Ellis",
+                        "id": "recBnJZEgCKAnfpNo",
+                        "name": [
+                            "Harlan Ellis"
+                        ],
                         "party": {
                             "name": "",
                             "abbreviation": ""
-                        }
+                        },
+                        "write_in": false
                     },
                     {
-                        "name": "Rudy Indexer",
+                        "id": "recwNuOnepWNGz67V",
+                        "name": [
+                            "Rudy Indexer"
+                        ],
                         "party": {
                             "name": "",
                             "abbreviation": ""
-                        }
+                        },
+                        "write_in": false
+                    },
+                    {
+                        "id": "rec9Eev970VhohqKi",
+                        "write_in": true
+                    },
+                    {
+                        "id": "recFiGYjGCIyk5LBe",
+                        "write_in": true
                     }
-                ],
-                "write_ins": [
-                    "rec9Eev970VhohqKi",
-                    "recFiGYjGCIyk5LBe"
                 ]
             },
             {
@@ -73,45 +98,72 @@
                 "district": "Gadget County",
                 "candidates": [
                     {
-                        "name": "Sally Smith",
+                        "id": "recbxvhKikHJNZYbq",
+                        "name": [
+                            "Sally Smith"
+                        ],
                         "party": {
                             "name": "",
                             "abbreviation": ""
-                        }
+                        },
+                        "write_in": false
                     },
                     {
-                        "name": "Hector Gomez",
+                        "id": "recigPkqYXXDJEaCE",
+                        "name": [
+                            "Hector Gomez"
+                        ],
                         "party": {
                             "name": "",
                             "abbreviation": ""
-                        }
+                        },
+                        "write_in": false
                     },
                     {
-                        "name": "Rosashawn Davis",
+                        "id": "recJvikmG5MrUKzo1",
+                        "name": [
+                            "Rosashawn Davis"
+                        ],
                         "party": {
                             "name": "",
                             "abbreviation": ""
-                        }
+                        },
+                        "write_in": false
                     },
                     {
-                        "name": "Oliver Tsi",
+                        "id": "recvjB3rgfiicf0RP",
+                        "name": [
+                            "Oliver Tsi"
+                        ],
                         "party": {
                             "name": "",
                             "abbreviation": ""
-                        }
+                        },
+                        "write_in": false
                     },
                     {
-                        "name": "Glavin Orotund",
+                        "id": "recbN7UUMaSuOYGQ6",
+                        "name": [
+                            "Glavin Orotund"
+                        ],
                         "party": {
                             "name": "",
                             "abbreviation": ""
-                        }
+                        },
+                        "write_in": false
+                    },
+                    {
+                        "id": "recYurH2CLY3SlYS8",
+                        "write_in": true
+                    },
+                    {
+                        "id": "recI5jfcXIsbAKytC",
+                        "write_in": true
+                    },
+                    {
+                        "id": "recn9m0o1em7gLahj",
+                        "write_in": true
                     }
-                ],
-                "write_ins": [
-                    "recYurH2CLY3SlYS8",
-                    "recI5jfcXIsbAKytC",
-                    "recn9m0o1em7gLahj"
                 ]
             },
             {
@@ -123,36 +175,33 @@
                 "district": "United States of America",
                 "candidates": [
                     {
-                        "name": "Anthony Alpha",
+                        "id": "recPod2L8VhwagiDl",
+                        "write_in": true
+                    },
+                    {
+                        "id": "recQK3J9IJq42hz2n",
+                        "name": [
+                            "Anthony Alpha",
+                            "Betty Beta"
+                        ],
                         "party": {
                             "name": "The Lepton Party",
                             "abbreviation": "LEP"
-                        }
+                        },
+                        "write_in": false
                     },
                     {
-                        "name": "Betty Beta",
-                        "party": {
-                            "name": "The Lepton Party",
-                            "abbreviation": "LEP"
-                        }
-                    },
-                    {
-                        "name": "Gloria Gamma",
+                        "id": "reccUkUdEznfODgeL",
+                        "name": [
+                            "Gloria Gamma",
+                            "David Delta"
+                        ],
                         "party": {
                             "name": "The Hadron Party of Farallon",
                             "abbreviation": "HAD"
-                        }
-                    },
-                    {
-                        "name": "David Delta",
-                        "party": {
-                            "name": "The Hadron Party of Farallon",
-                            "abbreviation": "HAD"
-                        }
+                        },
+                        "write_in": false
                     }
-                ],
-                "write_ins": [
-                    "recPod2L8VhwagiDl"
                 ]
             }
         ],
