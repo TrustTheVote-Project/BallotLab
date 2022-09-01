@@ -1,5 +1,7 @@
 # Finds the source directory for the specified package,
 # builds paths and confirms the existence of files
+# consider using instead:
+# https://github.com/python/importlib_resources
 
 from pathlib import Path
 
@@ -18,8 +20,6 @@ class FileTools:
         # get the absolute path to this module
         self.code_dir = Path(__file__).parent.resolve()
         # TODO: restore test!
-        # does the package name appear in the code path?
-        # if self.code_dir.match(self.package_name):
         # walk the path upward until the source dir
         path_finder = self.code_dir
         while path_finder.name != self.package_name:

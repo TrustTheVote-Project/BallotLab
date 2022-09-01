@@ -12,7 +12,6 @@ from electos.ballotmaker.ballots.contest_layout import (
     CandidateContestData,
     CandidateContestLayout,
 )
-from electos.ballotmaker.ballots.header import header
 from electos.ballotmaker.ballots.instructions import Instructions
 from electos.ballotmaker.ballots.page_layout import PageLayout
 from electos.ballotmaker.demo_data import spacetown_data
@@ -91,9 +90,8 @@ def build_header_text():
     elect_dict = get_election_header()
     font_size = 12
     formatted_header = add_header_line(
-        font_size + 2, f"Sample Ballot for {elect_dict['Name']}", new_line=True
+        font_size, f"Sample Ballot for {elect_dict['Name']}", new_line=True
     )
-    formatted_header += "<br />"
     formatted_header += add_header_line(
         font_size, elect_dict["ElectionScope"], new_line=True
     )
@@ -106,8 +104,9 @@ def build_header_text():
 
 def header(canvas, doc, content):
     canvas.saveState()
+    # these variables are used elsewhere by ReportLab
     width, height = content.wrap(doc.width, doc.topMargin)
-    content.drawOn(canvas, 0.5 * inch, 10.6 * inch)
+    content.drawOn(canvas, PageLayout.margin * inch, 10.75 * inch)
     canvas.restoreState()
 
 
@@ -166,13 +165,12 @@ def build_ballot() -> str:
     elements.append(NextPageTemplate("3col"))
     elements.append(layout_1.contest_table)
     elements.append(layout_2.contest_table)
-    elements.append(CondPageBreak(c_height * inch))
     elements.append(layout_3.contest_table)
+    elements.append(CondPageBreak(c_height * inch))
     elements.append(layout_4.contest_table)
     elements.append(NextPageTemplate("1col"))
     elements.append(PageBreak())
     elements.append(layout_5.contest_table)
-    elements.append(CondPageBreak(c_height * inch))
     elements.append(layout_6.contest_table)
     doc.build(elements)
     return str(ballot_name)
