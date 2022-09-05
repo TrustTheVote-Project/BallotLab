@@ -84,19 +84,67 @@ def candidate_name(candidate: Candidate):
 
 
 def candidate_party(candidate: Candidate, index):
-    """Get the name and abbreviation of the party of a candidate as it appears on a ballot."""
-    party = index.by_id(candidate.party_id)
-    name = text_content(party.name) if party else ""
-    abbreviation = (
-        text_content(party.abbreviation)
-        if party and party.abbreviation
-        else ""
-    )
-    result = {
-        "name": name,
-        "abbreviation": abbreviation,
-    }
-    return result
+    """Get the name and abbreviation of the party of a candidate as it appears on a ballot.
+
+       Drop either field from result if it isn't present.
+    """
+    # Note: party ID is returned to allow de-duplicating parties in callers.
+    id_ = candidate.party_id
+    party = index.by_id(id_)
+    name = text_content(party.name) if party else None
+    abbreviation = text_content(party.abbreviation) if party and party.abbreviation else None
+    result = {}
+    if name:
+        result["name"] = name
+    if abbreviation:
+        result["abbreviation"] = abbreviation
+    return result, id_
+
+
+def candidate_contest_candidates(contest: CandidateContest, index):
+    """Get candidates for contest, grouped by slate/ticket.
+
+    A slate has:
+
+    - A single ID for the contest selection
+    - Collects candidate names into an array.
+    - Collects candidate parties into an array.
+      - If all candidates in a race share a single party they are combined into
+        one entry in the array.
+      - If any candidates differ from the others, parties are listed separately.
+
+    Notes:
+        - There's no clear guarantee of a 1:1 relationship between slates and parties.
+    """
+    # Collect individual candidates
+    candidates = []
+    for selection in contest.contest_selection:
+        assert isinstance(selection, CandidateSelection), \
+            f"Unexpected non-candidate selection: {type(selection).__name__}"
+        names = []
+        parties = []
+        _party_ids = set()
+        if selection.candidate_ids:
+            for id_ in selection.candidate_ids:
+                candidate = index.by_id(id_)
+                name = candidate_name(candidate)
+                if name:
+                    names.append(name)
+                party, _party_id = candidate_party(candidate, index)
+                parties.append(party)
+                _party_ids.add(_party_id)
+        # If there's only one party ID, all candidates share the same party.
+        # If there's any divergence track them all individually.
+        if len(_party_ids) == 1:
+            parties = parties[:1]
+        result = {
+            "id": selection.model__id,
+            "name": names,
+            "party": parties,
+            "is_write_in": bool(selection.is_write_in)
+        }
+        candidates.append(result)
+    return candidates
 
 
 def candidate_contest_offices(contest: CandidateContest, index):
@@ -136,21 +184,9 @@ def contest_election_district(contest: Contest, index):
 def extract_candidate_contest(contest: CandidateContest, index):
     """Extract candidate contest information needed for ballots."""
     district = contest_election_district(contest, index)
-    candidates = []
+    candidates = candidate_contest_candidates(contest, index)
     offices = candidate_contest_offices(contest, index)
     parties = candidate_contest_parties(contest, index)
-    write_ins = []
-    for selection in contest.contest_selection:
-        assert isinstance(
-            selection, CandidateSelection
-        ), f"Unexpected non-candidate selection: {type(selection).__name__}"
-        # Write-ins have no candidate IDs
-        if selection.candidate_ids:
-            for id_ in selection.candidate_ids:
-                candidate = index.by_id(id_)
-                candidates.append(candidate)
-        if selection.is_write_in:
-            write_ins.append(selection.model__id)
     result = {
         "id": contest.model__id,
         "title": contest.name,
@@ -159,14 +195,9 @@ def extract_candidate_contest(contest: CandidateContest, index):
         # Include even when default is 1: don't require caller to track that.
         "votes_allowed": contest.votes_allowed,
         "district": district,
-        "candidates": [
-            {"name": candidate_name(_), "party": candidate_party(_, index)}
-            for _ in candidates
-        ],
-        # Leave out offices and parties for now
+        "candidates": candidates,
         # "offices": offices,
         # "parties": parties,
-        "write_ins": write_ins,
     }
     return result
 
@@ -179,10 +210,14 @@ def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
             selection, BallotMeasureSelection
         ), f"Unexpected non-ballot measure selection: {type(selection).__name__}"
         choice = text_content(selection.selection)
-        choices.append(choice)
+        choices.append({
+            "id": selection.model__id,
+            "choice": choice,
+        })
     district = contest_election_district(contest, index)
     full_text = text_content(contest.full_text)
     result = {
+        "id": contest.model__id,
         "title": contest.name,
         "type": "ballot measure",
         "district": district,
