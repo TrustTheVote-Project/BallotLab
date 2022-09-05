@@ -15,26 +15,32 @@
                         "name": [
                             "Cosmo Spacely"
                         ],
-                        "party": {
-                            "name": "The Lepton Party",
-                            "abbreviation": "LEP"
-                        },
-                        "write_in": false
+                        "party": [
+                            {
+                                "name": "The Lepton Party",
+                                "abbreviation": "LEP"
+                            }
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recKD6dBvkNhEU4bg",
                         "name": [
                             "Spencer Cogswell"
                         ],
-                        "party": {
-                            "name": "The Hadron Party of Farallon",
-                            "abbreviation": "HAD"
-                        },
-                        "write_in": false
+                        "party": [
+                            {
+                                "name": "The Hadron Party of Farallon",
+                                "abbreviation": "HAD"
+                            }
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recqq21kO6HWgpJZV",
-                        "write_in": true
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
                     }
                 ]
             },
@@ -51,41 +57,42 @@
                         "name": [
                             "Jane Jetson"
                         ],
-                        "party": {
-                            "name": "",
-                            "abbreviation": ""
-                        },
-                        "write_in": false
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recBnJZEgCKAnfpNo",
                         "name": [
                             "Harlan Ellis"
                         ],
-                        "party": {
-                            "name": "",
-                            "abbreviation": ""
-                        },
-                        "write_in": false
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recwNuOnepWNGz67V",
                         "name": [
                             "Rudy Indexer"
                         ],
-                        "party": {
-                            "name": "",
-                            "abbreviation": ""
-                        },
-                        "write_in": false
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "rec9Eev970VhohqKi",
-                        "write_in": true
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
                     },
                     {
                         "id": "recFiGYjGCIyk5LBe",
-                        "write_in": true
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
                     }
                 ]
             },
@@ -102,67 +109,68 @@
                         "name": [
                             "Sally Smith"
                         ],
-                        "party": {
-                            "name": "",
-                            "abbreviation": ""
-                        },
-                        "write_in": false
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recigPkqYXXDJEaCE",
                         "name": [
                             "Hector Gomez"
                         ],
-                        "party": {
-                            "name": "",
-                            "abbreviation": ""
-                        },
-                        "write_in": false
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recJvikmG5MrUKzo1",
                         "name": [
                             "Rosashawn Davis"
                         ],
-                        "party": {
-                            "name": "",
-                            "abbreviation": ""
-                        },
-                        "write_in": false
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recvjB3rgfiicf0RP",
                         "name": [
                             "Oliver Tsi"
                         ],
-                        "party": {
-                            "name": "",
-                            "abbreviation": ""
-                        },
-                        "write_in": false
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recbN7UUMaSuOYGQ6",
                         "name": [
                             "Glavin Orotund"
                         ],
-                        "party": {
-                            "name": "",
-                            "abbreviation": ""
-                        },
-                        "write_in": false
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "recYurH2CLY3SlYS8",
-                        "write_in": true
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
                     },
                     {
                         "id": "recI5jfcXIsbAKytC",
-                        "write_in": true
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
                     },
                     {
                         "id": "recn9m0o1em7gLahj",
-                        "write_in": true
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
                     }
                 ]
             },
@@ -176,7 +184,9 @@
                 "candidates": [
                     {
                         "id": "recPod2L8VhwagiDl",
-                        "write_in": true
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
                     },
                     {
                         "id": "recQK3J9IJq42hz2n",
@@ -184,11 +194,13 @@
                             "Anthony Alpha",
                             "Betty Beta"
                         ],
-                        "party": {
-                            "name": "The Lepton Party",
-                            "abbreviation": "LEP"
-                        },
-                        "write_in": false
+                        "party": [
+                            {
+                                "name": "The Lepton Party",
+                                "abbreviation": "LEP"
+                            }
+                        ],
+                        "is_write_in": false
                     },
                     {
                         "id": "reccUkUdEznfODgeL",
@@ -196,33 +208,49 @@
                             "Gloria Gamma",
                             "David Delta"
                         ],
-                        "party": {
-                            "name": "The Hadron Party of Farallon",
-                            "abbreviation": "HAD"
-                        },
-                        "write_in": false
+                        "party": [
+                            {
+                                "name": "The Hadron Party of Farallon",
+                                "abbreviation": "HAD"
+                            }
+                        ],
+                        "is_write_in": false
                     }
                 ]
             }
         ],
         "ballot_measure": [
             {
+                "id": "recqPa7AeyufIfd6k",
                 "title": "Air Traffic Control Tax Increase",
                 "type": "ballot measure",
                 "district": "Gadget County",
                 "choices": [
-                    "Yes",
-                    "No"
+                    {
+                        "id": "recysACFx8cgwomBE",
+                        "choice": "Yes"
+                    },
+                    {
+                        "id": "recabXA9jzFYRmGXy",
+                        "choice": "No"
+                    }
                 ],
                 "text": "Shall Gadget County increase its sales tax from 1% to 1.1% for the purpose of raising additional revenue to fund expanded air traffic control operations?"
             },
             {
+                "id": "recWjDBFeafCdklWq",
                 "title": "Constitutional Amendment",
                 "type": "ballot measure",
                 "district": "The State of Farallon",
                 "choices": [
-                    "Yes",
-                    "No"
+                    {
+                        "id": "rec7mVWjUH6fmDxig",
+                        "choice": "Yes"
+                    },
+                    {
+                        "id": "reccIHOhUfJgJkqS7",
+                        "choice": "No"
+                    }
                 ],
                 "text": "Do you approve amending the Constitution to legalize the controlled use of helium balloons?  Only adults at least 21 years of age could use helium. The State commission created to oversee the State's medical helium program would also oversee the new, personal use helium market.Helium balloons would be subject to the State sales tax. If authorized by the Legislature, a municipality may pass a local ordinance to charge a local tax on helium balloons."
             }
