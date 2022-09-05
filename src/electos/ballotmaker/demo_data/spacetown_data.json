@@ -3,178 +3,6 @@
     "contests": {
         "candidate": [
             {
-                "id": "recIj8OmzqzzvnDbM",
-                "title": "Contest for Mayor of Orbit City",
-                "type": "candidate",
-                "vote_type": "plurality",
-                "votes_allowed": 1,
-                "district": "Orbit City",
-                "candidates": [
-                    {
-                        "id": "recTKcXLCzRvKB9U0",
-                        "name": [
-                            "Cosmo Spacely"
-                        ],
-                        "party": [
-                            {
-                                "name": "The Lepton Party",
-                                "abbreviation": "LEP"
-                            }
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recKD6dBvkNhEU4bg",
-                        "name": [
-                            "Spencer Cogswell"
-                        ],
-                        "party": [
-                            {
-                                "name": "The Hadron Party of Farallon",
-                                "abbreviation": "HAD"
-                            }
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recqq21kO6HWgpJZV",
-                        "name": [],
-                        "party": [],
-                        "is_write_in": true
-                    }
-                ]
-            },
-            {
-                "id": "recXNb4zPrvC1m6Fr",
-                "title": "Spaceport Control Board",
-                "type": "candidate",
-                "vote_type": "n-of-m",
-                "votes_allowed": 2,
-                "district": "Aldrin Space Transport District",
-                "candidates": [
-                    {
-                        "id": "recvYvTb9hWH7tptb",
-                        "name": [
-                            "Jane Jetson"
-                        ],
-                        "party": [
-                            {}
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recBnJZEgCKAnfpNo",
-                        "name": [
-                            "Harlan Ellis"
-                        ],
-                        "party": [
-                            {}
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recwNuOnepWNGz67V",
-                        "name": [
-                            "Rudy Indexer"
-                        ],
-                        "party": [
-                            {}
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "rec9Eev970VhohqKi",
-                        "name": [],
-                        "party": [],
-                        "is_write_in": true
-                    },
-                    {
-                        "id": "recFiGYjGCIyk5LBe",
-                        "name": [],
-                        "party": [],
-                        "is_write_in": true
-                    }
-                ]
-            },
-            {
-                "id": "recthF6jdx5ybBNkC",
-                "title": "Gadget County School Board",
-                "type": "candidate",
-                "vote_type": "n-of-m",
-                "votes_allowed": 4,
-                "district": "Gadget County",
-                "candidates": [
-                    {
-                        "id": "recbxvhKikHJNZYbq",
-                        "name": [
-                            "Sally Smith"
-                        ],
-                        "party": [
-                            {}
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recigPkqYXXDJEaCE",
-                        "name": [
-                            "Hector Gomez"
-                        ],
-                        "party": [
-                            {}
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recJvikmG5MrUKzo1",
-                        "name": [
-                            "Rosashawn Davis"
-                        ],
-                        "party": [
-                            {}
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recvjB3rgfiicf0RP",
-                        "name": [
-                            "Oliver Tsi"
-                        ],
-                        "party": [
-                            {}
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recbN7UUMaSuOYGQ6",
-                        "name": [
-                            "Glavin Orotund"
-                        ],
-                        "party": [
-                            {}
-                        ],
-                        "is_write_in": false
-                    },
-                    {
-                        "id": "recYurH2CLY3SlYS8",
-                        "name": [],
-                        "party": [],
-                        "is_write_in": true
-                    },
-                    {
-                        "id": "recI5jfcXIsbAKytC",
-                        "name": [],
-                        "party": [],
-                        "is_write_in": true
-                    },
-                    {
-                        "id": "recn9m0o1em7gLahj",
-                        "name": [],
-                        "party": [],
-                        "is_write_in": true
-                    }
-                ]
-            },
-            {
                 "id": "recsoZy7vYhS3lbcK",
                 "title": "President of the United States",
                 "type": "candidate",
@@ -182,12 +10,6 @@
                 "votes_allowed": 1,
                 "district": "United States of America",
                 "candidates": [
-                    {
-                        "id": "recPod2L8VhwagiDl",
-                        "name": [],
-                        "party": [],
-                        "is_write_in": true
-                    },
                     {
                         "id": "recQK3J9IJq42hz2n",
                         "name": [
@@ -215,6 +37,184 @@
                             }
                         ],
                         "is_write_in": false
+                    },
+                    {
+                        "id": "recPod2L8VhwagiDl",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    }
+                ]
+            },
+            {
+                "id": "recthF6jdx5ybBNkC",
+                "title": "Gadget County School Board",
+                "type": "candidate",
+                "vote_type": "n-of-m",
+                "votes_allowed": 4,
+                "district": "Gadget County",
+                "candidates": [
+                    {
+                        "id": "recJvikmG5MrUKzo1",
+                        "name": [
+                            "Rosashawn Davis"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recigPkqYXXDJEaCE",
+                        "name": [
+                            "Hector Gomez"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recbN7UUMaSuOYGQ6",
+                        "name": [
+                            "Glavin Orotund"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recbxvhKikHJNZYbq",
+                        "name": [
+                            "Sally Smith"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recvjB3rgfiicf0RP",
+                        "name": [
+                            "Oliver Tsi"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recYurH2CLY3SlYS8",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    },
+                    {
+                        "id": "recI5jfcXIsbAKytC",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    },
+                    {
+                        "id": "recn9m0o1em7gLahj",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    }
+                ]
+            },
+            {
+                "id": "recIj8OmzqzzvnDbM",
+                "title": "Contest for Mayor of Orbit City",
+                "type": "candidate",
+                "vote_type": "plurality",
+                "votes_allowed": 1,
+                "district": "Orbit City",
+                "candidates": [
+                    {
+                        "id": "recKD6dBvkNhEU4bg",
+                        "name": [
+                            "Spencer Cogswell"
+                        ],
+                        "party": [
+                            {
+                                "name": "The Hadron Party of Farallon",
+                                "abbreviation": "HAD"
+                            }
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recTKcXLCzRvKB9U0",
+                        "name": [
+                            "Cosmo Spacely"
+                        ],
+                        "party": [
+                            {
+                                "name": "The Lepton Party",
+                                "abbreviation": "LEP"
+                            }
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recqq21kO6HWgpJZV",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    }
+                ]
+            },
+            {
+                "id": "recXNb4zPrvC1m6Fr",
+                "title": "Spaceport Control Board",
+                "type": "candidate",
+                "vote_type": "n-of-m",
+                "votes_allowed": 2,
+                "district": "Aldrin Space Transport District",
+                "candidates": [
+                    {
+                        "id": "recBnJZEgCKAnfpNo",
+                        "name": [
+                            "Harlan Ellis"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recwNuOnepWNGz67V",
+                        "name": [
+                            "Rudy Indexer"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "recvYvTb9hWH7tptb",
+                        "name": [
+                            "Jane Jetson"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "rec9Eev970VhohqKi",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    },
+                    {
+                        "id": "recFiGYjGCIyk5LBe",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
                     }
                 ]
             }
@@ -252,7 +252,7 @@
                         "choice": "No"
                     }
                 ],
-                "text": "Do you approve amending the Constitution to legalize the controlled use of helium balloons?  Only adults at least 21 years of age could use helium. The State commission created to oversee the State's medical helium program would also oversee the new, personal use helium market.Helium balloons would be subject to the State sales tax. If authorized by the Legislature, a municipality may pass a local ordinance to charge a local tax on helium balloons."
+                "text": "Do you approve amending the Constitution to legalize the controlled use of helium balloons?  Only adults at least 21 years of age could use helium. The State commission created to oversee the State's medical helium program would also oversee the new, personal use helium market.Helium balloons would be subject to the State sales tax. If authorized by the Legislature, a municipality may pass a local ordinance to charge a local tax on helium balloons.\nAll forms of helium are authorized for personal use or commercial balloon usage. Use of deuterium and tritium for energy generation will be licensed by the State commission. Use of deuterium and tritium for uncontrolled fusion reactions is strictly prohibited, and constitutes a Class A felony under State Criminal code section 4.222 K.\n"
             }
         ]
     }
