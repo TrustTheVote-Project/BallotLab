@@ -14,11 +14,11 @@ class BallotMeasureData:
     choices: list = field(default_factory=list, init=False, repr=True)
 
     def __post_init__(self):
-        self.id = "no_id_provided"
-        self.title = self._b_measure_con["title"]
-        self.district = self._b_measure_con["district"]
-        self.text = self._b_measure_con["text"]
-        self.choices = self._b_measure_con["choices"]
+        self.id = self._b_measure_con.get("id", "")
+        self.title = self._b_measure_con.get("title", "")
+        self.district = self._b_measure_con.get("district", "")
+        self.text = self._b_measure_con.get("text", "")
+        self.choices = self._b_measure_con.get("choices", [])
         # for choice_data in _choices:
         #     self.choices.append(ChoiceData(choice_data))
 
@@ -45,12 +45,13 @@ class CandidateContestData:
     district: str = field(init=False)
     candidates: list = field(default_factory=list, init=False, repr=True)
 
+    # use dict.get() to assign defaults if key is missing
     def __post_init__(self):
-        self.id = self._can_con["id"]
-        self.title = self._can_con["title"]
-        self.votes_allowed = self._can_con["votes_allowed"]
-        self.district = self._can_con["district"]
-        _candidates = self._can_con["candidates"]
+        self.id = self._can_con.get("id", "")
+        self.title = self._can_con.get("title", "")
+        self.votes_allowed = self._can_con.get("votes_allowed", 0)
+        self.district = self._can_con.get("district", "")
+        _candidates = self._can_con.get("candidates", [])
         for candidate_data in _candidates:
             self.candidates.append(CandidateData(candidate_data))
 
@@ -58,16 +59,28 @@ class CandidateContestData:
 @dataclass
 class CandidateData:
     _can_data: dict = field(repr=False)
-    id: str = "no_id_provided"
-    name: str = field(init=False)
+    id: str = field(init=False)
+    _names: list = field(init=False, repr=False, default_factory=list)
     party: str = field(init=False)
     party_abbr: str = field(init=False)
+    write_in: bool = field(init=False)
+    name: str = field(init=True, default="")
 
     def __post_init__(self):
-        self.name = self._can_data["name"]
-        party_dict = self._can_data["party"]
-        self.party = party_dict["name"]
-        self.party_abbr = party_dict["abbreviation"]
+        self.id = self._can_data.get("id", "")
+        self._names = self._can_data.get("name", [])
+        _party_dict = self._can_data.get("party", {})
+        self.party = _party_dict.get("name", "")
+        self.party_abbr = _party_dict.get("abbreviation", "")
+        self.write_in = self._can_data.get("write_in")
+        if self.write_in:
+            self.name = "or write in:"
+        else:
+            for count, can_name in enumerate(self._names):
+                # append " and " only if more than one name
+                if count > 0:
+                    self.name += " and "
+                self.name += can_name
 
 
 if __name__ == "__main__":  # pragma: no cover
