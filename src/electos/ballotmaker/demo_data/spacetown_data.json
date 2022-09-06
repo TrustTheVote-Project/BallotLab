@@ -3,7 +3,7 @@
     "contests": {
         "candidate": [
             {
-                "id": "recsoZy7vYhS3lbcK",
+                "id": "contest-potus",
                 "title": "President of the United States",
                 "type": "candidate",
                 "vote_type": "plurality",
@@ -11,7 +11,7 @@
                 "district": "United States of America",
                 "candidates": [
                     {
-                        "id": "recQK3J9IJq42hz2n",
+                        "id": "contest-potus--candidate-lepton",
                         "name": [
                             "Anthony Alpha",
                             "Betty Beta"
@@ -25,7 +25,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "reccUkUdEznfODgeL",
+                        "id": "contest-potus--candidate-hadron",
                         "name": [
                             "Gloria Gamma",
                             "David Delta"
@@ -39,7 +39,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recPod2L8VhwagiDl",
+                        "id": "contest-potus--candidate-write-in-1",
                         "name": [],
                         "party": [],
                         "is_write_in": true
@@ -47,7 +47,7 @@
                 ]
             },
             {
-                "id": "recthF6jdx5ybBNkC",
+                "id": "contest-gadget-county-school-board",
                 "title": "Gadget County School Board",
                 "type": "candidate",
                 "vote_type": "n-of-m",
@@ -55,7 +55,7 @@
                 "district": "Gadget County",
                 "candidates": [
                     {
-                        "id": "recJvikmG5MrUKzo1",
+                        "id": "contest-gadget-county-school-board--candidate-rosashawn-davis",
                         "name": [
                             "Rosashawn Davis"
                         ],
@@ -65,7 +65,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recigPkqYXXDJEaCE",
+                        "id": "contest-gadget-county-school-board--candidate-hector-gomez",
                         "name": [
                             "Hector Gomez"
                         ],
@@ -75,7 +75,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recbN7UUMaSuOYGQ6",
+                        "id": "contest-gadget-county-school-board--candidate-glavin-orotund",
                         "name": [
                             "Glavin Orotund"
                         ],
@@ -85,7 +85,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recbxvhKikHJNZYbq",
+                        "id": "contest-gadget-county-school-board--candidate-sally-smith",
                         "name": [
                             "Sally Smith"
                         ],
@@ -95,7 +95,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recvjB3rgfiicf0RP",
+                        "id": "contest-gadget-county-school-board--candidate-oliver-tsi",
                         "name": [
                             "Oliver Tsi"
                         ],
@@ -105,19 +105,19 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recYurH2CLY3SlYS8",
+                        "id": "contest-gadget-county-school-board--candidate-write-in-1",
                         "name": [],
                         "party": [],
                         "is_write_in": true
                     },
                     {
-                        "id": "recI5jfcXIsbAKytC",
+                        "id": "contest-gadget-county-school-board--candidate-write-in-2",
                         "name": [],
                         "party": [],
                         "is_write_in": true
                     },
                     {
-                        "id": "recn9m0o1em7gLahj",
+                        "id": "contest-gadget-county-school-board--candidate-write-in-3",
                         "name": [],
                         "party": [],
                         "is_write_in": true
@@ -125,7 +125,7 @@
                 ]
             },
             {
-                "id": "recIj8OmzqzzvnDbM",
+                "id": "contest-orbit-city-mayor",
                 "title": "Contest for Mayor of Orbit City",
                 "type": "candidate",
                 "vote_type": "plurality",
@@ -133,7 +133,7 @@
                 "district": "Orbit City",
                 "candidates": [
                     {
-                        "id": "recKD6dBvkNhEU4bg",
+                        "id": "contest-orbit-city-mayor--candidate-spencer-cogswell",
                         "name": [
                             "Spencer Cogswell"
                         ],
@@ -146,7 +146,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recTKcXLCzRvKB9U0",
+                        "id": "contest-orbit-city-mayor--candidate-cosmo-spacely",
                         "name": [
                             "Cosmo Spacely"
                         ],
@@ -159,7 +159,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recqq21kO6HWgpJZV",
+                        "id": "contest-orbit-city-mayor--candidate-write-in-1",
                         "name": [],
                         "party": [],
                         "is_write_in": true
@@ -167,7 +167,7 @@
                 ]
             },
             {
-                "id": "recXNb4zPrvC1m6Fr",
+                "id": "contest-spaceport-control-board",
                 "title": "Spaceport Control Board",
                 "type": "candidate",
                 "vote_type": "n-of-m",
@@ -175,7 +175,7 @@
                 "district": "Aldrin Space Transport District",
                 "candidates": [
                     {
-                        "id": "recBnJZEgCKAnfpNo",
+                        "id": "contest-spaceport-control-board--candidate-harlan-ellis",
                         "name": [
                             "Harlan Ellis"
                         ],
@@ -185,7 +185,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recwNuOnepWNGz67V",
+                        "id": "contest-spaceport-control-board--candidate-rudy-indexer",
                         "name": [
                             "Rudy Indexer"
                         ],
@@ -195,7 +195,7 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "recvYvTb9hWH7tptb",
+                        "id": "contest-spaceport-control-board--candidate-jane-jetson",
                         "name": [
                             "Jane Jetson"
                         ],
@@ -205,13 +205,13 @@
                         "is_write_in": false
                     },
                     {
-                        "id": "rec9Eev970VhohqKi",
+                        "id": "contest-spaceport-control-board--candidate-write-in-1",
                         "name": [],
                         "party": [],
                         "is_write_in": true
                     },
                     {
-                        "id": "recFiGYjGCIyk5LBe",
+                        "id": "contest-spaceport-control-board--candidate-write-in-2",
                         "name": [],
                         "party": [],
                         "is_write_in": true
@@ -221,34 +221,34 @@
         ],
         "ballot_measure": [
             {
-                "id": "recqPa7AeyufIfd6k",
+                "id": "ballot-measure-air-traffic-control-tax",
                 "title": "Air Traffic Control Tax Increase",
                 "type": "ballot measure",
                 "district": "Gadget County",
                 "choices": [
                     {
-                        "id": "recysACFx8cgwomBE",
+                        "id": "ballot-measure-air-traffic-control-tax--yes",
                         "choice": "Yes"
                     },
                     {
-                        "id": "recabXA9jzFYRmGXy",
+                        "id": "ballot-measure-air-traffic-control-tax--no",
                         "choice": "No"
                     }
                 ],
                 "text": "Shall Gadget County increase its sales tax from 1% to 1.1% for the purpose of raising additional revenue to fund expanded air traffic control operations?"
             },
             {
-                "id": "recWjDBFeafCdklWq",
+                "id": "ballot-measure-helium-balloons",
                 "title": "Constitutional Amendment",
                 "type": "ballot measure",
                 "district": "The State of Farallon",
                 "choices": [
                     {
-                        "id": "rec7mVWjUH6fmDxig",
+                        "id": "ballot-measure-helium-balloons--yes",
                         "choice": "Yes"
                     },
                     {
-                        "id": "reccIHOhUfJgJkqS7",
+                        "id": "ballot-measure-helium-balloons--no",
                         "choice": "No"
                     }
                 ],
