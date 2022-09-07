@@ -2,7 +2,7 @@
 
 Encapsulated Python software for generating EAC-compliant ballots from NIST 1500-100 election definition datasets, part of the OSET BallotStudio project.
 
-For a version history, please see VERSIONS.md
+For a version history, please see CHANGELOG.md
 
 ## Getting Started
 
