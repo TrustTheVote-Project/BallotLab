@@ -2,6 +2,8 @@
 
 Encapsulated Python software for generating EAC-compliant ballots from NIST 1500-100 election definition datasets, part of the OSET BallotStudio project.
 
+For a version history, please see VERSIONS.md
+
 ## Getting Started
 
 This Python project uses Poetry for dependency management. To get started:
@@ -14,19 +16,27 @@ This Python project uses Poetry for dependency management. To get started:
 
 For detailed instructions on how to work with the code in this repo, check out [Getting Started with BallotLab · TrustTheVote-Project/BallotLab Wiki](https://github.com/TrustTheVote-Project/BallotLab/wiki/Getting-Started-with-BallotLab).
 
-Once you've set up the virtual environment with `poetry shell` you can run the Python app using poetry run`:
+Once you've set up the virtual environment with `poetry shell` you can run the Python app without having to use `poetry run` -- like this:
 
 ```python
-poetry run ballotmaker --help        # display the CLI help text
-poetry run ballotmaker --version     # display the current version number
+ballotmaker --help        # display the CLI help text
+ballotmaker --version     # display the current version number
 ```
+
+Check the help pages for details on other sub-commands you can use with ballotmaker.
 
 ## Running Tests
 
 After you've followed the steps above in **Getting Started**, you can also run the `pytest` suite with this command:
 
 ```python
-poetry run pytest
+pytest
+```
+
+Or, if you'd like to review coverage information and logging updates, try this command:
+
+``` python
+pytest --cov-report term-missing --cov=src/ --log-format="%(asctime)s %(levelname)s %(message)s" --log-cli-level=info
 ```
 
 ## The Wiki
