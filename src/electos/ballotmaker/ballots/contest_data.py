@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from typing import List
 
 
 @dataclass
@@ -58,6 +57,8 @@ class CandidateContestData:
 
 @dataclass
 class CandidateData:
+    """Retrieve candidate data from a dict"""
+
     _can_data: dict = field(repr=False)
     id: str = field(init=False)
     _names: list = field(init=False, repr=False, default_factory=list)
