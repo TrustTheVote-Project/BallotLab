@@ -41,7 +41,6 @@ PageLayout.define_custom_style(
     black,
     font_bold,
     normal_lead,
-    # sp_before=12,
     sp_after=48,
     keep_w_next=1,
 )
@@ -54,7 +53,6 @@ PageLayout.define_custom_style(
     font_bold,
     normal_lead,
     sp_before=12,
-    # sp_after=32,
     keep_w_next=1,
 )
 PageLayout.define_custom_style(
@@ -65,7 +63,6 @@ PageLayout.define_custom_style(
     black,
     font_normal,
     normal_lead,
-    # sp_before=12,
 )
 
 
@@ -149,7 +146,8 @@ class SelectionOval(_DrawingEditorMixin, Drawing):
         self.width = oval_width + PageLayout.border_pad
         self.height = oval_height + PageLayout.border_pad
         oval_cx = self.width / 2
-        oval_cy = self.height / 2
+        down_shift = 2
+        oval_cy = (self.height / 2) - down_shift
         self._add(
             self,
             Ellipse(oval_cx, oval_cy, oval_width, oval_height),
@@ -157,9 +155,7 @@ class SelectionOval(_DrawingEditorMixin, Drawing):
             validate=None,
             desc=None,
         )
-        # self.oval.fillColor = PageLayout.white
         self.oval.fillColor = white
-        # self.oval.strokeColor = PageLayout.black
         self.oval.strokeColor = black
         self.oval.strokeWidth = sm_line
 
@@ -183,8 +179,13 @@ class CandidateContestLayout:
         oval = SelectionOval()
         for candidate in self.candidates:
             # add newlines around " and "
-            # if candidate.find(" and "):
-            #     candidate = candidate.replace(" and ", "<br />and<br />")
+            if candidate.name.find(" and "):
+                candidate.name = candidate.name.replace(
+                    " and ", "<br />and<br />"
+                )
+            # add line for write ins
+            if candidate.write_in:
+                candidate.name += ("<br />" * 2) + ("_" * 20)
             contest_line = f"<b>{candidate.name}</b>"
             if candidate.party_abbr != "":
                 contest_line += f"<br />{candidate.party_abbr}"
