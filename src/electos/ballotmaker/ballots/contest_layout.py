@@ -184,7 +184,7 @@ class CandidateContestLayout:
                     " and ", "<br />and<br />"
                 )
             # add line for write ins
-            if candidate.write_in:
+            if candidate.is_write_in:
                 candidate.name += ("<br />" * 2) + ("_" * 20)
             contest_line = f"<b>{candidate.name}</b>"
             if candidate.party_abbr != "":

@@ -64,17 +64,20 @@ class CandidateData:
     _names: list = field(init=False, repr=False, default_factory=list)
     party: str = field(init=False)
     party_abbr: str = field(init=False)
-    write_in: bool = field(init=False)
+    is_write_in: bool = field(init=False)
     name: str = field(init=True, default="")
 
     def __post_init__(self):
         self.id = self._can_data.get("id", "")
         self._names = self._can_data.get("name", [])
-        _party_dict = self._can_data.get("party", {})
+        _party_list = self._can_data.get("party", [])
+        assert 0 <= len(_party_list) <= 1, \
+            f"Multiple parties for a slate/ticket not handled: {_party_list}"
+        _party_dict = _party_list[0] if len(_party_list) == 1 else {}
         self.party = _party_dict.get("name", "")
         self.party_abbr = _party_dict.get("abbreviation", "")
-        self.write_in = self._can_data.get("write_in")
-        if self.write_in:
+        self.is_write_in = self._can_data.get("is_write_in")
+        if self.is_write_in:
             self.name = "or write in:"
         else:
             for count, can_name in enumerate(self._names):
