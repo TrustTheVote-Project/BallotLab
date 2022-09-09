@@ -58,13 +58,7 @@ def walk_ordered_headers(content: List[OrderedContent]):
 # --- Ballot Properties
 
 
-def all_ballot_styles(election_report: ElectionReport, index):
-    """Yield all ballot styles."""
-    for ballot_style in index.by_type("BallotStyle"):
-        yield ballot_style
-
-
-def ballot_style_id(ballot_style: BallotStyle):
+def ballot_style_external_id(ballot_style: BallotStyle):
     """Get the text of a ballot style's external identifier if any."""
     if ballot_style.external_identifier:
         assert len(ballot_style.external_identifier) == 1, \
@@ -187,12 +181,12 @@ def contest_election_district(contest: Contest, index):
     return district
 
 
-# Gather & Extract
+# --- Extraction
 #
-# Results are data needed for ballot generation.
+# Gather and select data needed for ballot generation.
 
 def extract_candidate_contest(contest: CandidateContest, index):
-    """Extract candidate contest information needed for ballots."""
+    """Extract candidate contest subset needed for a ballot."""
     district = contest_election_district(contest, index)
     offices = candidate_contest_offices(contest, index)
     parties = candidate_contest_parties(contest, index)
@@ -213,7 +207,7 @@ def extract_candidate_contest(contest: CandidateContest, index):
 
 
 def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
-    """Extract ballot measure contest information needed for ballots."""
+    """Extract ballot measure contest subset needed for a ballot."""
     choices = []
     for selection in contest.contest_selection:
         assert isinstance(selection, BallotMeasureSelection), \
@@ -236,8 +230,8 @@ def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
     return result
 
 
-def gather_contests(ballot_style: BallotStyle, index):
-    """Extract all contest information needed for ballots."""
+def extract_contests(ballot_style: BallotStyle, index):
+    """Extract contest subset needed for ballots."""
     contests = {
         kind: [] for kind in ("candidate", "ballot_measure")
     }
@@ -252,3 +246,9 @@ def gather_contests(ballot_style: BallotStyle, index):
             # Ignore other contest types
             print(f"Skipping contest of type {contest.model__type}")
     return contests
+
+
+def extract_ballot_styles(election_report: ElectionReport, index):
+    """Extract all ballot styles."""
+    for ballot_style in index.by_type("BallotStyle"):
+        yield ballot_style

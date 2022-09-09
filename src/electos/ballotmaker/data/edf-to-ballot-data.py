@@ -6,23 +6,23 @@ from electos.datamodels.nist.indexes import ElementIndex
 from electos.datamodels.nist.models.edf import ElectionReport
 
 from electos.ballotmaker.data.extractor import (
-    all_ballot_styles,
-    ballot_style_id,
-    gather_contests,
+    ballot_style_external_id,
+    extract_ballot_styles,
+    extract_contests,
 )
 
 
 def report(root, index, nth, **opts):
     """Generate data needed by BallotLab."""
-    ballot_styles = list(all_ballot_styles(root, index))
+    ballot_styles = list(extract_ballot_styles(root, index))
     if not (1 <= nth <= len(ballot_styles)):
         print(f"Ballot styles: {nth} is out of range [1-{len(ballot_styles)}]")
         return
     ballot_style = ballot_styles[nth - 1]
     data = {}
-    id_ = ballot_style_id(ballot_style)
+    id_ = ballot_style_external_id(ballot_style)
     data["ballot_style"] = id_
-    contests = gather_contests(ballot_style, index)
+    contests = extract_contests(ballot_style, index)
     if not contests:
         print(f"No contests found for ballot style: {id_}\n")
     data["contests"] = contests
