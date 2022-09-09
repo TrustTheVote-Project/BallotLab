@@ -1,13 +1,12 @@
 # instructions.py
 # Build the ballot instructions
 
-
-from page_layout import PageLayout
-from images import EmbeddedImage
-from reportlab.platypus.flowables import CondPageBreak, PageBreak, Spacer
-from reportlab.platypus import Paragraph
+from electos.ballotmaker.ballots.images import EmbeddedImage
+from electos.ballotmaker.ballots.page_layout import PageLayout
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
+from reportlab.platypus import Paragraph
+from reportlab.platypus.flowables import CondPageBreak, PageBreak, Spacer
 
 
 class Instructions:
@@ -71,8 +70,13 @@ class Instructions:
             spacing = border_pad / 3
 
             self.instruction_list = [
-                (Paragraph(instruct_head, h1)),
                 (Spacer(0, spacing)),
+                (
+                    Paragraph(
+                        instruct_head,
+                        h1,
+                    )
+                ),
                 (Paragraph(fill_head, h2)),
                 (Paragraph(image1_graf, img_graf)),
                 (Paragraph(fill_txt, normal)),
@@ -84,10 +88,11 @@ class Instructions:
                 (Paragraph(image2_graf, img_graf)),
                 (Paragraph(write_in_text, normal)),
                 (Spacer(0, spacing)),
-                (Paragraph(turn_in_head, h2)),
-                (Paragraph(turn_in_text, normal)),
-                (Paragraph(warn_icon_graf, normal)),
-                (Paragraph(turn_in_warn, warn_text)),
+                # turn-in instructions not required for at-home ballots
+                # (Paragraph(turn_in_head, h2)),
+                # (Paragraph(turn_in_text, normal)),
+                # (Paragraph(warn_icon_graf, normal)),
+                # (Paragraph(turn_in_warn, warn_text)),
                 # Instructions always appear in their own column
                 (CondPageBreak(col_height * inch)),
                 # (PageBreak()),
@@ -127,7 +132,15 @@ class Instructions:
 
         # define our custom styles
         PageLayout.define_custom_style(
-            h1, dark, border_pad, font_size + 2, white, font_bold, head_lead
+            h1,
+            dark,
+            border_pad,
+            font_size + 2,
+            white,
+            font_bold,
+            head_lead,
+            sp_before=0,
+            keep_w_next=True,
         )
         PageLayout.define_custom_style(
             h2,
@@ -136,13 +149,32 @@ class Instructions:
             font_size,
             black,
             font_bold,
-            head_lead,
+            normal_lead,
+            sp_after=2,
+            keep_w_next=True,
         )
         PageLayout.define_custom_style(
-            normal, light, border_pad, font_size, black, font_normal, normal_lead
+            normal,
+            light,
+            border_pad,
+            font_size,
+            black,
+            font_normal,
+            normal_lead,
+            sp_before=-8,
+            sp_after=-4,
         )
         PageLayout.define_custom_style(
-            warn_text, light, border_pad, font_size, dark, font_bold, normal_lead
+            warn_text,
+            light,
+            border_pad,
+            font_size,
+            dark,
+            font_bold,
+            normal_lead,
+            sp_before=-16,
+            sp_after=-4,
+            # no_space,
         )
         PageLayout.define_custom_style(
             img_graf,
@@ -151,8 +183,8 @@ class Instructions:
             font_size,
             black,
             font_normal,
-            normal_lead,
-            no_space,
+            head_lead,
+            # sp_after=0,
         )
         # build the list, an attribute of the Instructions object
         build_instruction_list()

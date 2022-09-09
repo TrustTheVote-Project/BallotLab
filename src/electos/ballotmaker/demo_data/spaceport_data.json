@@ -1,0 +1,139 @@
+{
+    "ballot_style": "precinct_3_spaceport",
+    "contests": {
+        "candidate": [
+            {
+                "id": "contest-potus",
+                "title": "President of the United States",
+                "type": "candidate",
+                "vote_type": "plurality",
+                "votes_allowed": 1,
+                "district": "United States of America",
+                "candidates": [
+                    {
+                        "id": "contest-potus--candidate-lepton",
+                        "name": [
+                            "Anthony Alpha",
+                            "Betty Beta"
+                        ],
+                        "party": [
+                            {
+                                "name": "The Lepton Party",
+                                "abbreviation": "LEP"
+                            }
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "contest-potus--candidate-hadron",
+                        "name": [
+                            "Gloria Gamma",
+                            "David Delta"
+                        ],
+                        "party": [
+                            {
+                                "name": "The Hadron Party of Farallon",
+                                "abbreviation": "HAD"
+                            }
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "contest-potus--candidate-write-in-1",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    }
+                ]
+            },
+            {
+                "id": "contest-spaceport-control-board",
+                "title": "Spaceport Control Board",
+                "type": "candidate",
+                "vote_type": "n-of-m",
+                "votes_allowed": 2,
+                "district": "Aldrin Space Transport District",
+                "candidates": [
+                    {
+                        "id": "contest-spaceport-control-board--candidate-harlan-ellis",
+                        "name": [
+                            "Harlan Ellis"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "contest-spaceport-control-board--candidate-rudy-indexer",
+                        "name": [
+                            "Rudy Indexer"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "contest-spaceport-control-board--candidate-jane-jetson",
+                        "name": [
+                            "Jane Jetson"
+                        ],
+                        "party": [
+                            {}
+                        ],
+                        "is_write_in": false
+                    },
+                    {
+                        "id": "contest-spaceport-control-board--candidate-write-in-1",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    },
+                    {
+                        "id": "contest-spaceport-control-board--candidate-write-in-2",
+                        "name": [],
+                        "party": [],
+                        "is_write_in": true
+                    }
+                ]
+            }
+        ],
+        "ballot_measure": [
+            {
+                "id": "ballot-measure-air-traffic-control-tax",
+                "title": "Air Traffic Control Tax Increase",
+                "type": "ballot measure",
+                "district": "Gadget County",
+                "choices": [
+                    {
+                        "id": "ballot-measure-air-traffic-control-tax--yes",
+                        "choice": "Yes"
+                    },
+                    {
+                        "id": "ballot-measure-air-traffic-control-tax--no",
+                        "choice": "No"
+                    }
+                ],
+                "text": "Shall Gadget County increase its sales tax from 1% to 1.1% for the purpose of raising additional revenue to fund expanded air traffic control operations?"
+            },
+            {
+                "id": "ballot-measure-helium-balloons",
+                "title": "Constitutional Amendment",
+                "type": "ballot measure",
+                "district": "The State of Farallon",
+                "choices": [
+                    {
+                        "id": "ballot-measure-helium-balloons--yes",
+                        "choice": "Yes"
+                    },
+                    {
+                        "id": "ballot-measure-helium-balloons--no",
+                        "choice": "No"
+                    }
+                ],
+                "text": "Do you approve amending the Constitution to legalize the controlled use of helium balloons?  Only adults at least 21 years of age could use helium. The State commission created to oversee the State's medical helium program would also oversee the new, personal use helium market.Helium balloons would be subject to the State sales tax. If authorized by the Legislature, a municipality may pass a local ordinance to charge a local tax on helium balloons.\nAll forms of helium are authorized for personal use or commercial balloon usage. Use of deuterium and tritium for energy generation will be licensed by the State commission. Use of deuterium and tritium for uncontrolled fusion reactions is strictly prohibited, and constitutes a Class A felony under State Criminal code section 4.222 K.\n"
+            }
+        ]
+    }
+}
