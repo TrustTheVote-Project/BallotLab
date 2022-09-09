@@ -1,7 +1,18 @@
 from typing import List, Union
 
 from electos.datamodels.nist.indexes import ElementIndex
-from electos.datamodels.nist.models.edf import *
+from electos.datamodels.nist.models.edf import (
+    BallotMeasureContest,
+    BallotMeasureSelection,
+    BallotStyle,
+    Candidate,
+    CandidateContest,
+    CandidateSelection,
+    ElectionReport,
+    InternationalizedText,
+    OrderedContest,
+    OrderedHeader,
+)
 
 
 # --- Base Types
