@@ -109,3 +109,27 @@ class CandidateChoiceData:
         _check_type_hint(self, "party", List)
         self.party = [PartyData(**_) for _ in self.party]
         _check_type(self, "is_write_in", bool)
+
+
+@dataclass
+class CandidateContestData:
+
+    """Data for candidate contests."""
+
+    id: str
+    type: str
+    title: str
+    district: str
+    vote_type: str
+    votes_allowed: str
+    candidates: List[CandidateChoiceData]
+
+    def __post_init__(self):
+        _check_type(self, "id", str)
+        _check_type(self, "type", str)
+        _check_type(self, "title", str)
+        _check_type(self, "district", str)
+        _check_type(self, "vote_type", str)
+        _check_type(self, "votes_allowed", int)
+        _check_type_hint(self, "candidates", List)
+        self.candidates = [CandidateChoiceData(**_) for _ in self.candidates]
