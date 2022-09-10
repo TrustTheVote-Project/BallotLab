@@ -65,3 +65,19 @@ class BallotMeasureContestData:
         _check_type(self, "text", str)
         _check_type_hint(self, "choices", List)
         self.choices = [BallotChoiceData(**_) for _ in self.choices]
+
+
+# --- Candidate contest data models
+
+
+@dataclass
+class PartyData:
+
+    """Data for parties candidates are in."""
+
+    name: str
+    abbreviation: str
+
+    def __post_init__(self):
+        _check_type(self, "name", str)
+        _check_type(self, "abbreviation", str)
