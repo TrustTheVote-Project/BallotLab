@@ -43,3 +43,25 @@ class BallotChoiceData:
     def __post_init__(self):
         _check_type(self, "id", str)
         _check_type(self, "choice", str)
+
+
+@dataclass
+class BallotMeasureContestData:
+
+    """Data for ballot measure contests."""
+
+    id: str
+    type: str
+    title: str
+    district: str
+    text: str
+    choices: List[BallotChoiceData]
+
+    def __post_init__(self):
+        _check_type(self, "id", str)
+        _check_type(self, "type", str)
+        _check_type(self, "title", str)
+        _check_type(self, "district", str)
+        _check_type(self, "text", str)
+        _check_type_hint(self, "choices", List)
+        self.choices = [BallotChoiceData(**_) for _ in self.choices]
