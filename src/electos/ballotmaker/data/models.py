@@ -28,6 +28,15 @@ def _check_type_hint(instance, field, type_):
         )
 
 
+def _check_type_list(instance, field, type_):
+    """Raise 'TypeError' if 'instance.field' contents aren't of type 'type'."""
+    values = getattr(instance, field)
+    if not all(isinstance(value, type_) for value in values):
+        raise TypeError(
+            f"Values in field '{field}' are not all of type '{type_.__name__}': {values}"
+        )
+
+
 # --- Ballot contest data models
 
 
@@ -81,3 +90,22 @@ class PartyData:
     def __post_init__(self):
         _check_type(self, "name", str)
         _check_type(self, "abbreviation", str)
+
+
+@dataclass
+class CandidateChoiceData:
+
+    """Data for candidate contest selections."""
+
+    id: str
+    name: List[str]
+    party: List[PartyData]
+    is_write_in: bool
+
+    def __post_init__(self):
+        _check_type(self, "id", str)
+        _check_type_hint(self, "name", List)
+        _check_type_list(self, "name", str)
+        _check_type_hint(self, "party", List)
+        self.party = [PartyData(**_) for _ in self.party]
+        _check_type(self, "is_write_in", bool)
