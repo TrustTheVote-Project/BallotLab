@@ -8,7 +8,8 @@ from electos.ballotmaker.ballots.page_layout import PageLayout
 from reportlab.graphics.shapes import Drawing, Ellipse, _DrawingEditorMixin
 from reportlab.lib.colors import black, white
 from reportlab.lib.styles import LineStyle, getSampleStyleSheet
-from reportlab.platypus import Paragraph, Table
+from reportlab.pdfbase import pdfform
+from reportlab.platypus import Flowable, Paragraph, Table
 
 oval_width = 10
 oval_height = 4
@@ -160,6 +161,32 @@ class SelectionOval(_DrawingEditorMixin, Drawing):
         self.oval.strokeWidth = sm_line
 
 
+class formCheckButton(Flowable):
+    def __init__(self, title, value="Yes"):
+        self.title = title
+        self.value = value
+        self.width = 16
+        self.height = 16
+
+    def wrap(self, *args):
+        self.width = args[0]
+        return (self.width, self.height)
+
+    def draw(self):
+        self.canv.saveState()
+        pdfform.buttonFieldRelative(
+            self.canv,
+            self.title,
+            self.value,
+            0,
+            0,
+            # including w & h shift the buttons up
+            # width=self.width,
+            # height=self.height,
+        )
+        self.canv.restoreState()
+
+
 class CandidateContestLayout:
     """
     Generate a candidate contest table flowable
@@ -176,7 +203,6 @@ class CandidateContestLayout:
         self.candidates = contest_data.candidates
         _selections = []
 
-        oval = SelectionOval()
         for candidate in self.candidates:
             # add newlines around " and "
             if candidate.name.find(" and "):
@@ -189,7 +215,11 @@ class CandidateContestLayout:
             contest_line = f"<b>{candidate.name}</b>"
             if candidate.party_abbr != "":
                 contest_line += f"<br />{candidate.party_abbr}"
-            contest_row = [oval, Paragraph(contest_line, normal)]
+            if True:
+                vote_mark = formCheckButton(candidate.name, "Yes")
+            else:
+                vote_mark = SelectionOval()
+            contest_row = [vote_mark, Paragraph(contest_line, normal)]
             _selections.append(contest_row)
             # build the contest table, an attribute of the Contest object
 
