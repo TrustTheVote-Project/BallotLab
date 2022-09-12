@@ -9,6 +9,7 @@ from electos.ballotmaker.data.models import (
     BallotMeasureContestData,
     BallotStyleData,
     CandidateContestData,
+    ContestType,
 )
 
 
@@ -403,7 +404,7 @@ BALLOT_STYLE_TESTS = [
             "scopes": [
                 "spacetown-precinct",
             ],
-            "contests": [{ "type": BallotStyleData.BALLOT_MEASURE }],
+            "contests": [{ "type": ContestType.BALLOT_MEASURE.value }],
         },
         raises(TypeError, match = "missing 5 required positional arguments: 'id', 'title', 'district', 'text', and 'choices'"),
     ),
@@ -414,7 +415,7 @@ BALLOT_STYLE_TESTS = [
             "scopes": [
                 "spacetown-precinct",
             ],
-            "contests": [{ "type": BallotStyleData.CANDIDATE }],
+            "contests": [{ "type": ContestType.CANDIDATE.value }],
         },
         raises(TypeError, match = "missing 6 required positional arguments: 'id', 'title', 'district', 'vote_type', 'votes_allowed', and 'candidates'"),
     ),

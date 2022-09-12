@@ -1,6 +1,7 @@
 """Ballot data models."""
 
 from dataclasses import dataclass
+from enum import Enum
 from typing import List, Union
 
 
@@ -37,6 +38,31 @@ def _check_type_list(instance, field, type_):
         )
 
 
+# --- Contest model base type
+
+@dataclass
+class ContestData:
+
+    """Shared data for contests."""
+
+    id: str
+    type: str
+    title: str
+    district: str
+
+    def __post_init__(self):
+        _check_type(self, "id", str)
+        _check_type(self, "type", str)
+        _check_type(self, "title", str)
+        _check_type(self, "district", str)
+
+
+class ContestType(Enum):
+
+    BALLOT_MEASURE = "ballot measure"
+    CANDIDATE = "candidate"
+
+
 # --- Ballot contest data models
 
 
@@ -48,29 +74,21 @@ class BallotChoiceData:
     id: str
     choice: str
 
-
     def __post_init__(self):
         _check_type(self, "id", str)
         _check_type(self, "choice", str)
 
 
 @dataclass
-class BallotMeasureContestData:
+class BallotMeasureContestData(ContestData):
 
     """Data for ballot measure contests."""
 
-    id: str
-    type: str
-    title: str
-    district: str
     text: str
     choices: List[BallotChoiceData]
 
     def __post_init__(self):
-        _check_type(self, "id", str)
-        _check_type(self, "type", str)
-        _check_type(self, "title", str)
-        _check_type(self, "district", str)
+        super().__post_init__()
         _check_type(self, "text", str)
         _check_type_hint(self, "choices", List)
         self.choices = [BallotChoiceData(**_) for _ in self.choices]
@@ -112,23 +130,16 @@ class CandidateChoiceData:
 
 
 @dataclass
-class CandidateContestData:
+class CandidateContestData(ContestData):
 
     """Data for candidate contests."""
 
-    id: str
-    type: str
-    title: str
-    district: str
     vote_type: str
     votes_allowed: str
     candidates: List[CandidateChoiceData]
 
     def __post_init__(self):
-        _check_type(self, "id", str)
-        _check_type(self, "type", str)
-        _check_type(self, "title", str)
-        _check_type(self, "district", str)
+        super().__post_init__()
         _check_type(self, "vote_type", str)
         _check_type(self, "votes_allowed", int)
         _check_type_hint(self, "candidates", List)
@@ -139,9 +150,6 @@ class CandidateContestData:
 class BallotStyleData:
 
     """Date for contests associated with a ballot style."""
-
-    BALLOT_MEASURE = "ballot measure"
-    CANDIDATE = "candidate"
 
     # Note: Don't use separate fields for the types of contests.
     # There's no guarantee the types will be clearly separated in an EDF.
@@ -157,16 +165,17 @@ class BallotStyleData:
         _check_type_list(self, "scopes", str)
         _check_type_hint(self, "contests", List)
         contests = []
+        contest_types = [_.value for _ in ContestType]
         for contest in self.contests:
             if not isinstance(contest, dict):
                 raise TypeError(f"Contest is not a dictionary: '{contest}'")
             if "type" not in contest:
                 raise KeyError(f"Contest has no 'type' field: '{contest}'")
-            if contest["type"] not in (self.BALLOT_MEASURE, self.CANDIDATE):
+            if contest["type"] not in contest_types:
                 raise ValueError(f"Unhandled contest type: '{contest['type']}'")
-            if contest["type"] == self.BALLOT_MEASURE:
+            if contest["type"] == ContestType.BALLOT_MEASURE.value:
                 contest = BallotMeasureContestData(**contest)
-            elif contest["type"] == self.CANDIDATE:
+            elif contest["type"] == ContestType.CANDIDATE.value:
                 contest = CandidateContestData(**contest)
             contests.append(contest)
         self.contests = contests
