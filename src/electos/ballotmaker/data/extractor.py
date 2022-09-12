@@ -137,8 +137,9 @@ def candidate_contest_candidates(contest: CandidateContest, index):
                 if name:
                     names.append(name)
                 party, _party_id = candidate_party(candidate, index)
-                parties.append(party)
-                _party_ids.add(_party_id)
+                if party:
+                    parties.append(party)
+                    _party_ids.add(_party_id)
         # If there's only one party ID, all candidates share the same party.
         # If there's any divergence track them all individually.
         if len(_party_ids) == 1:
