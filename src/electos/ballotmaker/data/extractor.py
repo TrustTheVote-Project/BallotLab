@@ -70,6 +70,7 @@ def ballot_style_external_id(ballot_style: BallotStyle):
 
 
 def ballot_style_gp_units(ballot_style: BallotStyle, index):
+    """Yield geo-political units for a ballot style."""
     for id_ in ballot_style.gp_unit_ids:
         gp_unit = index.by_id(id_)
         yield gp_unit
@@ -91,7 +92,7 @@ def candidate_name(candidate: Candidate):
 def candidate_party(candidate: Candidate, index):
     """Get the name and abbreviation of the party of a candidate as it appears on a ballot.
 
-       Drop either field from result if it isn't present.
+    Drop either field from result if it isn't present.
     """
     # Note: party ID is returned to allow de-duplicating parties in callers.
     id_ = candidate.party_id
@@ -193,12 +194,12 @@ def extract_candidate_contest(contest: CandidateContest, index):
     candidates = candidate_contest_candidates(contest, index)
     result = {
         "id": contest.model__id,
-        "title": contest.name,
         "type": "candidate",
+        "title": contest.name,
+        "district": district,
         "vote_type": contest.vote_variation.value,
         # Include even when default is 1: don't require caller to track that.
         "votes_allowed": contest.votes_allowed,
-        "district": district,
         "candidates": candidates,
         # "offices": offices,
         # "parties": parties,
@@ -221,11 +222,11 @@ def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
     full_text = text_content(contest.full_text)
     result = {
         "id": contest.model__id,
-        "title": contest.name,
         "type": "ballot measure",
+        "title": contest.name,
         "district": district,
-        "choices": choices,
         "text": full_text,
+        "choices": choices,
     }
     return result
 
