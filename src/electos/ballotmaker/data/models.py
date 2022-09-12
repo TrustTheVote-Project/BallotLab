@@ -1,7 +1,7 @@
 """Ballot data models."""
 
 from dataclasses import dataclass
-from typing import List
+from typing import List, Union
 
 
 # --- Type assertions
@@ -133,3 +133,40 @@ class CandidateContestData:
         _check_type(self, "votes_allowed", int)
         _check_type_hint(self, "candidates", List)
         self.candidates = [CandidateChoiceData(**_) for _ in self.candidates]
+
+
+@dataclass
+class BallotStyleData:
+
+    """Date for contests associated with a ballot style."""
+
+    BALLOT_MEASURE = "ballot measure"
+    CANDIDATE = "candidate"
+
+    # Note: Don't use separate fields for the types of contests.
+    # There's no guarantee the types will be clearly separated in an EDF.
+    # (The NIST SP-1500-100 JSON Schema uses unions too.)
+
+    id: str
+    scopes: List[str]
+    contests: List[Union[BallotMeasureContestData, CandidateContestData]]
+
+    def __post_init__(self):
+        _check_type(self, "id", str)
+        _check_type_hint(self, "scopes", List)
+        _check_type_list(self, "scopes", str)
+        _check_type_hint(self, "contests", List)
+        contests = []
+        for contest in self.contests:
+            if not isinstance(contest, dict):
+                raise TypeError(f"Contest is not a dictionary: '{contest}'")
+            if "type" not in contest:
+                raise KeyError(f"Contest has no 'type' field: '{contest}'")
+            if contest["type"] not in (self.BALLOT_MEASURE, self.CANDIDATE):
+                raise ValueError(f"Unhandled contest type: '{contest['type']}'")
+            if contest["type"] == self.BALLOT_MEASURE:
+                contest = BallotMeasureContestData(**contest)
+            elif contest["type"] == self.CANDIDATE:
+                contest = CandidateContestData(**contest)
+            contests.append(contest)
+        self.contests = contests
