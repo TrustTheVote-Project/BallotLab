@@ -170,3 +170,27 @@ class BallotStyleData:
                 contest = CandidateContestData(**contest)
             contests.append(contest)
         self.contests = contests
+
+
+@dataclass
+class ElectionData:
+
+    """Data for elections."""
+
+    # Dates are not 'datetime' for simplicity and because it's assumed the date
+    # is formatter correctly. That can be changed.
+
+    name: str
+    type: str
+    start_date: str
+    end_date: str
+    ballot_styles: List[BallotStyleData]
+
+
+    def __post_init__(self):
+        _check_type(self, "name", str)
+        _check_type(self, "type", str)
+        _check_type(self, "start_date", str)
+        _check_type(self, "end_date", str)
+        _check_type_hint(self, "ballot_styles", List)
+        self.ballot_styles = [BallotStyleData(**_) for _ in self.ballot_styles]
