@@ -487,6 +487,8 @@ def test_ballot_style_fields():
     # Types are mixed
     assert isinstance(item.contests[0], CandidateContestData)
     assert isinstance(item.contests[1], BallotMeasureContestData)
+    assert item.candidate_contests == [item.contests[0]]
+    assert item.ballot_measure_contests == [item.contests[1]]
     for actual, expected in zip(item.contests, data["contests"]):
         actual = asdict(actual)
         assert actual == expected

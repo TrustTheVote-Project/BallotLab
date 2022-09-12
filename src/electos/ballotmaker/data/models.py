@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from enum import Enum
+from functools import cached_property
 from typing import List, Union
 
 
@@ -179,6 +180,20 @@ class BallotStyleData:
                 contest = CandidateContestData(**contest)
             contests.append(contest)
         self.contests = contests
+
+
+    @cached_property
+    def ballot_measure_contests(self):
+        return [
+            _ for _ in self.contests if _.type == ContestType.BALLOT_MEASURE.value
+        ]
+
+
+    @cached_property
+    def candidate_contests(self):
+        return [
+            _ for _ in self.contests if _.type == ContestType.CANDIDATE.value
+        ]
 
 
 @dataclass
