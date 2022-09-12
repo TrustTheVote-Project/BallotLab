@@ -3,6 +3,8 @@ import pytest
 from pytest import raises
 from contextlib import nullcontext as raises_none
 
+from dataclasses import asdict
+
 from electos.ballotmaker.data.models import (
     BallotChoiceData,
     BallotMeasureContestData,
@@ -283,5 +285,5 @@ def test_ballot_measure_contest_fields():
     assert len(item.choices) == len(data["choices"])
     assert all(isinstance(_, BallotChoiceData) for _ in item.choices)
     for actual, expected in zip(item.choices, data["choices"]):
-        assert actual.id == expected["id"]
-        assert actual.choice == expected["choice"]
+        actual = asdict(actual)
+        assert actual == expected

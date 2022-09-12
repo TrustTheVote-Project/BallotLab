@@ -3,6 +3,8 @@ import pytest
 from pytest import raises
 from contextlib import nullcontext as raises_none
 
+from dataclasses import asdict
+
 from electos.ballotmaker.data.models import (
     CandidateChoiceData,
     PartyData,
@@ -309,6 +311,6 @@ def test_candidate_choice_fields():
     assert len(item.party) == len(data["party"])
     assert all(isinstance(_, PartyData) for _ in item.party)
     for actual, expected in zip(item.party, data["party"]):
-        assert actual.name == expected["name"]
-        assert actual.abbreviation == expected["abbreviation"]
+        actual = asdict(actual)
+        assert actual == expected
     assert item.is_write_in == data["is_write_in"]
