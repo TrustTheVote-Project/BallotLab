@@ -216,7 +216,7 @@ class CandidateContestLayout:
             if candidate.party_abbr != "":
                 contest_line += f"<br />{candidate.party_abbr}"
             if True:
-                vote_mark = formCheckButton(candidate.name, "Yes")
+                vote_mark = formCheckButton(candidate.id, "Yes")
             else:
                 vote_mark = SelectionOval()
             contest_row = [vote_mark, Paragraph(contest_line, normal)]
