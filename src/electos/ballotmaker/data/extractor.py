@@ -234,20 +234,15 @@ def extract_ballot_measure_contest(contest: BallotMeasureContest, index):
 
 def extract_contests(ballot_style: BallotStyle, index):
     """Extract contest subset needed for ballots."""
-    contests = {
-        kind: [] for kind in ("candidate", "ballot_measure")
-    }
     for contest in ballot_style_contests(ballot_style, index):
         if isinstance(contest, CandidateContest):
             entry = extract_candidate_contest(contest, index)
-            contests["candidate"].append(entry)
         elif isinstance(contest, BallotMeasureContest):
             entry = extract_ballot_measure_contest(contest, index)
-            contests["ballot_measure"].append(entry)
         else:
             # Ignore other contest types
             print(f"Skipping contest of type {contest.model__type}")
-    return contests
+        yield entry
 
 
 def extract_ballot_styles(election_report: ElectionReport, index):

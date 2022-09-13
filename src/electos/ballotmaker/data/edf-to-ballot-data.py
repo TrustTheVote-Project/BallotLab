@@ -22,7 +22,7 @@ def report(root, index, nth, **opts):
     data = {}
     id_ = ballot_style_external_id(ballot_style)
     data["ballot_style"] = id_
-    contests = extract_contests(ballot_style, index)
+    contests = list(extract_contests(ballot_style, index))
     if not contests:
         print(f"No contests found for ballot style: {id_}\n")
     data["contests"] = contests
