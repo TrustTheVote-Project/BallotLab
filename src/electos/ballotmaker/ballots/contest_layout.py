@@ -6,13 +6,31 @@ from electos.ballotmaker.ballots.contest_data import (
 )
 from electos.ballotmaker.ballots.page_layout import PageLayout
 from reportlab.graphics.shapes import Drawing, Ellipse, _DrawingEditorMixin
-from reportlab.lib.colors import black, white
-from reportlab.lib.styles import LineStyle, getSampleStyleSheet
+from reportlab.lib.colors import black, white, yellow
+from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfbase import pdfform
 from reportlab.platypus import Flowable, Paragraph, Table
 
-oval_width = 10
-oval_height = 4
+OVAL_WIDTH = 13
+OVAL_HEIGHT = 5
+
+OVAL_UP = -6
+OVAL_DOWN = 2
+OVAL_INDENT = 3
+SOLID_FILL = 1
+
+ONE_LINE = 12
+FOUR_LINES = 48
+
+YES = 1
+
+CHECKBOX_W = 8
+CHECKBOX_H = 8
+CHECKBOX_X = 3
+CHECKBOX_Y = -12
+
+WRITE_IN_W = 100
+WRITE_IN_H = 12
 
 # define styles
 # fill colors
@@ -42,8 +60,8 @@ PageLayout.define_custom_style(
     black,
     font_bold,
     normal_lead,
-    sp_after=48,
-    keep_w_next=1,
+    sp_after=FOUR_LINES,
+    keep_w_next=YES,
 )
 PageLayout.define_custom_style(
     h2,
@@ -53,8 +71,8 @@ PageLayout.define_custom_style(
     black,
     font_bold,
     normal_lead,
-    sp_before=12,
-    keep_w_next=1,
+    sp_before=ONE_LINE,
+    keep_w_next=YES,
 )
 PageLayout.define_custom_style(
     normal,
@@ -86,7 +104,7 @@ def build_contest_list(
 def build_candidate_table(contest_list):
     return Table(
         data=contest_list,
-        colWidths=(oval_width * 3, None),
+        colWidths=(OVAL_WIDTH * 3, None),
         style=[
             # draw lines below each contestant
             ("LINEBELOW", (1, 2), (1, -1), sm_line, grey),
@@ -113,7 +131,7 @@ def build_candidate_table(contest_list):
 def build_ballot_measure_table(contest_list):
     return Table(
         data=contest_list,
-        colWidths=(oval_width * 3, None),
+        colWidths=(OVAL_WIDTH * 3, None),
         style=[
             # draw lines below each selection
             ("LINEBELOW", (1, 2), (1, -1), sm_line, grey),
@@ -141,22 +159,26 @@ def build_ballot_measure_table(contest_list):
 
 
 class SelectionOval(_DrawingEditorMixin, Drawing):
-    def __init__(self, width=400, height=200, *args, **kw):
+    def __init__(self, width=400, height=200, shift_up=False, *args, **kw):
         Drawing.__init__(self, width, height, *args, **kw)
 
-        self.width = oval_width + PageLayout.border_pad
-        self.height = oval_height + PageLayout.border_pad
-        oval_cx = self.width / 2
-        down_shift = 2
-        oval_cy = (self.height / 2) - down_shift
+        self.width = OVAL_WIDTH + PageLayout.border_pad
+        self.height = OVAL_HEIGHT + PageLayout.border_pad
+        if shift_up:
+            _vertical_shift = OVAL_UP
+        else:
+            _vertical_shift = OVAL_DOWN
+        oval_cx = (self.width / 2) + OVAL_INDENT
+        oval_cy = (self.height / 2) - _vertical_shift
         self._add(
             self,
-            Ellipse(oval_cx, oval_cy, oval_width, oval_height),
+            Ellipse(oval_cx, oval_cy, OVAL_WIDTH, OVAL_HEIGHT),
             name="oval",
             validate=None,
             desc=None,
         )
-        self.oval.fillColor = white
+        self.oval.fillColor = yellow  # white
+        self.oval.fillOpacity = SOLID_FILL
         self.oval.strokeColor = black
         self.oval.strokeWidth = sm_line
 
@@ -165,8 +187,10 @@ class formCheckButton(Flowable):
     def __init__(self, title, value="Yes"):
         self.title = title
         self.value = value
-        self.width = 16
-        self.height = 16
+        self.x = CHECKBOX_X
+        self.y = CHECKBOX_Y
+        self.width = CHECKBOX_W
+        self.height = CHECKBOX_H
 
     def wrap(self, *args):
         self.width = args[0]
@@ -178,11 +202,29 @@ class formCheckButton(Flowable):
             self.canv,
             self.title,
             self.value,
-            0,
-            0,
-            # including w & h shift the buttons up
-            # width=self.width,
-            # height=self.height,
+            self.x,
+            self.y,
+            width=self.width,
+            height=self.height,
+        )
+        self.canv.restoreState()
+
+
+class formInputField(Flowable):
+    def __init__(self, id, value=""):
+        self.id = id
+        self.value = value
+        self.width = 0
+        self.height = 10
+
+    def wrap(self, *args):
+        self.width = args[0]
+        return (self.width, self.height)
+
+    def draw(self):
+        self.canv.saveState()
+        pdfform.textFieldRelative(
+            self.canv, self.id, 0, 0, WRITE_IN_W, WRITE_IN_H, self.value
         )
         self.canv.restoreState()
 
@@ -209,17 +251,29 @@ class CandidateContestLayout:
                 candidate.name = candidate.name.replace(
                     " and ", "<br />and<br />"
                 )
+            # make the candidate name bold
+            contest_text = f"<b>{candidate.name}</b>"
+            # add party abbreviation in plain text
+            if candidate.party_abbr != "":
+                contest_text += f"<br />{candidate.party_abbr}"
+            contest_object = [Paragraph(contest_text, normal)]
             # add line for write ins
             if candidate.is_write_in:
-                candidate.name += ("<br />" * 2) + ("_" * 20)
-            contest_line = f"<b>{candidate.name}</b>"
-            if candidate.party_abbr != "":
-                contest_line += f"<br />{candidate.party_abbr}"
+                # contest_text += ("<br />" * 2) + ("_" * 20)
+                # Add text field
+                input_id = f"{candidate.id}_input"
+                contest_object.append(formInputField(input_id))
+
+            # add form objects?
             if True:
-                vote_mark = formCheckButton(candidate.id, "Yes")
-            else:
-                vote_mark = SelectionOval()
-            contest_row = [vote_mark, Paragraph(contest_line, normal)]
+                # add check box
+                vote_mark = [
+                    SelectionOval(shift_up=True),
+                    formCheckButton(candidate.id, "Yes"),
+                ]
+            # else:
+            # vote_mark = SelectionOval()
+            contest_row = [vote_mark, contest_object]
             _selections.append(contest_row)
             # build the contest table, an attribute of the Contest object
 
@@ -244,8 +298,8 @@ class BallotMeasureLayout:
         oval = SelectionOval()
         _selections = []
         for choice in self.choices:
-            contest_line = f"<b>{choice}</b>"
-            contest_row = [oval, Paragraph(contest_line, normal)]
+            contest_text = f"<b>{choice}</b>"
+            contest_row = [oval, Paragraph(contest_text, normal)]
             _selections.append(contest_row)
 
         self.contest_list = build_contest_list(
