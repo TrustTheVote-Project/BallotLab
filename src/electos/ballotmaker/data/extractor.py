@@ -196,7 +196,7 @@ class BallotDataExtractor:
         return district
 
 
-    def _extract_candidate_contest(self, contest: CandidateContest):
+    def _candidate_contest_of(self, contest: CandidateContest):
         """Extract candidate contest subset needed for a ballot."""
         district = self._contest_election_district(contest)
         offices = self._candidate_contest_offices(contest)
@@ -217,7 +217,7 @@ class BallotDataExtractor:
         return result
 
 
-    def _extract_ballot_measure_contest(self, contest: BallotMeasureContest):
+    def _ballot_measure_contest_of(self, contest: BallotMeasureContest):
         """Extract ballot measure contest subset needed for a ballot."""
         choices = []
         for selection in contest.contest_selection:
@@ -241,20 +241,20 @@ class BallotDataExtractor:
         return result
 
 
-    def _extract_contests(self, ballot_style: BallotStyle):
+    def _contests(self, ballot_style: BallotStyle):
         """Extract contest subset needed for ballots."""
         for contest in self._ballot_style_contests(ballot_style):
             if isinstance(contest, CandidateContest):
-                entry = self._extract_candidate_contest(contest)
+                entry = self._candidate_contest_of(contest)
             elif isinstance(contest, BallotMeasureContest):
-                entry = self._extract_ballot_measure_contest(contest)
+                entry = self._ballot_measure_contest_of(contest)
             else:
                 # Ignore other contest types
                 print(f"Skipping contest of type {contest.model__type}")
             yield entry
 
 
-    def _extract_ballot_styles(self, election: Election):
+    def _election_ballot_styles(self, election: Election):
         """Extract all ballot styles."""
         for ballot_style in election.ballot_style:
             data = {
@@ -265,13 +265,13 @@ class BallotDataExtractor:
                 ],
                 "contests": [
                     _
-                    for _ in self._extract_contests(ballot_style)
+                    for _ in self._contests(ballot_style)
                 ],
             }
             yield data
 
 
-    def _extract_election_data(self, election_report: ElectionReport):
+    def _elections(self, election_report: ElectionReport):
         """Extract all elections."""
         # In most cases there isn't more than one 'Election' in a report, but the
         # standard allows more than one, so handle them.
@@ -282,7 +282,7 @@ class BallotDataExtractor:
                 "start_date": election.start_date.strftime("%Y-%m-%d"),
                 "end_date": election.end_date.strftime("%Y-%m-%d"),
                 "ballot_styles": [
-                    _ for _ in self._extract_ballot_styles(election)
+                    _ for _ in self._election_ballot_styles(election)
                 ],
             }
             yield data
@@ -306,6 +306,6 @@ class BallotDataExtractor:
         self._index = index or ElementIndex(election_report, "ElectionResults")
         election_data = [
             ElectionData(**_)
-            for _ in self._extract_election_data(election_report)
+            for _ in self._elections(election_report)
         ]
         return election_data
