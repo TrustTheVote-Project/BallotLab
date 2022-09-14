@@ -167,10 +167,7 @@ class SelectionOval(_DrawingEditorMixin, Drawing):
 
         self.width = OVAL_WIDTH + PageLayout.border_pad
         self.height = OVAL_HEIGHT + PageLayout.border_pad
-        if shift_up:
-            _vertical_shift = OVAL_UP
-        else:
-            _vertical_shift = OVAL_DOWN
+        _vertical_shift = OVAL_UP if shift_up else OVAL_DOWN
         oval_cx = (self.width / 2) + OVAL_INDENT
         oval_cy = (self.height / 2) - _vertical_shift
         self._add(
@@ -263,8 +260,8 @@ class CandidateContestLayout:
             # add line for write ins
             if candidate.is_write_in:
                 # contest_text += ("<br />" * 2) + ("_" * 20)
-                # Add text field
-                input_id = f"{candidate.id}_input"
+                # Add text field with ID and suffix
+                input_id = f"{candidate.id}_text"
                 contest_object.append(formInputField(input_id))
 
             # add form objects?
