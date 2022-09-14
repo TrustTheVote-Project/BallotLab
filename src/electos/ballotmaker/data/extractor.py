@@ -8,6 +8,7 @@ from electos.datamodels.nist.models.edf import (
     Candidate,
     CandidateContest,
     CandidateSelection,
+    Election,
     ElectionReport,
     InternationalizedText,
     OrderedContest,
@@ -245,7 +246,36 @@ def extract_contests(ballot_style: BallotStyle, index):
         yield entry
 
 
-def extract_ballot_styles(election_report: ElectionReport, index):
+def extract_ballot_styles(election: Election, index):
     """Extract all ballot styles."""
-    for ballot_style in index.by_type("BallotStyle"):
-        yield ballot_style
+    for ballot_style in election.ballot_style:
+        data = {
+            "id": ballot_style_external_id(ballot_style),
+            "scopes": [ _.model__id for _ in ballot_style_gp_units(ballot_style, index) ],
+            "contests": [ _ for _ in extract_contests(ballot_style, index) ],
+        }
+        yield data
+
+
+def extract_election_data(election_report: ElectionReport, index):
+    """Extract all elections."""
+    # In most cases there isn't more than one 'Election' in a report, but the
+    # standard allows more than one, so handle them.
+    for election in election_report.election:
+        data = {
+            "name": text_content(election.name),
+            "type": election.type.value,
+            "start_date": election.start_date.strftime("%Y-%m-%d"),
+            "end_date": election.end_date.strftime("%Y-%m-%d"),
+            "ballot_styles": [_ for _ in extract_ballot_styles(election, index)],
+        }
+        yield data
+
+
+def extract_ballot_data(election_report: ElectionReport, index: ElementIndex):
+    """Extract election data.
+    This is the primary entry point for the extractor.
+    """
+    index = index or ElementIndex(election_report, "ElectionResults")
+    election_data = [ _ for _ in extract_election_data(election_report, index) ]
+    return election_data
