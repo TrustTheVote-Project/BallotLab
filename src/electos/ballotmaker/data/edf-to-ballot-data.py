@@ -8,10 +8,12 @@ from electos.datamodels.nist.models.edf import ElectionReport
 from electos.ballotmaker.data.extractor import extract_ballot_data
 
 
-def report(document, index, **opts):
+def report(data, **opts):
     """Generate data needed by BallotLab."""
-    data = extract_ballot_data(document, index)
-    print(json.dumps(data, indent = 4))
+    document = ElectionReport(**data)
+    index = ElementIndex(document, "ElectionResults")
+    ballot_data = extract_ballot_data(document, index)
+    print(json.dumps(ballot_data, indent = 4))
 
 
 def main():
@@ -32,9 +34,7 @@ def main():
         with file.open() as input:
             text = input.read()
             data = json.loads(text)
-        document = ElectionReport(**data)
-        index = ElementIndex(document, "ElectionResults")
-        report(document, index, **opts)
+        report(data, **opts)
     except Exception as ex:
         if opts["debug"]:
             raise ex
