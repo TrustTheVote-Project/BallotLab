@@ -3,12 +3,13 @@ import json
 from dataclasses import asdict
 from pathlib import Path
 
-from electos.ballotmaker.data.extractor import extract_ballot_data
+from electos.ballotmaker.data.extractor import BallotDataExtractor
 
 
 def report(data, **opts):
     """Generate data needed by BallotLab."""
-    ballot_data = extract_ballot_data(data)
+    extractor = BallotDataExtractor()
+    ballot_data = extractor.extract(data)
     ballot_data = [asdict(_) for _ in ballot_data]
     print(json.dumps(ballot_data, indent = 4))
 
