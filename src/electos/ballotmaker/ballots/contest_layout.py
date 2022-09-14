@@ -52,6 +52,7 @@ h1 = styles["Heading1"]
 h2 = styles["Heading2"]
 
 # define custom styles for contest tables
+# Contest header
 PageLayout.define_custom_style(
     h1,
     grey,
@@ -63,6 +64,7 @@ PageLayout.define_custom_style(
     sp_after=FOUR_LINES,
     keep_w_next=YES,
 )
+# Contest instructions
 PageLayout.define_custom_style(
     h2,
     light,
@@ -74,6 +76,7 @@ PageLayout.define_custom_style(
     sp_before=ONE_LINE,
     keep_w_next=YES,
 )
+# Contest body text
 PageLayout.define_custom_style(
     normal,
     white,
