@@ -276,6 +276,15 @@ def extract_ballot_data(data: Dict, index: ElementIndex = None) -> ElectionData:
     """Extract election data.
 
     This is the primary entry point for the extractor.
+
+    Parameters:
+        data: An EDF / election report dictionary.
+        index: An ElementIndex.
+            If empty (the default), create a new index from the election report.
+            Use this parameter only if there's already an existing index.
+
+    Returns:
+        Election data model for use in ballot rendering.
     """
     election_report = ElectionReport(**data)
     index = index or ElementIndex(election_report, "ElectionResults")
