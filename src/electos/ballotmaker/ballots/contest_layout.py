@@ -16,7 +16,7 @@ OVAL_HEIGHT = 5
 
 OVAL_UP = -6
 OVAL_DOWN = 2
-OVAL_INDENT = 3
+OVAL_INDENT = 4
 SOLID_FILL = 1
 
 ONE_LINE = 12
@@ -31,6 +31,11 @@ CHECKBOX_Y = -12
 
 WRITE_IN_W = 100
 WRITE_IN_H = 24
+
+# Hide form widgets
+ANNOTATION_FLAGS = "noview hidden"
+# Show form widgets
+# ANNOTATION_FLAGS = "print"
 
 # define styles
 # fill colors
@@ -177,14 +182,14 @@ class SelectionOval(_DrawingEditorMixin, Drawing):
             validate=None,
             desc=None,
         )
-        self.oval.fillColor = yellow  # white
+        self.oval.fillColor = white  # yellow, white or black
         self.oval.fillOpacity = SOLID_FILL
         self.oval.strokeColor = black
         self.oval.strokeWidth = sm_line
 
 
 class formCheckButton(Flowable):
-    def __init__(self, title, value="Yes", flags="hidden"):
+    def __init__(self, title, value="Yes", flags="noview"):
         self.title = title
         self.value = value
         self.flags = flags
@@ -193,29 +198,20 @@ class formCheckButton(Flowable):
         self.width = CHECKBOX_W
         self.height = CHECKBOX_H
 
+    # ensures this element lines up with others in the cell
     def wrap(self, *args):
         self.width = args[0]
         return (self.width, self.height)
 
     def draw(self):
         self.canv.saveState()
-        # pdfform.buttonFieldRelative(
-        #     self.canv,
-        #     self.title,
-        #     self.value,
-        #     self.x,
-        #     self.y,
-        #     width=self.width,
-        #     height=self.height,
-        # )
-
         form = self.canv.acroForm
         form.checkbox(
             name=self.title,
             buttonStyle="check",
             relative=True,
             size=self.width,
-            # annotationFlags="noview",
+            annotationFlags=ANNOTATION_FLAGS,
         )
 
         self.canv.restoreState()
@@ -241,10 +237,9 @@ class formInputField(Flowable):
             height=WRITE_IN_H,
             width=WRITE_IN_W,
             relative=True,
+            y=-7,
+            annotationFlags=ANNOTATION_FLAGS,
         )
-        # pdfform.textFieldRelative(
-        #     self.canv, self.id, 0, 0, WRITE_IN_W, WRITE_IN_H, self.value
-        # )
         self.canv.restoreState()
 
 
@@ -283,15 +278,10 @@ class CandidateContestLayout:
                 input_id = f"{candidate.id}_text"
                 contest_object.append(formInputField(input_id))
 
-            # add form objects?
-            if True:
-                # add check box
-                vote_mark = [
-                    formCheckButton(candidate.id, "Yes"),
-                    SelectionOval(shift_up=True),
-                ]
-            # else:
-            # vote_mark = SelectionOval()
+            vote_mark = [
+                formCheckButton(candidate.id, "Yes"),
+                SelectionOval(shift_up=True),
+            ]
             contest_row = [vote_mark, contest_object]
             _selections.append(contest_row)
             # build the contest table, an attribute of the Contest object

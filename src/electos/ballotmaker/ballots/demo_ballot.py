@@ -77,7 +77,7 @@ def get_election_header() -> dict:
         "StartDate": "2024-11-05",
         "EndDate": "2024-11-05",
         "Type": "general",
-        "ElectionScope": "Spacetown Precinct, Orbit City",
+        "ElectionScope": "Spacetown Precinct",
     }
 
 
