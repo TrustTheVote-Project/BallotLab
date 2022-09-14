@@ -1,18 +1,15 @@
 import argparse
 import json
+from dataclasses import asdict
 from pathlib import Path
-
-from electos.datamodels.nist.indexes import ElementIndex
-from electos.datamodels.nist.models.edf import ElectionReport
 
 from electos.ballotmaker.data.extractor import extract_ballot_data
 
 
 def report(data, **opts):
     """Generate data needed by BallotLab."""
-    document = ElectionReport(**data)
-    index = ElementIndex(document, "ElectionResults")
-    ballot_data = extract_ballot_data(document, index)
+    ballot_data = extract_ballot_data(data)
+    ballot_data = [asdict(_) for _ in ballot_data]
     print(json.dumps(ballot_data, indent = 4))
 
 

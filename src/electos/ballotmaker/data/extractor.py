@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Dict, List, Union
 
 from electos.datamodels.nist.indexes import ElementIndex
 from electos.datamodels.nist.models.edf import (
@@ -272,10 +272,14 @@ def extract_election_data(election_report: ElectionReport, index):
         yield data
 
 
-def extract_ballot_data(election_report: ElectionReport, index: ElementIndex):
+def extract_ballot_data(data: Dict, index: ElementIndex = None) -> ElectionData:
     """Extract election data.
+
     This is the primary entry point for the extractor.
     """
+    election_report = ElectionReport(**data)
     index = index or ElementIndex(election_report, "ElectionResults")
-    election_data = [ _ for _ in extract_election_data(election_report, index) ]
+    election_data = [
+        ElectionData(**_) for _ in extract_election_data(election_report, index)
+    ]
     return election_data
