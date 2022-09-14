@@ -32,6 +32,23 @@ class formCheckButton(Flowable):
         self.canv.restoreState()
 
 
+class formInputField(Flowable):
+    def __init__(self, id, value="Sample"):
+        self.id = id
+        self.value = value
+        self.width = 0
+        self.height = 10
+
+    def wrap(self, *args):
+        self.width = args[0]
+        return (self.width, self.height)
+
+    def draw(self):
+        self.canv.saveState()
+        pdfform.textFieldRelative(self.canv, self.id, 0, 0, 50, 10, self.value)
+        self.canv.restoreState()
+
+
 class createExamplePDFFormFile:
     def __init__(self, filename):
         data = []
