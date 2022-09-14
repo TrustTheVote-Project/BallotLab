@@ -24,13 +24,13 @@ FOUR_LINES = 48
 
 YES = 1
 
-CHECKBOX_W = 8
+CHECKBOX_W = 4
 CHECKBOX_H = 8
 CHECKBOX_X = 3
 CHECKBOX_Y = -12
 
 WRITE_IN_W = 100
-WRITE_IN_H = 12
+WRITE_IN_H = 24
 
 # define styles
 # fill colors
@@ -184,9 +184,10 @@ class SelectionOval(_DrawingEditorMixin, Drawing):
 
 
 class formCheckButton(Flowable):
-    def __init__(self, title, value="Yes"):
+    def __init__(self, title, value="Yes", flags="hidden"):
         self.title = title
         self.value = value
+        self.flags = flags
         self.x = CHECKBOX_X
         self.y = CHECKBOX_Y
         self.width = CHECKBOX_W
@@ -198,15 +199,25 @@ class formCheckButton(Flowable):
 
     def draw(self):
         self.canv.saveState()
-        pdfform.buttonFieldRelative(
-            self.canv,
-            self.title,
-            self.value,
-            self.x,
-            self.y,
-            width=self.width,
-            height=self.height,
+        # pdfform.buttonFieldRelative(
+        #     self.canv,
+        #     self.title,
+        #     self.value,
+        #     self.x,
+        #     self.y,
+        #     width=self.width,
+        #     height=self.height,
+        # )
+
+        form = self.canv.acroForm
+        form.checkbox(
+            name=self.title,
+            buttonStyle="check",
+            relative=True,
+            size=self.width,
+            # annotationFlags="noview",
         )
+
         self.canv.restoreState()
 
 
@@ -223,9 +234,17 @@ class formInputField(Flowable):
 
     def draw(self):
         self.canv.saveState()
-        pdfform.textFieldRelative(
-            self.canv, self.id, 0, 0, WRITE_IN_W, WRITE_IN_H, self.value
+        form = self.canv.acroForm
+        form.textfield(
+            name=self.id,
+            maxlen=60,
+            height=WRITE_IN_H,
+            width=WRITE_IN_W,
+            relative=True,
         )
+        # pdfform.textFieldRelative(
+        #     self.canv, self.id, 0, 0, WRITE_IN_W, WRITE_IN_H, self.value
+        # )
         self.canv.restoreState()
 
 
@@ -268,8 +287,8 @@ class CandidateContestLayout:
             if True:
                 # add check box
                 vote_mark = [
-                    SelectionOval(shift_up=True),
                     formCheckButton(candidate.id, "Yes"),
+                    SelectionOval(shift_up=True),
                 ]
             # else:
             # vote_mark = SelectionOval()
