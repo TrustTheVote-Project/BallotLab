@@ -73,7 +73,7 @@ def validate(
         help=EDF_HELP,
     ),
 ):
-    """Validate data in EDF file"""
+    """Validate data in EDF file by extracting data needed for ballot generation"""
     validate_edf_result = validate_edf.validate_edf(edf)
     if validate_edf_result != NO_ERRORS:
         log.error(
