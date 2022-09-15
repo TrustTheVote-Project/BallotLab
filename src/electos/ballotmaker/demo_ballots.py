@@ -20,8 +20,12 @@ def get_election_data():
 
     extractor = BallotDataExtractor()
     election_data = extractor.extract(data)
-    # assert isinstance(election_data, ElectionData)
-    print(election_data.ElectionData.name)
+    # Expecting election_data to be an ElectionData object, but
+    # this produces an AssertionError
+    assert isinstance(election_data, ElectionData)
+    # this results in an AttributeError:
+    # AttributeError: 'list' object has no attribute 'name'
+    print(election_data.name)
 
 
 if __name__ == "__main__":  # pragma: no cover
