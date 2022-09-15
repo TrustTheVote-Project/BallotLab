@@ -27,5 +27,5 @@ def validate_edf(
     with _edf.open() as input:
         text = input.read()
         data = json.loads(text)
-        report(data)
+    report(data)
     return NO_ERRORS
