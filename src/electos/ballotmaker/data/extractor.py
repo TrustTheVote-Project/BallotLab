@@ -16,7 +16,6 @@ from electos.datamodels.nist.models.edf import (
     OrderedHeader,
 )
 
-
 # --- Base Types
 #
 # Schema expresses these as union types not subclasses
@@ -59,25 +58,24 @@ def _walk_ordered_headers(content: List[OrderedContent]):
 
 # --- Extractor
 
+
 class BallotDataExtractor:
 
     """Extract election data from an EDF."""
 
-
     def __init__(self):
         pass
-
 
     def _ballot_style_external_id(self, ballot_style: BallotStyle):
         """Get the text of a ballot style's external identifier if any."""
         if ballot_style.external_identifier:
-            assert len(ballot_style.external_identifier) == 1, \
-                "Not ready to handle multiple BallotStyle external IDs"
+            assert (
+                len(ballot_style.external_identifier) == 1
+            ), "Not ready to handle multiple BallotStyle external IDs"
             name = ballot_style.external_identifier[0].value
         else:
             name = ""
         return name
-
 
     def _ballot_style_gp_units(self, ballot_style: BallotStyle):
         """Yield geo-political units for a ballot style."""
@@ -85,19 +83,16 @@ class BallotDataExtractor:
             gp_unit = self._index.by_id(id_)
             yield gp_unit
 
-
     def _ballot_style_contests(self, ballot_style: BallotStyle):
         """Yield the contests of a ballot style."""
         for item in _walk_ordered_contests(ballot_style.ordered_content):
             contest = self._index.by_id(item.contest_id)
             yield contest
 
-
     def _candidate_name(self, candidate: Candidate):
         """Get the name of a candidate as it appears on a ballot."""
         name = _text_content(candidate.ballot_name)
         return name
-
 
     def _candidate_party(self, candidate: Candidate):
         """Get the name and abbreviation of the party of a candidate as it appears on a ballot.
@@ -109,7 +104,9 @@ class BallotDataExtractor:
         party = self._index.by_id(id_)
         name = _text_content(party.name) if party else None
         abbreviation = (
-            _text_content(party.abbreviation) if party and party.abbreviation else None
+            _text_content(party.abbreviation)
+            if party and party.abbreviation
+            else None
         )
         result = {}
         if name:
@@ -117,7 +114,6 @@ class BallotDataExtractor:
         if abbreviation:
             result["abbreviation"] = abbreviation
         return result, id_
-
 
     def _candidate_contest_candidates(self, contest: CandidateContest):
         """Get candidates for contest, grouped by slate/ticket.
@@ -138,8 +134,9 @@ class BallotDataExtractor:
         # Collect individual candidates
         candidates = []
         for selection in contest.contest_selection:
-            assert isinstance(selection, CandidateSelection), \
-                f"Unexpected non-candidate selection: {type(selection).__name__}"
+            assert isinstance(
+                selection, CandidateSelection
+            ), f"Unexpected non-candidate selection: {type(selection).__name__}"
             names = []
             parties = []
             _party_ids = set()
@@ -161,11 +158,10 @@ class BallotDataExtractor:
                 "id": selection.model__id,
                 "name": names,
                 "party": parties,
-                "is_write_in": bool(selection.is_write_in)
+                "is_write_in": bool(selection.is_write_in),
             }
             candidates.append(result)
         return candidates
-
 
     def _candidate_contest_offices(self, contest: CandidateContest):
         """Get any offices associated with a candidate contest."""
@@ -177,7 +173,6 @@ class BallotDataExtractor:
                 offices.append(name)
         return offices
 
-
     def _candidate_contest_parties(self, contest: CandidateContest):
         """Get any parties associated with a candidate contest."""
         parties = []
@@ -188,13 +183,11 @@ class BallotDataExtractor:
                 parties.append(name)
         return parties
 
-
     def _contest_election_district(self, contest: Contest):
         """Get the district name of a contest."""
         district = self._index.by_id(contest.election_district_id)
         district = _text_content(district.name)
         return district
-
 
     def _candidate_contest_of(self, contest: CandidateContest):
         """Extract candidate contest subset needed for a ballot."""
@@ -216,18 +209,20 @@ class BallotDataExtractor:
         }
         return result
 
-
     def _ballot_measure_contest_of(self, contest: BallotMeasureContest):
         """Extract ballot measure contest subset needed for a ballot."""
         choices = []
         for selection in contest.contest_selection:
-            assert isinstance(selection, BallotMeasureSelection), \
-               f"Unexpected non-ballot measure selection: {type(selection).__name__}"
+            assert isinstance(
+                selection, BallotMeasureSelection
+            ), f"Unexpected non-ballot measure selection: {type(selection).__name__}"
             choice = _text_content(selection.selection)
-            choices.append({
-                "id": selection.model__id,
-                "choice": choice,
-            })
+            choices.append(
+                {
+                    "id": selection.model__id,
+                    "choice": choice,
+                }
+            )
         district = self._contest_election_district(contest)
         full_text = _text_content(contest.full_text)
         result = {
@@ -239,7 +234,6 @@ class BallotDataExtractor:
             "choices": choices,
         }
         return result
-
 
     def _contests(self, ballot_style: BallotStyle):
         """Extract contest subset needed for ballots."""
@@ -253,23 +247,18 @@ class BallotDataExtractor:
                 print(f"Skipping contest of type {contest.model__type}")
             yield entry
 
-
     def _election_ballot_styles(self, election: Election):
         """Extract all ballot styles."""
         for ballot_style in election.ballot_style:
             data = {
                 "id": self._ballot_style_external_id(ballot_style),
                 "scopes": [
-                    _.model__id
+                    _text_content(self._index.by_id(_.model__id).name)
                     for _ in self._ballot_style_gp_units(ballot_style)
                 ],
-                "contests": [
-                    _
-                    for _ in self._contests(ballot_style)
-                ],
+                "contests": [_ for _ in self._contests(ballot_style)],
             }
             yield data
-
 
     def _elections(self, election_report: ElectionReport):
         """Extract all elections."""
@@ -286,7 +275,6 @@ class BallotDataExtractor:
                 ],
             }
             yield data
-
 
     def extract(self, data: Dict, index: ElementIndex = None) -> ElectionData:
         """Extract election data.
@@ -305,7 +293,6 @@ class BallotDataExtractor:
         election_report = ElectionReport(**data)
         self._index = index or ElementIndex(election_report, "ElectionResults")
         election_data = [
-            ElectionData(**_)
-            for _ in self._elections(election_report)
+            ElectionData(**_) for _ in self._elections(election_report)
         ]
         return election_data
