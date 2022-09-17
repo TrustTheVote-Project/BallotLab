@@ -6,8 +6,7 @@ from pathlib import Path
 from typing import Optional
 
 import typer
-from electos.ballotmaker import make_ballots, validate_edf
-from electos.ballotmaker.ballots.demo_ballot import build_ballot
+from electos.ballotmaker import demo_ballots, make_ballots, validate_edf
 from electos.ballotmaker.constants import NO_ERRORS, PROGRAM_NAME, VERSION
 
 EDF_HELP = "EDF file with ballot data (JSON format)"
@@ -43,8 +42,8 @@ def main(
 @app.command()
 def demo():
     """Make ballots from previously extracted EDF data"""
-    new_ballot_name = build_ballot()
-    typer.echo(f"Ballot created: {new_ballot_name}")
+    ballot_output_dir = demo_ballots.main()
+    typer.echo(f"Ballots created in output directory: {ballot_output_dir}")
     return NO_ERRORS
 
 

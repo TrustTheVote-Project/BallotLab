@@ -21,7 +21,7 @@ def get_election_header(election: ElectionData) -> dict:
     }
 
 
-def build_ballots(election: ElectionData):
+def build_ballots(election: ElectionData) -> Path:
 
     # create the directories needed
     now = datetime.now()
@@ -39,3 +39,4 @@ def build_ballots(election: ElectionData):
         new_ballot_name = build_ballot(
             ballot_data, election_header, new_ballot_dir
         )
+    return new_ballot_dir

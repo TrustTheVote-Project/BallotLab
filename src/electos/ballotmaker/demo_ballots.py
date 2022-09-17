@@ -25,7 +25,7 @@ def main():
     data_file = FileTools(data_file_name, relative_path)
     full_data_path = data_file.abs_path_to_file
 
-    build_ballots(get_election_data(full_data_path))
+    return build_ballots(get_election_data(full_data_path))
 
 
 def get_election_data(edf_file: str) -> ElectionData:
