@@ -8,9 +8,7 @@ from functools import partial
 from pathlib import Path
 
 from electos.ballotmaker.ballots.contest_layout import (
-    BallotMeasureData,
     BallotMeasureLayout,
-    CandidateContestData,
     CandidateContestLayout,
 )
 from electos.ballotmaker.ballots.instructions import Instructions
@@ -30,6 +28,8 @@ from reportlab.platypus.flowables import CondPageBreak
 
 logging.getLogger(__name__)
 
+CANDIDATE = "candidate"
+BALLOT_MEASURE = "ballot measure"
 # set up frames
 # 1 = True, 0 = FALSE
 SHOW_BOUNDARY = 0
@@ -138,24 +138,45 @@ def build_ballot(
     )
     doc.addPageTemplates(three_column_template)
     doc.addPageTemplates(one_column_template)
-    # add a ballot contest to the second frame (colomn)
-    # layout_1 = CandidateContestLayout(
-    #     CandidateContestData(spacetown_data.can_con_1)
-    # )
+
+    candidate_contests = []
+    ballot_measures = []
+    # get contests
+    for count, contest in enumerate(ballot_data.contests, start=1):
+        title = contest.title
+        con_type = contest.type
+        logging.info(f"Found contest: {title} - {con_type}")
+        if con_type == CANDIDATE:
+            candidate_contests.append(contest)
+        elif con_type == BALLOT_MEASURE:
+            ballot_measures.append(contest)
+        else:
+            raise ValueError(f"Unknown contest type: {con_type}")
+    logging.info(f"Total: {count} contests.")
 
     elements = []
     # add voting instructions
     inst = Instructions()
-    elements = inst.instruction_list
     elements.append(NextPageTemplate("3col"))
-    # elements.append(layout_1.contest_table)
-    # elements.append(layout_2.contest_table)
-    # elements.append(CondPageBreak(c_height * inch))
-    # elements.append(layout_4.contest_table)
-    # elements.append(layout_3.contest_table)
-    # elements.append(NextPageTemplate("1col"))
-    # elements.append(PageBreak())
-    # elements.append(layout_5.contest_table)
-    # elements.append(layout_6.contest_table)
+    elements = inst.instruction_list
+
+    # add candidate contests
+    for can_con_count, candidate_contest in enumerate(
+        candidate_contests, start=1
+    ):
+        candidate_layout = CandidateContestLayout(
+            candidate_contest
+        ).contest_table
+        elements.append(candidate_layout)
+        # insert column break after every 2 contests
+        if (can_con_count % 2 == 0) and (can_con_count < 4):
+            elements.append(CondPageBreak(c_height * inch))
+    logging.info(f"Added {can_con_count} candidate contests.")
+    elements.append(NextPageTemplate("1col"))
+    elements.append(PageBreak())
+    for measures, ballot_measure in enumerate(ballot_measures, start=1):
+        ballot_layout = BallotMeasureLayout(ballot_measure).contest_table
+        elements.append(ballot_layout)
+    logging.info(f"Added {measures} ballot measures.")
     doc.build(elements)
     return str(ballot_name)
