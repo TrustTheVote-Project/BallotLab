@@ -39,7 +39,7 @@ WRITE_IN_H = 24
 # Hide form widgets
 ANNOTATION_FLAGS = "noview hidden"
 # Show form widgets
-ANNOTATION_FLAGS = "print"
+# ANNOTATION_FLAGS = "print"
 
 BALLOT_MEASURE_INSTRUCT = "Vote yes or no"
 
