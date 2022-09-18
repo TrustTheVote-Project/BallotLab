@@ -296,7 +296,7 @@ class CandidateContestLayout:
                     )
                 elif party_count > 1:
                     raise NotImplementedError(
-                        "Multiple party tickets not supported (parties"
+                        f"Multiple party tickets not supported (parties found: {party_count})"
                     )
 
                 logging.info(f"Ticket: {contest_text}")

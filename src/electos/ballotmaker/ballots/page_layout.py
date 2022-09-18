@@ -1,8 +1,6 @@
 # page_layout.py
 # Stores page layout settings in a class
-# TODO: refactor as a dict or dataclass
-
-# customize only what's different from the samples
+# customize only what's different from the Reportlab samples
 
 from dataclasses import dataclass
 
@@ -33,6 +31,7 @@ class PageLayout:
     dark: tuple = (1, 0, 0, 0)
     # light cyan
     light: tuple = (0.1, 0, 0, 0)
+    # TODO: Are these next three needed, or redundant?
     white: tuple = (0, 0, 0, 0)
     black: tuple = (0, 0, 0, 1)
     grey: tuple = (0, 0, 0, 0.15)
@@ -42,6 +41,7 @@ class PageLayout:
     keep_w_next = False
 
     # TODO: Rewrite with *args, **kwargs?
+    # TODO: Can this be simplified?
     def define_custom_style(
         style,
         bg_color=bg_color,
