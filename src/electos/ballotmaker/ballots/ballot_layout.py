@@ -81,13 +81,15 @@ def add_header_line(
     return f"<font size={font_size}><b>{line_text}</b></font>{line_end}"
 
 
-def build_header_text(election_dict: dict, scope: str) -> str:
+def build_header_text(election_header: dict, scope: str) -> str:
     font_size = 12
     formatted_header = add_header_line(
-        font_size, f"Sample Ballot for {election_dict['Name']}", new_line=True
+        font_size,
+        f"Sample Ballot for {election_header['Name']}",
+        new_line=True,
     )
     formatted_header += add_header_line(font_size, scope, new_line=True)
-    end_date = datetime.fromisoformat(election_dict["EndDate"])
+    end_date = datetime.fromisoformat(election_header["EndDate"])
     formatted_date = end_date.strftime("%B %m, %Y")
     formatted_header += add_header_line(font_size, formatted_date)
 
@@ -121,8 +123,8 @@ def build_ballot(
 
     styles = getSampleStyleSheet()
     normal = styles["Normal"]
-    head_text = build_header_text(election_header, ballot_scope)
-    header_content = Paragraph(head_text, normal)
+    header_text = build_header_text(election_header, ballot_scope)
+    header_content = Paragraph(header_text, normal)
     three_column_template = PageTemplate(
         id="3col",
         frames=[left_frame, mid_frame, right_frame],
@@ -139,6 +141,7 @@ def build_ballot(
     doc.addPageTemplates(three_column_template)
     doc.addPageTemplates(one_column_template)
 
+    # TODO: use ballot_data.candidate_contests & .ballot_measures instead
     candidate_contests = []
     ballot_measures = []
     # get contests

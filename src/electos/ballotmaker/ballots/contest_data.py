@@ -1,3 +1,5 @@
+# TODO: this module is no longer needed: remove!
+
 from dataclasses import dataclass, field
 
 
@@ -71,8 +73,9 @@ class CandidateData:
         self.id = self._can_data.get("id", "")
         self._names = self._can_data.get("name", [])
         _party_list = self._can_data.get("party", [])
-        assert 0 <= len(_party_list) <= 1, \
-            f"Multiple parties for a slate/ticket not handled: {_party_list}"
+        assert (
+            0 <= len(_party_list) <= 1
+        ), f"Multiple parties for a slate/ticket not handled: {_party_list}"
         _party_dict = _party_list[0] if len(_party_list) == 1 else {}
         self.party = _party_dict.get("name", "")
         self.party_abbr = _party_dict.get("abbreviation", "")
