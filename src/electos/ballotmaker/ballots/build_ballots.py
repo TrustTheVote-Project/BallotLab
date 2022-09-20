@@ -24,13 +24,17 @@ def get_election_header(election: ElectionData) -> dict:
 def build_ballots(election: ElectionData) -> Path:
 
     # create the directories needed
+    # TODO: clean up datetime code: https://github.com/TrustTheVote-Project/BallotLab/pull/113#discussion_r973609852
     now = datetime.now()
     date_time = now.strftime("%Y_%m_%dT%H%M%S")
     home_dir = Path.home()
     program_dir = Path(home_dir, PROGRAM_NAME)
     new_ballot_dir = Path(program_dir, date_time)
     logging.info(f"New ballots will be saved in {new_ballot_dir}")
+    # TODO: Use original EDF file name (no ext) in output dir
+    # See: https://github.com/TrustTheVote-Project/BallotLab/pull/113#discussion_r973776838
     Path(new_ballot_dir).mkdir(parents=True, exist_ok=False)
+    # TODO: list actual dir in log output: https://github.com/TrustTheVote-Project/BallotLab/pull/113#discussion_r973610221
     logging.info("Output directory created.")
     election_header = get_election_header(election)
 

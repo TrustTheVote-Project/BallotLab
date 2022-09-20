@@ -28,8 +28,12 @@ from reportlab.platypus.flowables import CondPageBreak
 
 logging.getLogger(__name__)
 
+# TODO: use enums in ContestType: https://github.com/TrustTheVote-Project/BallotLab/pull/113#discussion_r973606562
+# Also: see line 147
 CANDIDATE = "candidate"
 BALLOT_MEASURE = "ballot measure"
+
+
 # set up frames
 # 1 = True, 0 = FALSE
 SHOW_BOUNDARY = 0
@@ -141,7 +145,8 @@ def build_ballot(
     doc.addPageTemplates(three_column_template)
     doc.addPageTemplates(one_column_template)
 
-    # TODO: use ballot_data.candidate_contests & .ballot_measures instead
+    # TODO: use ballot_data.candidate_contests & .ballot_measures instead.
+    # See thread for details: https://github.com/TrustTheVote-Project/BallotLab/pull/113#discussion_r973608016
     candidate_contests = []
     ballot_measures = []
     # get contests
@@ -174,6 +179,7 @@ def build_ballot(
         # insert column break after every 2 contests
         if (can_con_count % 2 == 0) and (can_con_count < 4):
             elements.append(CondPageBreak(c_height * inch))
+    # TODO: write more informative log message, see: https://github.com/TrustTheVote-Project/BallotLab/pull/113#discussion_r973608278
     logging.info(f"Added {can_con_count} candidate contests.")
     elements.append(NextPageTemplate("1col"))
     elements.append(PageBreak())
