@@ -1,15 +1,18 @@
 # format a ballot contest.
+import logging
 
-from electos.ballotmaker.ballots.contest_data import (
-    BallotMeasureData,
+from electos.ballotmaker.ballots.page_layout import PageLayout
+from electos.ballotmaker.data.models import (
+    BallotMeasureContestData,
     CandidateContestData,
 )
-from electos.ballotmaker.ballots.page_layout import PageLayout
 from reportlab.graphics.shapes import Drawing, Ellipse, _DrawingEditorMixin
 from reportlab.lib.colors import black, white, yellow
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfbase import pdfform
 from reportlab.platypus import Flowable, Paragraph, Table
+
+logging.getLogger(__name__)
 
 OVAL_WIDTH = 13
 OVAL_HEIGHT = 5
@@ -28,6 +31,7 @@ CHECKBOX_W = 4
 CHECKBOX_H = 8
 CHECKBOX_X = 3
 CHECKBOX_Y = -12
+CHECKBOX_STATE = "Off"  # "Yes" or "Off"
 
 WRITE_IN_W = 100
 WRITE_IN_H = 24
@@ -36,6 +40,8 @@ WRITE_IN_H = 24
 ANNOTATION_FLAGS = "noview hidden"
 # Show form widgets
 # ANNOTATION_FLAGS = "print"
+
+BALLOT_MEASURE_INSTRUCT = "Vote yes or no"
 
 # define styles
 # fill colors
@@ -256,30 +262,48 @@ class CandidateContestLayout:
             self.instruct = f"Vote for up to {self.votes_allowed}"
         else:
             self.instruct = f"Vote for {self.votes_allowed}"
-        self.candidates = contest_data.candidates
+        logging.info(f"Candidate contest: {self.title}")
+        self.candidate_choices = contest_data.candidates
         _selections = []
 
-        for candidate in self.candidates:
-            # add newlines around " and "
-            if candidate.name.find(" and "):
-                candidate.name = candidate.name.replace(
-                    " and ", "<br />and<br />"
-                )
-            # make the candidate name bold
-            contest_text = f"<b>{candidate.name}</b>"
-            # add party abbreviation in plain text
-            if candidate.party_abbr != "":
-                contest_text += f"<br />{candidate.party_abbr}"
-            contest_object = [Paragraph(contest_text, normal)]
+        for candidate_choice in self.candidate_choices:
+
             # add line for write ins
-            if candidate.is_write_in:
-                # contest_text += ("<br />" * 2) + ("_" * 20)
+            if candidate_choice.is_write_in:
+                logging.info(
+                    f"Found write-in candidate: {candidate_choice.id}"
+                )
+                contest_text = "<b>or write in:</b>"
+                # contest_text = ("<br />" * 2) + ("_" * 20)
+                contest_object = [Paragraph(contest_text, normal)]
                 # Add text field with ID and suffix
-                input_id = f"{candidate.id}_text"
+                input_id = f"{candidate_choice.id}_text"
                 contest_object.append(formInputField(input_id))
+            else:
+                contest_text = ""
+                for candidate_count, name in enumerate(
+                    candidate_choice.name, start=1
+                ):
+                    if candidate_count > 1:
+                        contest_text += "<br />and<br />"
+                    # make the candidate name bold
+                    contest_text += f"<b>{name}</b>"
+                # add party abbreviation in plain text
+                party_count = len(candidate_choice.party)
+                if party_count == 1:
+                    contest_text += (
+                        f"<br />{candidate_choice.party[0].abbreviation}"
+                    )
+                elif party_count > 1:
+                    raise NotImplementedError(
+                        f"Multiple party tickets not supported (parties found: {party_count})"
+                    )
+
+                logging.info(f"Ticket: {contest_text}")
+                contest_object = [Paragraph(contest_text, normal)]
 
             vote_mark = [
-                formCheckButton(candidate.id, "Yes"),
+                formCheckButton(candidate_choice.id, CHECKBOX_STATE),
                 SelectionOval(shift_up=True),
             ]
             contest_row = [vote_mark, contest_object]
@@ -297,30 +321,28 @@ class BallotMeasureLayout:
     Generate a candidate contest table flowable
     """
 
-    def __init__(self, contest_data: BallotMeasureData):
+    def __init__(self, contest_data: BallotMeasureContestData):
         self.id = contest_data.id
         self.title = contest_data.title
-        self.instruct = "Vote yes or no"
+        self.instruct = BALLOT_MEASURE_INSTRUCT
         self.text = contest_data.text
         self.choices = contest_data.choices
+        logging.info(f"Ballot measure: {self.title}")
 
         oval = SelectionOval()
         _selections = []
-        for choice in self.choices:
-            contest_text = f"<b>{choice}</b>"
-            contest_row = [oval, Paragraph(contest_text, normal)]
+        for choose in self.choices:
+            choice_text = f"<b>{choose.choice}</b>"
+            logging.info(f"Choice: {choice_text} (ID = {choose.id})")
+
+            vote_mark = [
+                formCheckButton(choose.id, CHECKBOX_STATE),
+                SelectionOval(shift_up=True),
+            ]
+            contest_row = [vote_mark, Paragraph(choice_text, normal)]
             _selections.append(contest_row)
 
         self.contest_list = build_contest_list(
             self.title, self.instruct, _selections, self.text
         )
         self.contest_table = build_ballot_measure_table(self.contest_list)
-
-
-if __name__ == "__main__":  # pragma: no cover
-    from electos.ballotmaker.demo_data import spacetown_data
-
-    contest_1 = CandidateContestData(spacetown_data.can_con_1)
-    print(contest_1.candidates)
-    layout_1 = CandidateContestLayout(contest_1)
-    print(layout_1.contest_list)
