@@ -2,7 +2,7 @@
 
 A version history of BallotLab.
 
-## 0.1.3 -- September 20, 2022
+## 0.1.3 - September 20, 2022
 
 Complete [2. Generate ballot PDFs with embedded form objects Milestone](https://github.com/TrustTheVote-Project/BallotLab/milestone/2)
 
