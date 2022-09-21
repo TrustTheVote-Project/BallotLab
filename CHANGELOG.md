@@ -12,7 +12,7 @@ Completed [Milestone 2. Generate ballot PDFs with embedded form objects Mileston
 * Incorporate new NISTLib data access layer (includes corresponding test harness)
 * Additional layout enhancements and refinements
 
-## 0.1.2 -- September 7, 2022
+## 0.1.2 - September 7, 2022
 
 Completed milestone 1: [Generate flat PDFs from Jetsons EDF](https://github.com/TrustTheVote-Project/BallotLab/milestone/1)
 
@@ -21,10 +21,10 @@ Completed milestone 1: [Generate flat PDFs from Jetsons EDF](https://github.com/
 * Ballot measure questions
 * Additional layout enhancements, especially to reduce page count
 
-## 0.1.1 -- June 29, 2022
+## 0.1.1 - June 29, 2022
 
 Create make ballots interface w/ 100% pytest coverage. Begin version tracking.
 
-## 0.1 -- October 25th, 2021
+## 0.1 - October 25th, 2021
 
 Code first published under the OSET License.
