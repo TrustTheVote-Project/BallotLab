@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "BallotMaker"
-version = "0.1.1"
+version = "0.1.3"
 description = "Generate PDF ballots from EDF file; part of ElectOS Versa."
 authors = ["Neil Johnson <neil@cadent.com>"]
 license = "OSET Public License"

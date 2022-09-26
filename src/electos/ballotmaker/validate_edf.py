@@ -1,9 +1,20 @@
+import json
 import logging
+from dataclasses import asdict
 from pathlib import Path
 
-from electos.ballotmaker.election_data import ElectionData
+from electos.ballotmaker.constants import NO_ERRORS
+from electos.ballotmaker.data.extractor import BallotDataExtractor
 
 log = logging.getLogger(__name__)
+
+
+def report(data, **opts):
+    """Generate data needed by BallotLab."""
+    extractor = BallotDataExtractor()
+    ballot_data = extractor.extract(data)
+    ballot_data = [asdict(_) for _ in ballot_data]
+    print(json.dumps(ballot_data, indent=4))
 
 
 def validate_edf(
@@ -13,6 +24,8 @@ def validate_edf(
     Requires:
         EDF file (JSON format) edf_file: Path,
     """
-    election_data = ElectionData(_edf)
-
-    return election_data.edf_error
+    with _edf.open() as input:
+        text = input.read()
+        data = json.loads(text)
+    report(data)
+    return NO_ERRORS

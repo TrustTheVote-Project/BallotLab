@@ -4,7 +4,7 @@
 import errno
 
 PROGRAM_NAME = "BallotMaker"
-VERSION = "0.1.2"  # incremented September 7, 2022
+VERSION = "0.1.3"  # incremented September 20, 2022
 
 NO_ERRORS = 0
 NO_FILE = errno.ENOENT
