@@ -20,8 +20,8 @@ def main():
 
     # get the EDF file from the assets directory,
     # a "known-good" source of election data
-    data_file_name = "september_test_case.json"
-    relative_path = "assets/data"
+    data_file_name = "demo_data.json"
+    relative_path = "assets/json"
     data_file = FileTools(data_file_name, relative_path)
     full_data_path = data_file.abs_path_to_file
 
