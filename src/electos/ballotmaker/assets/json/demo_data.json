@@ -123,8 +123,8 @@
                             "@type": "ElectionResults.CandidateSelection",
                             "@id": "recQK3J9IJq42hz2n",
                             "CandidateIds": [
-                                "reczKIKk81RshXkd9",
-                                "recLB4X1sLL2q1bSW"
+                                "rey_skywalker",
+                                "obi_wan_kenobi"
                             ]
                         },
                         {
@@ -333,7 +333,7 @@
                 {
                     "@type": "ElectionResults.BallotStyle",
                     "GpUnitIds": [
-                        "recFIehh5Aj0zGTn6"
+                        "concord"
                     ],
                     "OrderedContent": [
                         {
@@ -516,15 +516,15 @@
                 },
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "reczKIKk81RshXkd9",
+                    "@id": "rey_skywalker",
                     "PersonId": "rec0YJkyHfiT4PBT6",
-                    "PartyId": "recBiK9LZXeZmmFEg",
+                    "PartyId": "the_circle_party",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "Anthony Alpha",
+                                "Content": "Rey Skywalker",
                                 "Language": "en"
                             }
                         ]
@@ -532,15 +532,15 @@
                 },
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "recLB4X1sLL2q1bSW",
+                    "@id": "obi_wan_kenobi",
                     "PersonId": "recUSqUnlKb63WT3F",
-                    "PartyId": "recBiK9LZXeZmmFEg",
+                    "PartyId": "the_circle_party",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "Betty Beta",
+                                "Content": "Obi-Wan Kenobi",
                                 "Language": "en"
                             }
                         ]
@@ -612,7 +612,7 @@
                     "@type": "ElectionResults.Candidate",
                     "@id": "recK4Vc1EdfBufEU4",
                     "PersonId": "recDl4dMHupCh8ex8",
-                    "PartyId": "recBiK9LZXeZmmFEg",
+                    "PartyId": "the_circle_party",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
@@ -749,7 +749,7 @@
         },
         {
             "@type": "ElectionResults.ReportingUnit",
-            "@id": "recFIehh5Aj0zGTn6",
+            "@id": "concord",
             "Type": "precinct",
             "Name": {
                 "@type": "ElectionResults.InternationalizedText",
@@ -879,24 +879,24 @@
     "Party": [
         {
             "@type": "ElectionResults.Party",
-            "@id": "recBiK9LZXeZmmFEg",
+            "@id": "the_circle_party",
             "Name": {
                 "@type": "ElectionResults.InternationalizedText",
                 "Text": [
                     {
                         "@type": "ElectionResults.LanguageString",
-                        "Content": "The Lepton Party",
+                        "Content": "The Circle Party",
                         "Language": "en"
                     }
                 ],
-                "Label": "Leptonican"
+                "Label": "Circler"
             },
             "Abbreviation": {
                 "@type": "ElectionResults.InternationalizedText",
                 "Text": [
                     {
                         "@type": "ElectionResults.LanguageString",
-                        "Content": "LEP",
+                        "Content": "Circle Party",
                         "Language": "en"
                     }
                 ]
@@ -1014,8 +1014,8 @@
         {
             "@type": "ElectionResults.Person",
             "@id": "rec0YJkyHfiT4PBT6",
-            "FirstName": "Anthony",
-            "LastName": "Alpha",
+            "FirstName": "Rey",
+            "LastName": "Skywalker",
             "Profession": {
                 "@type": "ElectionResults.InternationalizedText",
                 "Text": [
