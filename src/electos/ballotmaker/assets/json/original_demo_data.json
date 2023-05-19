@@ -1,7 +1,7 @@
 {
     "@type": "ElectionResults.ElectionReport",
     "Format": "precinct-level",
-    "GeneratedDate": "2023-05-19T13:41:00Z",
+    "GeneratedDate": "2022-09-05T09:41:21Z",
     "VendorApplicationId": "ElectionReporter",
     "Issuer": "TrustTheVote",
     "IssuerAbbreviation": "TTV",
@@ -12,8 +12,8 @@
         {
             "@type": "ElectionResults.Election",
             "ElectionScopeId": "recTXCMIfa5VQJju2",
-            "StartDate": "2023-05-20",
-            "EndDate": "2023-05-20",
+            "StartDate": "2024-11-05",
+            "EndDate": "2024-11-05",
             "Type": "general",
             "Name": {
                 "@type": "ElectionResults.InternationalizedText",
@@ -389,9 +389,9 @@
                         {
                             "@type": "ElectionResults.ExternalIdentifier",
                             "Type": "other",
-                            "Value": "precinct_1_concord",
+                            "Value": "precinct_1_downtown",
                             "OtherType": "TTV",
-                            "Label": "concord_precinct_style"
+                            "Label": "downtown_precinct_style"
                         }
                     ]
                 },
@@ -941,11 +941,11 @@
                 "Text": [
                     {
                         "@type": "ElectionResults.LanguageString",
-                        "Content": "Town of Concord",
+                        "Content": "Downtown Precinct",
                         "Language": "en"
                     }
                 ],
-                "Label": "Concord"
+                "Label": "Downtown"
             }
         },
         {
