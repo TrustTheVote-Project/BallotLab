@@ -121,7 +121,7 @@
                     "ContestSelection": [
                         {
                             "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recQK3J9IJq42hz2n",
+                            "@id": "circle_party_potus",
                             "CandidateIds": [
                                 "rey_skywalker",
                                 "obi_wan_kenobi"
@@ -129,16 +129,19 @@
                         },
                         {
                             "@type": "ElectionResults.CandidateSelection",
-                            "@id": "reccUkUdEznfODgeL",
+                            "@id": "square_party_potus",
                             "CandidateIds": [
-                                "recopGzcpflkyhwdN",
-                                "recBEqMDC9w5AnKxh"
+                                "atticus_finch",
+                                "hermione_granger"
                             ]
                         },
                         {
                             "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recPod2L8VhwagiDl",
-                            "IsWriteIn": true
+                            "@id": "triangle_party_potus",
+                            "CandidateIds": [
+                                "evelyn_quan_wang",
+                                "waymond_wang"
+                            ]
                         }
                     ]
                 },
@@ -154,7 +157,7 @@
                             "Label": "mayoral_contest"
                         }
                     ],
-                    "Name": "Contest for Mayor of Orbit City",
+                    "Name": "Contest for Governor",
                     "OfficeIds": [
                         "rec7N0cboW3L1Mv0I"
                     ],
@@ -166,20 +169,15 @@
                             "@type": "ElectionResults.CandidateSelection",
                             "@id": "recKD6dBvkNhEU4bg",
                             "CandidateIds": [
-                                "recd1n9MadKRsYLUX"
+                                "spencer_cogswell"
                             ]
                         },
                         {
                             "@type": "ElectionResults.CandidateSelection",
                             "@id": "recTKcXLCzRvKB9U0",
                             "CandidateIds": [
-                                "recK4Vc1EdfBufEU4"
+                                "cosmo_spacely"
                             ]
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recqq21kO6HWgpJZV",
-                            "IsWriteIn": true
                         }
                     ]
                 },
@@ -340,9 +338,9 @@
                             "@type": "ElectionResults.OrderedContest",
                             "ContestId": "potus_ticket",
                             "OrderedContestSelectionIds": [
-                                "recQK3J9IJq42hz2n",
-                                "reccUkUdEznfODgeL",
-                                "recPod2L8VhwagiDl"
+                                "circle_party_potus",
+                                "square_party_potus",
+                                "triangle_party_potus"
                             ]
                         },
                         {
@@ -548,15 +546,15 @@
                 },
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "recopGzcpflkyhwdN",
+                    "@id": "atticus_finch",
                     "PersonId": "rec1R5Sy3JzkIC2Di",
-                    "PartyId": "reckpEKRtLuDdt03n",
+                    "PartyId": "the_square_party",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "Gloria Gamma",
+                                "Content": "Atticus Finch",
                                 "Language": "en"
                             }
                         ]
@@ -564,15 +562,47 @@
                 },
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "recBEqMDC9w5AnKxh",
+                    "@id": "hermione_granger",
                     "PersonId": "rec4Z3OQJv0YY8hhR",
-                    "PartyId": "reckpEKRtLuDdt03n",
+                    "PartyId": "the_square_party",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "David Delta",
+                                "Content": "Hermione Granger",
+                                "Language": "en"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "ElectionResults.Candidate",
+                    "@id": "evelyn_quan_wang",
+                    "PersonId": "001",
+                    "PartyId": "the_triangle_party",
+                    "BallotName": {
+                        "@type": "ElectionResults.InternationalizedText",
+                        "Text": [
+                            {
+                                "@type": "ElectionResults.LanguageString",
+                                "Content": "Evelyn Quan Wang",
+                                "Language": "en"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "ElectionResults.Candidate",
+                    "@id": "waymond_wang",
+                    "PersonId": "001",
+                    "PartyId": "the_triangle_party",
+                    "BallotName": {
+                        "@type": "ElectionResults.InternationalizedText",
+                        "Text": [
+                            {
+                                "@type": "ElectionResults.LanguageString",
+                                "Content": "Waymond Wang",
                                 "Language": "en"
                             }
                         ]
@@ -594,9 +624,9 @@
                 },
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "recd1n9MadKRsYLUX",
+                    "@id": "spencer_cogswell",
                     "PersonId": "recS2gdD7iUKUM7ml",
-                    "PartyId": "reckpEKRtLuDdt03n",
+                    "PartyId": "the_circle_party",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
@@ -610,9 +640,9 @@
                 },
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "recK4Vc1EdfBufEU4",
+                    "@id": "cosmo_spacely",
                     "PersonId": "recDl4dMHupCh8ex8",
-                    "PartyId": "the_circle_party",
+                    "PartyId": "the_triangle_party",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
@@ -889,7 +919,7 @@
                         "Language": "en"
                     }
                 ],
-                "Label": "Circler"
+                "Label": "Circlocrat"
             },
             "Abbreviation": {
                 "@type": "ElectionResults.InternationalizedText",
@@ -904,24 +934,49 @@
         },
         {
             "@type": "ElectionResults.Party",
-            "@id": "reckpEKRtLuDdt03n",
+            "@id": "the_square_party",
             "Name": {
                 "@type": "ElectionResults.InternationalizedText",
                 "Text": [
                     {
                         "@type": "ElectionResults.LanguageString",
-                        "Content": "The Hadron Party of Farallon",
+                        "Content": "The Square Party",
                         "Language": "en"
                     }
                 ],
-                "Label": "Hadronicrat"
+                "Label": "Squarican"
             },
             "Abbreviation": {
                 "@type": "ElectionResults.InternationalizedText",
                 "Text": [
                     {
                         "@type": "ElectionResults.LanguageString",
-                        "Content": "HAD",
+                        "Content": "Square Party",
+                        "Language": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "@type": "ElectionResults.Party",
+            "@id": "the_triangle_party",
+            "Name": {
+                "@type": "ElectionResults.InternationalizedText",
+                "Text": [
+                    {
+                        "@type": "ElectionResults.LanguageString",
+                        "Content": "The Triangle Party",
+                        "Language": "en"
+                    }
+                ],
+                "Label": "Trianglularian"
+            },
+            "Abbreviation": {
+                "@type": "ElectionResults.InternationalizedText",
+                "Text": [
+                    {
+                        "@type": "ElectionResults.LanguageString",
+                        "Content": "Triangle Party",
                         "Language": "en"
                     }
                 ]
