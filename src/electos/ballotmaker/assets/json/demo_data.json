@@ -238,13 +238,13 @@
                     "@type": "ElectionResults.BallotMeasureContest",
                     "@id": "recWjDBFeafCdklWq",
                     "ElectionDistrictId": "rec93s713Yh6ZJT31",
-                    "Name": "Constitutional Amendment",
+                    "Name": "Question 1 - should the start time of the annual town meeting move to 6:30 PM?",
                     "FullText": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "Do you approve amending the Constitution to legalize the controlled use of helium balloons?  Only adults at least 21 years of age could use helium. The State commission created to oversee the State's medical helium program would also oversee the new, personal use helium market.Helium balloons would be subject to the State sales tax. If authorized by the Legislature, a municipality may pass a local ordinance to charge a local tax on helium balloons.\nAll forms of helium are authorized for personal use or commercial balloon usage. Use of deuterium and tritium for energy generation will be licensed by the State commission. Use of deuterium and tritium for uncontrolled fusion reactions is strictly prohibited, and constitutes a Class A felony under State Criminal code section 4.222 K.\n",
+                                "Content": "Should the Town of Concord start the annual Town Meeting at 6:30 PM instead of 7:00 PM?\n",
                                 "Language": "en"
                             }
                         ]
