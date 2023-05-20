@@ -202,13 +202,13 @@
                     "@type": "ElectionResults.BallotMeasureContest",
                     "@id": "recqPa7AeyufIfd6k",
                     "ElectionDistrictId": "middlesex_county",
-                    "Name": "Air Traffic Control Tax Increase",
+                    "Name": "U.S. Senate (Ranked Choice Voting)",
                     "FullText": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "Shall Gadget County increase its sales tax from 1% to 1.1% for the purpose of raising additional revenue to fund expanded air traffic control operations?",
+                                "Content": "Rank your choices 1-6 by marking ONE oval in each column.\n",
                                 "Language": "en"
                             }
                         ]
@@ -222,7 +222,7 @@
                                 "Text": [
                                     {
                                         "@type": "ElectionResults.LanguageString",
-                                        "Content": "Yes",
+                                        "Content": "Anthony Alpha",
                                         "Language": "en"
                                     }
                                 ]
@@ -236,7 +236,63 @@
                                 "Text": [
                                     {
                                         "@type": "ElectionResults.LanguageString",
-                                        "Content": "No",
+                                        "Content": "Betty Beta",
+                                        "Language": "en"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "@type": "ElectionResults.BallotMeasureSelection",
+                            "@id": "rcv_03",
+                            "Selection": {
+                                "@type": "ElectionResults.InternationalizedText",
+                                "Text": [
+                                    {
+                                        "@type": "ElectionResults.LanguageString",
+                                        "Content": "Gloria Gamma",
+                                        "Language": "en"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "@type": "ElectionResults.BallotMeasureSelection",
+                            "@id": "rcv_04",
+                            "Selection": {
+                                "@type": "ElectionResults.InternationalizedText",
+                                "Text": [
+                                    {
+                                        "@type": "ElectionResults.LanguageString",
+                                        "Content": "David Delta",
+                                        "Language": "en"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "@type": "ElectionResults.BallotMeasureSelection",
+                            "@id": "rcv_05",
+                            "Selection": {
+                                "@type": "ElectionResults.InternationalizedText",
+                                "Text": [
+                                    {
+                                        "@type": "ElectionResults.LanguageString",
+                                        "Content": "Emily Echo",
+                                        "Language": "en"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "@type": "ElectionResults.BallotMeasureSelection",
+                            "@id": "rcv_06",
+                            "Selection": {
+                                "@type": "ElectionResults.InternationalizedText",
+                                "Text": [
+                                    {
+                                        "@type": "ElectionResults.LanguageString",
+                                        "Content": "Francis Foxtrot",
                                         "Language": "en"
                                     }
                                 ]
