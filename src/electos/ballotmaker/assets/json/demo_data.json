@@ -28,73 +28,44 @@
             "Contest": [
                 {
                     "@type": "ElectionResults.CandidateContest",
-                    "@id": "recthF6jdx5ybBNkC",
+                    "@id": "county_clerk_contest",
                     "ExternalIdentifier": [
                         {
                             "@type": "ElectionResults.ExternalIdentifier",
                             "Type": "other",
-                            "Value": "school_board_contest",
+                            "Value": "county_clerk_contest",
                             "OtherType": "TTV",
-                            "Label": "school_board_contest"
+                            "Label": "county_clerk_contest"
                         }
                     ],
-                    "Name": "Gadget County School Board",
+                    "Name": "Contest for County Clerk",
                     "OfficeIds": [
-                        "rec1zWmGWlgKKmUO4"
+                        "county_clerk_office"
                     ],
-                    "VoteVariation": "n-of-m",
-                    "VotesAllowed": 4,
-                    "ElectionDistrictId": "recOVSnILnPJ7Dahl",
+                    "VoteVariation": "plurality",
+                    "VotesAllowed": 1,
+                    "ElectionDistrictId": "middlesex_county",
                     "ContestSelection": [
                         {
                             "@type": "ElectionResults.CandidateSelection",
                             "@id": "recJvikmG5MrUKzo1",
                             "CandidateIds": [
-                                "rec56yn7vK7Vk5Zbv"
+                                "jean-luc_picard"
                             ]
                         },
                         {
                             "@type": "ElectionResults.CandidateSelection",
                             "@id": "recigPkqYXXDJEaCE",
                             "CandidateIds": [
-                                "reccQRyca6A6QpRuo"
+                                "katniss_everdeen"
                             ]
                         },
                         {
                             "@type": "ElectionResults.CandidateSelection",
                             "@id": "recbN7UUMaSuOYGQ6",
                             "CandidateIds": [
-                                "recx71NmYNa1DNFIu"
+                                "james_t_kirk"
                             ]
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recbxvhKikHJNZYbq",
-                            "CandidateIds": [
-                                "recOZMDz6uSf5A1NH"
-                            ]
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recvjB3rgfiicf0RP",
-                            "CandidateIds": [
-                                "recSlC9yfxdyUA94v"
-                            ]
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recYurH2CLY3SlYS8",
-                            "IsWriteIn": true
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recI5jfcXIsbAKytC",
-                            "IsWriteIn": true
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recn9m0o1em7gLahj",
-                            "IsWriteIn": true
                         }
                     ]
                 },
@@ -147,14 +118,14 @@
                 },
                 {
                     "@type": "ElectionResults.CandidateContest",
-                    "@id": "recIj8OmzqzzvnDbM",
+                    "@id": "governor_contest",
                     "ExternalIdentifier": [
                         {
                             "@type": "ElectionResults.ExternalIdentifier",
                             "Type": "other",
-                            "Value": "mayoral_contest",
+                            "Value": "governor_contest",
                             "OtherType": "TTV",
-                            "Label": "mayoral_contest"
+                            "Label": "governor_contest"
                         }
                     ],
                     "Name": "Contest for Governor",
@@ -178,59 +149,6 @@
                             "CandidateIds": [
                                 "cosmo_spacely"
                             ]
-                        }
-                    ]
-                },
-                {
-                    "@type": "ElectionResults.CandidateContest",
-                    "@id": "recXNb4zPrvC1m6Fr",
-                    "ExternalIdentifier": [
-                        {
-                            "@type": "ElectionResults.ExternalIdentifier",
-                            "Type": "other",
-                            "Value": "spaceport_control_board_contest",
-                            "OtherType": "TTV",
-                            "Label": "spaceport_control_board_contest"
-                        }
-                    ],
-                    "Name": "Spaceport Control Board",
-                    "OfficeIds": [
-                        "recBAG7iuOZ1MER6i"
-                    ],
-                    "VoteVariation": "n-of-m",
-                    "VotesAllowed": 2,
-                    "ElectionDistrictId": "recVN5dRsq4j6QZn3",
-                    "ContestSelection": [
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recBnJZEgCKAnfpNo",
-                            "CandidateIds": [
-                                "recWnqiDUAZupjFW8"
-                            ]
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recwNuOnepWNGz67V",
-                            "CandidateIds": [
-                                "recDqtLJ6IqwZJr7k"
-                            ]
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recvYvTb9hWH7tptb",
-                            "CandidateIds": [
-                                "rec72dETaScaK4tqv"
-                            ]
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "rec9Eev970VhohqKi",
-                            "IsWriteIn": true
-                        },
-                        {
-                            "@type": "ElectionResults.CandidateSelection",
-                            "@id": "recFiGYjGCIyk5LBe",
-                            "IsWriteIn": true
                         }
                     ]
                 },
@@ -283,7 +201,7 @@
                 {
                     "@type": "ElectionResults.BallotMeasureContest",
                     "@id": "recqPa7AeyufIfd6k",
-                    "ElectionDistrictId": "recOVSnILnPJ7Dahl",
+                    "ElectionDistrictId": "middlesex_county",
                     "Name": "Air Traffic Control Tax Increase",
                     "FullText": {
                         "@type": "ElectionResults.InternationalizedText",
@@ -345,7 +263,7 @@
                         },
                         {
                             "@type": "ElectionResults.OrderedContest",
-                            "ContestId": "recthF6jdx5ybBNkC",
+                            "ContestId": "county_clerk_contest",
                             "OrderedContestSelectionIds": [
                                 "recJvikmG5MrUKzo1",
                                 "recigPkqYXXDJEaCE",
@@ -359,7 +277,7 @@
                         },
                         {
                             "@type": "ElectionResults.OrderedContest",
-                            "ContestId": "recIj8OmzqzzvnDbM",
+                            "ContestId": "governor_contest",
                             "OrderedContestSelectionIds": [
                                 "recKD6dBvkNhEU4bg",
                                 "recTKcXLCzRvKB9U0",
@@ -397,14 +315,14 @@
             "Candidate": [
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "rec56yn7vK7Vk5Zbv",
+                    "@id": "jean-luc_picard",
                     "PersonId": "recMZnE37A32cUq8t",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "Rosashawn Davis",
+                                "Content": "Jean-Luc Picard",
                                 "Language": "en"
                             }
                         ]
@@ -412,14 +330,14 @@
                 },
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "reccQRyca6A6QpRuo",
+                    "@id": "katniss_everdeen",
                     "PersonId": "recSUfKMVoKsAAMkS",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "Hector Gomez",
+                                "Content": "Katniss Everdeen",
                                 "Language": "en"
                             }
                         ]
@@ -427,14 +345,14 @@
                 },
                 {
                     "@type": "ElectionResults.Candidate",
-                    "@id": "recx71NmYNa1DNFIu",
+                    "@id": "james_t_kirk",
                     "PersonId": "recCHZSZuP5uTRqdk",
                     "BallotName": {
                         "@type": "ElectionResults.InternationalizedText",
                         "Text": [
                             {
                                 "@type": "ElectionResults.LanguageString",
-                                "Content": "Glavin Orotund",
+                                "Content": "James T. Kirk",
                                 "Language": "en"
                             }
                         ]
@@ -795,18 +713,18 @@
         },
         {
             "@type": "ElectionResults.ReportingUnit",
-            "@id": "recOVSnILnPJ7Dahl",
+            "@id": "middlesex_county",
             "Type": "county",
             "Name": {
                 "@type": "ElectionResults.InternationalizedText",
                 "Text": [
                     {
                         "@type": "ElectionResults.LanguageString",
-                        "Content": "Gadget County",
+                        "Content": "Middlesex County",
                         "Language": "en"
                     }
                 ],
-                "Label": "Gadget"
+                "Label": "Middlesex"
             }
         },
         {
@@ -986,18 +904,18 @@
     "Office": [
         {
             "@type": "ElectionResults.Office",
-            "@id": "rec1zWmGWlgKKmUO4",
+            "@id": "county_clerk_office",
             "IsPartisan": false,
             "Name": {
                 "@type": "ElectionResults.InternationalizedText",
                 "Text": [
                     {
                         "@type": "ElectionResults.LanguageString",
-                        "Content": "Gadget County School Board",
+                        "Content": "County Clerk",
                         "Language": "en"
                     }
                 ],
-                "Label": "School Board"
+                "Label": "County Clerk"
             }
         },
         {
